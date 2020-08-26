@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 23:27:47 by pchambon          #+#    #+#              #
-#    Updated: 2020/08/24 15:41:25 by dihauet          ###   ########.fr        #
+#    Updated: 2020/08/26 15:05:31 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DIRSRCS = ./src/
 
 DIROBJ = ./obj/
 
-SRCS = main.c usage.c
+SRCS = main.c usage.c parsing.c list_usage.c
 
 INC = ./includes/
 

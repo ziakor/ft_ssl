@@ -3,9 +3,10 @@
 
 #include <stddef.h>
 
+
 typedef struct s_flags
 {
-	int i;
+	int p;
 	int q;
 	int r;
 	int s;
@@ -20,13 +21,12 @@ typedef struct s_data
 	size_t data_length;
 } t_data;
 
-typedef struct s_list
+typedef struct s_lists
 {
-	t_data *data;
-	t_flags flags;
 
+	t_data *data;
 	struct s_list *next;
-} t_list;
+} t_lists;
 
 
 typedef struct s_parsing
@@ -34,8 +34,12 @@ typedef struct s_parsing
 
 	char *cmd;
 
+	t_flags flags;
 	t_list *list_data;
+	//add function pointeur do the job
+	//add function print result
 } t_parsing;
 
+int parsing_args(t_parsing *list, char **argv, int argc);
 
 #endif 

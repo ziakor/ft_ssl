@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/08/24 16:59:39 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/08/26 18:23:07 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 int		main(int argc, char **argv)
 {
-	(void)argv;
+	t_parsing list;
+
 	if (argc == 1)
 		ft_ssl_usage();
 	else
-		printf("%u\n", g_k_md5[0]);
+	{
+		if (parsing_args(&list, argv, argc) == 0)
+			return (0);
+	}	
 	return (0);
 }
