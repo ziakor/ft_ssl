@@ -1,8 +1,6 @@
 #ifndef PARSING_H
 # define PARSING_H
 
-#include <stddef.h>
-
 
 typedef struct s_flags
 {
@@ -15,18 +13,18 @@ typedef struct s_flags
 
 typedef struct s_data
 {
-	char *fd_name;
+	char *file_name;
 	int fd;
 	char *data;
 	size_t data_length;
 } t_data;
 
-typedef struct s_lists
+typedef struct s_list_data
 {
 
-	t_data *data;
-	struct s_list *next;
-} t_lists;
+	t_data data;
+	struct s_list_data *next;
+} t_list_data;
 
 
 typedef struct s_parsing
@@ -35,11 +33,27 @@ typedef struct s_parsing
 	char *cmd;
 
 	t_flags flags;
-	t_list *list_data;
+	t_list_data *list_data;
 	//add function pointeur do the job
 	//add function print result
 } t_parsing;
 
 int parsing_args(t_parsing *list, char **argv, int argc);
+char *get_stdin();
 
+/*
+**file data_list.c
+** function about linked list of parsing structure
+*/
+t_list_data *create_new_elem(char *str, char *file_name, int fd);
+t_list_data *add_new_elem(t_list_data *list, t_list_data *new_elem);
+
+
+/*
+** file parsing_functions.c
+*/
+int get_option(t_flags *flags, char c);
+char *get_stdin();
+int open_file(char *file_name, char *cmd);
+char *get_error_message_open_file(int type);
 #endif 

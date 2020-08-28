@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 11:43:52 by dihauet           #+#    #+#             */
-/*   Updated: 2020/08/24 11:44:11 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/08/28 11:41:00 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ size_t	ft_strlen(const char *s)
 	size_t i;
 
 	i = 0;
-	while (s[i] != '\0')
-		i++;
+	if (s)
+	{
+		while (s[i] != '\0')
+			i++;
+	}
 	return (i);
 }

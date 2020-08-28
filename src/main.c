@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/08/26 18:23:07 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/08/28 11:52:39 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,10 @@ int		main(int argc, char **argv)
 		if (parsing_args(&list, argv, argc) == 0)
 			return (0);
 	}	
+
+	/*
+	** !! NE PAS OUBLIER DE FREE LE CONTENU DE LIST(list chainer,etc..)
+	*/
+	// while(1);
 	return (0);
 }

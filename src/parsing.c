@@ -6,26 +6,13 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/08/26 19:24:09 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/08/28 13:54:07 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
 
-int get_option(t_flags *flags, char c)
-{
-	if (c == 'q')
-		flags->q = 1;
-	else if (c == 'p')
-		flags->p = 1;
-	else if (c == 'r')
-		flags->r = 1;
-	else if (c == 's')
-		flags->s = 1;
-	else
-		return (0);
-	return (1);
-}
+
 
 int get_options(t_flags *flags, char **argv, int *position_argv)
 {
@@ -56,49 +43,45 @@ int get_options(t_flags *flags, char **argv, int *position_argv)
 	return (1);
 }
 
-int read_stdin()
+
+
+
+
+char *read_file(t_parsing *list, char* file_name)
 {
 	char *tmp;
-	char *stdin_data;
-	char str[101];
-	int length;
+	char *file_data;
+	char *str[1000];
 	int ret;
-	
-	length = 0;
-	str[100] = '\0';
-	if (!(stdin_data = (char*)malloc(sizeof(char) * 101)))
-		return (-1);
-	stdin_data[0]  = '\0';
-	while ((ret = read(0, str, 100)) > 0)
-	{
-		str[ret] = '\0';
-		tmp = ft_strjoin(stdin_data, str);
-		free(stdin_data);
-		stdin_data = tmp;
-	}
-	printf("%s\n", stdin_data);
-	if (ret == -1)
-		return (-1);
 
-	return(1);
+	if (!(file_data = (char*)malloc(sizeof(char))))
+		return (NULL);
+	file_data[0] = '\0';
 }
+
 
 
 int get_data(t_parsing *list, char **argv, int argc)
 {
 	int i;
-
+	char *data;
 	i = 0;
-	printf("%s\n", argv[0]);
-	printf(">>%d\n", argc);
 	
+	data = NULL;
 	if (argc == 0 || list->flags.p == 1)
-		read_stdin();
-
-	// while (i < argc)
-	// {
-
-	// }
+	{
+		if (!(data = get_stdin()))
+			return (0);
+		if (!(list->list_data = create_new_elem(data, "STDIN", 0)))
+			return (0);
+		printf("%s\n", list->list_data->data.data);
+	}
+	while (i < argc)
+	{
+		if (!(read_file(list, argv[i])))
+			return (0);
+		i++;
+	}
 	return (1);
 }
 

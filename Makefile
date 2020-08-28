@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/01/11 23:27:47 by pchambon          #+#    #+#              #
-#    Updated: 2020/08/26 15:05:31 by dihauet          ###   ########.fr        #
+#    Created: 2020/08/28 11:44:24 by dihauet           #+#    #+#              #
+#    Updated: 2020/08/28 13:26:58 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DIRSRCS = ./src/
 
 DIROBJ = ./obj/
 
-SRCS = main.c usage.c parsing.c list_usage.c
+SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c error.c
 
 INC = ./includes/
 
@@ -28,7 +28,7 @@ LIB_A = ./Libft/libft.a
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 OBJ = $(patsubst %.c,$(DIROBJ)%.o,$(SRCS))
 
