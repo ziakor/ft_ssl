@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 12:26:36 by dihauet           #+#    #+#              #
-#    Updated: 2020/08/24 12:26:49 by dihauet          ###   ########.fr        #
+#    Updated: 2020/08/31 11:14:41 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ SRCS = 	ft_atoi.c \
 		ft_tolower.c \
 		ft_toupper.c
 
-CC = clang
+CC = gcc
 
 SRCO = $(patsubst %.c,$(DIROBJ)%.o,$(SRCS))
 

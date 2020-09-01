@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/08/28 13:54:07 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/01 18:39:27 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,26 @@ int get_options(t_flags *flags, char **argv, int *position_argv)
 	return (1);
 }
 
-
-
-
-
-char *read_file(t_parsing *list, char* file_name)
+char *get_file(t_parsing *list, char* file_name)
 {
-	char *tmp;
 	char *file_data;
-	char *str[1000];
-	int ret;
-
-	if (!(file_data = (char*)malloc(sizeof(char))))
-		return (NULL);
-	file_data[0] = '\0';
+	t_list_data *new_elem;
+	int fd;
+	new_elem = NULL;
+	if ((fd = open_file(file_name,list->cmd)) < 0)
+	{
+		file_data = get_error_message_open_file(fd);
+	}
+	else
+	{
+		if (!(file_data = read_file(fd)))
+			return NULL;
+	}
+	if(!(new_elem = create_new_elem(file_data, file_name, fd) ))
+		return NULL;
+	add_new_elem(&(list->list_data), new_elem);
+	return file_data;
 }
-
-
 
 int get_data(t_parsing *list, char **argv, int argc)
 {
@@ -70,16 +73,20 @@ int get_data(t_parsing *list, char **argv, int argc)
 	data = NULL;
 	if (argc == 0 || list->flags.p == 1)
 	{
-		if (!(data = get_stdin()))
+		if (!(data = read_stdin()))
 			return (0);
-		if (!(list->list_data = create_new_elem(data, "STDIN", 0)))
+		if (!(list->list_data = create_new_elem(data, "stdin", 0)))
 			return (0);
-		printf("%s\n", list->list_data->data.data);
+		free(data);
+		data = NULL;
 	}
+	printf("argc : %d\n%s\n", argc, argv[i]);
 	while (i < argc)
 	{
-		if (!(read_file(list, argv[i])))
-			return (0);
+		printf("%d\n", i);
+		data = get_file(list, argv[i]);
+		free(data);
+		data = NULL;
 		i++;
 	}
 	return (1);

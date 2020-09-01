@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/08/28 13:32:59 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/08/31 14:52:21 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,10 @@ int ft_invalid_option(char *option, char *command);
 void error_open_directory(char *file_name, char *cmd);
 void error_open_file(char* file_name, char *cmd);
 
+
+/*
+** clean.c
+** function free malloc
+*/
+void clean_parsing(t_list_data *list_data);
 #endif

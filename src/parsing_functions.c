@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/08/28 14:02:58 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/01 14:45:54 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int get_option(t_flags *flags, char c)
 	return (1);
 }
 
-char *get_stdin()
+char *read_stdin()
 {
 	char *tmp;
 	char *stdin_data;
-	char str[1000];
+	char str[1001];
 	int ret;
 	
 	if (!(stdin_data = (char*)malloc(sizeof(char))))
@@ -49,10 +49,32 @@ char *get_stdin()
 	return(stdin_data);
 }
 
+char *read_file(int fd)
+{
+	char *tmp;
+	char *file_data;
+	char buffer[1001];
+	int ret;
+
+	if (!(file_data = (char*)malloc(sizeof(char))))
+		return (NULL);
+	file_data[0]='\0';
+	while((ret = read(fd, buffer, 1000)) > 0)
+	{
+		buffer[ret]= '\0';
+		tmp = ft_strjoin(file_data, buffer);
+		free(file_data);
+		file_data = tmp;
+	}
+	if (ret == -1)
+		return (NULL);
+	return (file_data);
+}
+
 int open_file(char *file_name, char *cmd)
 {
 	int fd;
-
+	(void)cmd;
 	fd = 0;
 	if ((fd = open(file_name, O_DIRECTORY)) != -1)
 	{
@@ -68,5 +90,9 @@ char *get_error_message_open_file(int type)
 	if (type == -1)
 		return (strerror(errno));
 	else if (type == -2)
-		return ("Is a directory");
+	{
+		return (strerror(EISDIR));
+	}
+
+	return NULL;
 }

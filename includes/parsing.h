@@ -46,14 +46,22 @@ char *get_stdin();
 ** function about linked list of parsing structure
 */
 t_list_data *create_new_elem(char *str, char *file_name, int fd);
-t_list_data *add_new_elem(t_list_data *list, t_list_data *new_elem);
+void add_new_elem(t_list_data **list, t_list_data *new_elem);
+void read_data_list(t_list_data *list);
 
 
 /*
 ** file parsing_functions.c
 */
 int get_option(t_flags *flags, char c);
-char *get_stdin();
+char *read_stdin();
 int open_file(char *file_name, char *cmd);
 char *get_error_message_open_file(int type);
-#endif 
+char *read_file(int fd);
+
+/*
+** file interactive_mode.c
+** functions about the interactive mode 
+*/
+int interactive_mode(t_parsing *list);
+#endif  

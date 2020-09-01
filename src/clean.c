@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/24 11:42:49 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/01 17:49:23 by dihauet          ###   ########.fr       */
+/*   Created: 2020/08/31 14:14:57 by dihauet           #+#    #+#             */
+/*   Updated: 2020/09/01 18:42:56 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "../includes/libft.h"
+#include "../includes/ft_ssl.h"
 
-char	*ft_strjoin_free(char *s1, char *s2)
+void clean_parsing(t_list_data *list_data)
 {
-	char	*str;
+  t_list_data *tmp;
 
-	str = ft_strjoin(s1, s2);
-	if (s1)
-	{
-		free(s1);
-		s1 = NULL;
-	}
-	if (s2)
-	{
-		free(s2);
-		s2 = NULL;
-	}
-	return (str);
+  tmp = NULL;
+  while(list_data)
+  {
+    tmp = list_data->next;
+    if(list_data->data.data && list_data->data.fd >= 0)
+      free(list_data->data.data);
+    free(list_data->data.file_name);
+    if(list_data->data.fd > 2)
+      close(list_data->data.fd);
+    free(list_data);
+    list_data = tmp;
+  }
+
 }

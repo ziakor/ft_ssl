@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/28 11:44:24 by dihauet           #+#    #+#              #
-#    Updated: 2020/08/28 13:26:58 by dihauet          ###   ########.fr        #
+#    Updated: 2020/09/01 15:15:12 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DIRSRCS = ./src/
 
 DIROBJ = ./obj/
 
-SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c error.c
+SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c interactive_mode.c error.c clean.c
 
 INC = ./includes/
 
@@ -26,9 +26,9 @@ LIB_H = ./Libft/libft.h
 
 LIB_A = ./Libft/libft.a
 
-CC = clang
+CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS =  -g
 
 OBJ = $(patsubst %.c,$(DIROBJ)%.o,$(SRCS))
 
