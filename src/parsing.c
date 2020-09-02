@@ -6,18 +6,17 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/01 18:39:27 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/02 20:56:47 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
 
-
-
-int get_options(t_flags *flags, char **argv, int *position_argv)
+int		get_options(t_flags *flags, char **argv, int *position_argv)
 {
-	int size;
-	int i ;
+	int	size;
+	int	i;
+
 	*position_argv = *position_argv + 1;
 	while (argv[*position_argv] && argv[*position_argv][0] == '-')
 	{
@@ -38,38 +37,40 @@ int get_options(t_flags *flags, char **argv, int *position_argv)
 				return (0);
 		}
 		*position_argv = *position_argv + 1;
-
 	}
 	return (1);
 }
 
-char *get_file(t_parsing *list, char* file_name)
+char	*get_file(t_parsing *list, char *file_name)
 {
-	char *file_data;
-	t_list_data *new_elem;
-	int fd;
+	char		*file_data;
+	t_list_data	*new_elem;
+	int			fd;
+
 	new_elem = NULL;
-	if ((fd = open_file(file_name,list->cmd)) < 0)
+	if ((fd = open_file(file_name, list->cmd)) < 0)
 	{
 		file_data = get_error_message_open_file(fd);
 	}
 	else
 	{
 		if (!(file_data = read_file(fd)))
-			return NULL;
+			return (NULL);
 	}
-	if(!(new_elem = create_new_elem(file_data, file_name, fd) ))
-		return NULL;
+	if (!(new_elem = create_new_elem(file_data, file_name, fd)))
+		return (NULL);
+	if (new_elem->data.fd >= 0)
+		free(file_data);
 	add_new_elem(&(list->list_data), new_elem);
-	return file_data;
+	return (file_data);
 }
 
-int get_data(t_parsing *list, char **argv, int argc)
+int		get_data(t_parsing *list, char **argv, int argc)
 {
-	int i;
-	char *data;
+	int		i;
+	char	*data;
+
 	i = 0;
-	
 	data = NULL;
 	if (argc == 0 || list->flags.p == 1)
 	{
@@ -80,38 +81,35 @@ int get_data(t_parsing *list, char **argv, int argc)
 		free(data);
 		data = NULL;
 	}
-	printf("argc : %d\n%s\n", argc, argv[i]);
 	while (i < argc)
 	{
 		printf("%d\n", i);
 		data = get_file(list, argv[i]);
-		free(data);
-		data = NULL;
 		i++;
 	}
 	return (1);
 }
 
-int parsing_args(t_parsing *list, char **argv, int argc)
+int		parsing_args(t_parsing *list, char **argv, int argc)
 {
-	int i;
-	int position_argv;
-	
+	int	i;
+	int	position_argv;
+
 	argc++;
 	i = 0;
 	position_argv = 1;
-	while(g_all_cmd[i].cmd != NULL)
+	while (g_all_cmd[i].cmd != NULL)
 	{
-		if(ft_strcmp(g_all_cmd[i].cmd, argv[position_argv]) == 0)
+		if (ft_strcmp(g_all_cmd[i].cmd, argv[position_argv]) == 0)
 		{
 			*list = g_all_cmd[i];
-			if (get_options(&list->flags,argv, &(position_argv)) == 0)
+			if (get_options(&list->flags, argv, &(position_argv)) == 0)
 				return (ft_invalid_option(argv[position_argv], list->cmd));
-			get_data(list,argv + position_argv, argc - position_argv - 1);
+			get_data(list, argv + position_argv, argc - position_argv - 1);
 			return (1);
 		}
 		i++;
 	}
 	ft_invalid_command(argv[1]);
-	return(0);
+	return (0);
 }

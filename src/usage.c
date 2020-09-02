@@ -12,12 +12,12 @@
 
 #include "../includes/ft_ssl.h"
 
-void ft_ssl_usage()
+void	ft_ssl_usage(void)
 {
 	ft_putstr_fd("usage: ft_ssl command [command opts] [command args]\n\n", 2);
 }
 
-void ft_invalid_command( char *command)
+void	ft_invalid_command(char *command)
 {
 	ft_putstr_fd("ft_ssl: Error: \'", 2);
 	ft_putstr_fd(command, 2);
@@ -25,11 +25,9 @@ void ft_invalid_command( char *command)
 	ft_list_commands();
 	ft_list_message_digest();
 	ft_list_cipher();
-
 }
 
-
-int ft_invalid_option(char *option, char *command)
+int		ft_invalid_option(char *option, char *command)
 {
 	ft_putstr_fd("ft_ssl: ", 2);
 	ft_putstr_fd(command, 2);

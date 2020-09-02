@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ssl.h"
 
-int get_option(t_flags *flags, char c)
+int		get_option(t_flags *flags, char c)
 {
 	if (c == 'q')
 		flags->q = 1;
@@ -27,16 +27,16 @@ int get_option(t_flags *flags, char c)
 	return (1);
 }
 
-char *read_stdin()
+char	*read_stdin(void)
 {
-	char *tmp;
-	char *stdin_data;
-	char str[1001];
-	int ret;
-	
+	char	*tmp;
+	char	*stdin_data;
+	char	str[1001];
+	int		ret;
+
 	if (!(stdin_data = (char*)malloc(sizeof(char))))
 		return (NULL);
-	stdin_data[0]  = '\0';
+	stdin_data[0] = '\0';
 	while ((ret = read(0, str, 1000)) > 0)
 	{
 		str[ret] = '\0';
@@ -46,22 +46,22 @@ char *read_stdin()
 	}
 	if (ret == -1)
 		return (NULL);
-	return(stdin_data);
+	return (stdin_data);
 }
 
-char *read_file(int fd)
+char	*read_file(int fd)
 {
-	char *tmp;
-	char *file_data;
-	char buffer[1001];
-	int ret;
+	char	*tmp;
+	char	*file_data;
+	char	buffer[1001];
+	int		ret;
 
 	if (!(file_data = (char*)malloc(sizeof(char))))
 		return (NULL);
-	file_data[0]='\0';
-	while((ret = read(fd, buffer, 1000)) > 0)
+	file_data[0] = '\0';
+	while ((ret = read(fd, buffer, 1000)) > 0)
 	{
-		buffer[ret]= '\0';
+		buffer[ret] = '\0';
 		tmp = ft_strjoin(file_data, buffer);
 		free(file_data);
 		file_data = tmp;
@@ -71,9 +71,10 @@ char *read_file(int fd)
 	return (file_data);
 }
 
-int open_file(char *file_name, char *cmd)
+int		open_file(char *file_name, char *cmd)
 {
-	int fd;
+	int		fd;
+
 	(void)cmd;
 	fd = 0;
 	if ((fd = open(file_name, O_DIRECTORY)) != -1)
@@ -85,7 +86,7 @@ int open_file(char *file_name, char *cmd)
 	return (fd);
 }
 
-char *get_error_message_open_file(int type)
+char	*get_error_message_open_file(int type)
 {
 	if (type == -1)
 		return (strerror(errno));
@@ -93,6 +94,5 @@ char *get_error_message_open_file(int type)
 	{
 		return (strerror(EISDIR));
 	}
-
-	return NULL;
+	return (NULL);
 }

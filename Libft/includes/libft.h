@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-# define BUFF_SIZE_LIBFT 42
+# define BUFF_SIZE_LIBFT 1000
 # define FD_MAX  4864
 
 typedef	struct		s_list
