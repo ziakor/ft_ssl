@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/05 20:36:06 by dihauet          ###   ########.fr       */
+/*   Created: 2020/09/05 15:55:54 by dihauet           #+#    #+#             */
+/*   Updated: 2020/09/05 20:38:02 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
 
-int		main(int argc, char **argv)
+int hash_data(t_parsing *list)
 {
-	t_parsing	list;
+    t_list_data *head;
 
-	if (argc == 1)
-	{
-		if (!(interactive_mode(&list)))
-			return(0);
-	}
-	else
-	{
-		if (parsing_args(&list, argv, argc) == 0)
-			return (0);
-	}
-	hash_data(&list);
-	read_data_list(list.list_data);
-	clean_parsing(list.list_data);
-	// while(1);
-	return (0);
+    head = list->list_data;
+    while (list->list_data)
+    {
+        if(list->list_data->data.fd >= 0)
+            list->hash_func(list->list_data->data.data,list->list_data->data.data_length);
+        list->list_data = list->list_data->next;
+    }
+    list->list_data = head;
+    return (1);
 }

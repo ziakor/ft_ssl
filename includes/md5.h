@@ -6,14 +6,12 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 15:28:04 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/05 10:10:20 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/05 20:32:17 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MD5_H
 # define MD5_H
-
-# include <stdint.h>
 
 # define MD5_H0 0x67452301
 # define MD5_H1 0xEFCDAB89
@@ -53,5 +51,9 @@ typedef struct	s_md5
 	uint32_t	h3;
 	t_padding padding;
 }				t_md5;					
+
+
+int     md5(char *str, size_t length);
+int add_padding(t_md5 *md5, char* data, size_t length);
 
 #endif

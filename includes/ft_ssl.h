@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/05 10:10:57 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/05 20:31:51 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h> //A supprimer evidement quand tu auras plus besoin
 # include <stdlib.h>
+# include <stdint.h>
 # include <string.h>
 # include <errno.h>
 # include <stddef.h>
@@ -27,7 +28,9 @@ typedef struct	s_padding
 {
 	size_t	initial_length;
 	size_t	new_length;
-	size_t	nb_bytes;	
+	size_t	nb_bits;	
+	size_t	offset;
+	uint8_t *data_with_padding;
 }								t_padding;
 
 # include "../Libft/includes/libft.h"
@@ -36,9 +39,9 @@ typedef struct	s_padding
 
 static const t_parsing	g_all_cmd[] =
 {
-	{"md5", {0, 0, 0, 0}, NULL},
-	{"sha256", {0, 0, 0, 0}, NULL},
-	{NULL, {0, 0, 0, 0}, NULL},
+	{"md5", {0, 0, 0, 0}, NULL, md5, NULL},
+	{"sha256", {0, 0, 0, 0}, NULL, NULL, NULL},
+	{NULL, {0, 0, 0, 0}, NULL, NULL, NULL},
 };
 
 
@@ -70,5 +73,11 @@ void	error_open_file(char *file_name, char *cmd);
 */
 
 void	clean_parsing(t_list_data *list_data);
+
+/*
+** hash.c
+** function about hash(md5,sha256,etc..)
+*/
+	int hash_data(t_parsing *list);
 
 #endif

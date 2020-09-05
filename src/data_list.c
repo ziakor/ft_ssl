@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 10:56:05 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/05 10:16:57 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/05 20:33:14 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void		add_new_elem(t_list_data **list, t_list_data *new_elem)
 
 void		read_data_list(t_list_data *list)
 {
-	printf("ASDASDASDASD\n");
 	while (list)
 	{
 		ft_putstr("ELEM\n");

@@ -26,13 +26,15 @@ typedef struct	s_list_data
 	struct s_list_data	*next;
 }				t_list_data;
 
+
+
 typedef struct	s_parsing
 {
 	char		*cmd;
 	t_flags		flags;
 	t_list_data	*list_data;
-	// add function pointeur do the job
-	// add function print result
+	int (*hash_func)(char*, size_t);
+	void (*print_func)(void*);
 }				t_parsing;
 
 int				parsing_args(t_parsing *list, char **argv, int argc);
