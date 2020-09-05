@@ -63,5 +63,5 @@ char			*read_file(int fd);
 */
 
 int				interactive_mode(t_parsing *list);
-
+int		free_interactive_mode(char *binary, char *line, char **args);
 #endif

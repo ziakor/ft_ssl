@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 12:04:12 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/01 18:19:14 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/05 13:16:37 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ int		ft_str_tablen(char **tab)
 
 int		free_interactive_mode(char *binary, char *line, char **args)
 {
-	if (binary != NULL)
+	if (binary)
 	{
 		free(binary);
 		binary = NULL;
 	}
-	if (line != NULL)
+	if (line)
 	{
 		free(line);
 		line = NULL;
 	}
-	if (args != NULL)
+	if (args)
 	{
 		free_tab(args);
 		args = NULL;
@@ -75,25 +75,22 @@ int		interactive_mode(t_parsing *list)
 	char	*line;
 	char	**args;
 	char	*binary;
-
-	line = NULL;
-	args = NULL;
+	
 	while (1)
 	{
 		ft_putstr("ft_ssl>");
 		if (!(binary = ft_strdup("./ft_ssl ")))
-			return (free_interactive_mode(binary, line, args));
-		if (!(line = read_line_stdin()))
-			return (free_interactive_mode(binary, line, args));
-		if ((ft_strlen(line) == 1 && line[0] == 'q'))
-			return (free_interactive_mode(binary, line, args));
+			return (0);	
+		if ((!(line = read_line_stdin())) || (ft_strlen(line) == 1 && line[0] == 'q'))
+			return (free_interactive_mode(binary, line, NULL));
 		if (!(line = ft_strjoin_free(binary, line)))
-			return (0);
+			return (free_interactive_mode(binary, line, NULL));
 		if (!(args = ft_strsplit(line, ' ')))
 			return (free_interactive_mode(binary, line, args));
 		if (parsing_args(list, args, ft_str_tablen(args)))
 			break ;
 		free_tab(args);
+		args = NULL;
 		ft_strdel(&line);
 	}
 	free_tab(args);

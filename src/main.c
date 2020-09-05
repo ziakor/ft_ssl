@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/02 20:57:15 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/05 10:21:24 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int		main(int argc, char **argv)
 
 	if (argc == 1)
 	{
-		interactive_mode(&list);
+		if (!(interactive_mode(&list)))
+			return(0);
 	}
 	else
 	{
@@ -26,6 +27,7 @@ int		main(int argc, char **argv)
 			return (0);
 	}
 	// !! NE PAS OUBLIER DE FREE LE CONTENU DE LIST(list chainer,etc..)
+	printf("asd\n");
 	read_data_list(list.list_data);
 	clean_parsing(list.list_data);
 	// while(1);

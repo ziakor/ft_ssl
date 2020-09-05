@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 15:28:04 by dihauet           #+#    #+#             */
-/*   Updated: 2020/08/24 15:41:07 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/05 10:10:20 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,18 @@ static const uint32_t	g_k_md5[64] = {
 	4293915773, 2240044497, 1873313359, 4264355552, 2734768916, 1309151649,
 	4149444226, 3174756917, 718787259, 3951481745
 };
+
+typedef struct	s_md5
+{
+	uint32_t	word_a;
+	uint32_t	word_b;
+	uint32_t	word_c;
+	uint32_t	word_d;
+	uint32_t	h0;
+	uint32_t	h1;
+	uint32_t	h2;
+	uint32_t	h3;
+	t_padding padding;
+}				t_md5;					
 
 #endif
