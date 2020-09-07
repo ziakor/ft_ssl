@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 12:26:36 by dihauet           #+#    #+#              #
-#    Updated: 2020/08/31 11:14:41 by dihauet          ###   ########.fr        #
+#    Updated: 2020/09/06 15:38:12 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ SRCS = 	ft_atoi.c \
 		ft_toupper.c
 
 CC = gcc
-
+CFLAGS = -Wall -Wextra -Werror
 SRCO = $(patsubst %.c,$(DIROBJ)%.o,$(SRCS))
 
 INC = ./includes/libft.h

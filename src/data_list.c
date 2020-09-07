@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 10:56:05 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/05 20:33:14 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/07 15:15:00 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_list_data	*create_new_elem(char *str, char *file_name, int fd)
 		return (NULL);
 	if (!(new_elem->data.file_name = ft_strdup(file_name)))
 		return (NULL);
+	new_elem->data.data_length = ft_strlen(str);
 	new_elem->data.fd = fd;
 	new_elem->next = NULL;
 	return (new_elem);

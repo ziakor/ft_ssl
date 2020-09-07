@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 15:28:04 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/05 20:32:17 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/07 14:52:54 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,23 @@ typedef struct	s_md5
 	uint32_t	h1;
 	uint32_t	h2;
 	uint32_t	h3;
+	uint32_t	*endian_w;
+	uint32_t	f;
+	uint32_t	g;
+	size_t		offset;
 	t_padding padding;
 }				t_md5;					
 
 
-int     md5(char *str, size_t length);
-int add_padding(t_md5 *md5, char* data, size_t length);
+int					md5(char *str, size_t length);
+int					add_padding(t_md5 *md5, char* data, size_t length);
 
+/*
+** md5_utils.c
+*/
+uint32_t		left_rotate(uint32_t value, uint32_t count);
+void func_f(t_md5 *md5, int i);
+void func_g(t_md5 *md5, int i);
+void func_h(t_md5 *md5, int i);
+void func_i(t_md5 *md5, int i);
 #endif

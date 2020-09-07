@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/28 11:44:24 by dihauet           #+#    #+#              #
-#    Updated: 2020/09/05 16:49:44 by dihauet          ###   ########.fr        #
+#    Updated: 2020/09/07 15:00:52 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DIRSRCS = ./src/
 
 DIROBJ = ./obj/
 
-SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c interactive_mode.c error.c clean.c md5.c hash.c
+SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c interactive_mode.c error.c clean.c md5/md5.c md5/md5_utils.c hash.c
 
 INC = ./includes/
 
@@ -28,7 +28,7 @@ LIB_A = ./Libft/libft.a
 
 CC = gcc
 
-CFLAGS =  -g
+CFLAGS = -g
 
 OBJ = $(patsubst %.c,$(DIROBJ)%.o,$(SRCS))
 
@@ -57,7 +57,7 @@ $(NAME):		$(LIB_A) $(OBJ)
 				@echo "\n\n${OK_COLOR}${NAME} : Compilation complete${NO_COLOR}"
 
 $(DIROBJ)%.o:	$(DIRSRCS)%.c $(INC)
-				@mkdir -p $(DIROBJ)
+				@mkdir -p $(DIROBJ)/md5
 				@if [[ $(verif) -eq 0 ]]; then printf "\n$(_BLUE)|==========================>  $(_PURPLE)$(NAME)   $(_BLUE)<==========================|$(_DEF)\n";\
 				else printf "\e[1A"; fi
 				$(eval FNCT = $(words $(SRCS)))

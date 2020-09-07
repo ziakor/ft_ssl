@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/05 20:31:51 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/07 13:39:12 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct	s_padding
 {
 	size_t	initial_length;
 	size_t	new_length;
-	size_t	nb_bits;	
-	size_t	offset;
+	size_t	nb_bits;
 	uint8_t *data_with_padding;
 }								t_padding;
 
