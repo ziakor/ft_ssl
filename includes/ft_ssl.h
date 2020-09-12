@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/07 13:39:12 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/12 14:52:13 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,11 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <limits.h>
-
-typedef struct	s_padding
-{
-	size_t	initial_length;
-	size_t	new_length;
-	size_t	nb_bits;
-	uint8_t *data_with_padding;
-}								t_padding;
-
+# include "structure.h"
 # include "../Libft/includes/libft.h"
 # include "./md5.h"
 # include "./parsing.h"
+
 
 static const t_parsing	g_all_cmd[] =
 {
@@ -43,8 +36,6 @@ static const t_parsing	g_all_cmd[] =
 	{"sha256", {0, 0, 0, 0}, NULL, NULL, NULL},
 	{NULL, {0, 0, 0, 0}, NULL, NULL, NULL},
 };
-
-
 
 /*
 ** usage.c

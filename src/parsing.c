@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/05 16:06:08 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/08 10:23:04 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int		get_data(t_parsing *list, char **argv, int argc)
 	}
 	while (i < argc)
 	{
-		printf("%d\n", i);
 		data = get_file(list, argv[i]);
 		i++;
 	}

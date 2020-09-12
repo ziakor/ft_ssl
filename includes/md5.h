@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 15:28:04 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/07 14:52:54 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/12 15:32:01 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static const uint32_t	g_r_md5[64] = {
 	10, 15, 21
 };
 
+
 static const uint32_t	g_k_md5[64] = {
 	3614090360, 3905402710, 606105819, 3250441966, 4118548399, 1200080426,
 	2821735955, 4249261313, 1770035416, 2336552879, 4294925233, 2304563134,
@@ -41,24 +42,25 @@ static const uint32_t	g_k_md5[64] = {
 
 typedef struct	s_md5
 {
+	
 	uint32_t	word_a;
 	uint32_t	word_b;
 	uint32_t	word_c;
 	uint32_t	word_d;
-	uint32_t	h0;
-	uint32_t	h1;
-	uint32_t	h2;
-	uint32_t	h3;
+	int	h0;
+	int	h1;
+	int	h2;
+	int	h3;
 	uint32_t	*endian_w;
-	uint32_t	f;
-	uint32_t	g;
+	int	f;
+	int	g;
 	size_t		offset;
 	t_padding padding;
+	uint32_t *hashed_data;
 }				t_md5;					
 
 
 int					md5(char *str, size_t length);
-int					add_padding(t_md5 *md5, char* data, size_t length);
 
 /*
 ** md5_utils.c

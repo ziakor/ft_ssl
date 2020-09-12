@@ -17,6 +17,7 @@ typedef struct	s_data
 	int		fd;
 	char	*data;
 	size_t	data_length;
+	t_hash *hash;
 }				t_data;
 
 typedef struct	s_list_data

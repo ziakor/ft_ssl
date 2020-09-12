@@ -6,19 +6,16 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 11:33:21 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/07 14:53:57 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/11 15:56:12 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
 
-uint32_t	left_rotate(uint32_t value, uint32_t count)
+uint32_t	left_rotate(uint32_t x, uint32_t nb)
 {
-        const unsigned int mask = CHAR_BIT *sizeof(value) - 1;
-    count &= mask;
-    return (value << count) | (value >> (-count & mask));
+	return ((x << nb) | (x >> (32 - nb)));
 }
-
 void func_f(t_md5 *md5, int i)
 {
     md5->f = (md5->word_b & md5->word_c) | ((~md5->word_b) & md5->word_d);
