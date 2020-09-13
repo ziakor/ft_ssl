@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 15:28:04 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/12 15:32:01 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/13 18:18:18 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static const uint32_t	g_r_md5[64] = {
 	10, 15, 21
 };
 
-
 static const uint32_t	g_k_md5[64] = {
 	3614090360, 3905402710, 606105819, 3250441966, 4118548399, 1200080426,
 	2821735955, 4249261313, 1770035416, 2336552879, 4294925233, 2304563134,
@@ -40,34 +39,31 @@ static const uint32_t	g_k_md5[64] = {
 	4149444226, 3174756917, 718787259, 3951481745
 };
 
-typedef struct	s_md5
+typedef struct		s_md5
 {
-	
+	int			f;
+	int			g;
+	int			h0;
+	int			h1;
+	int			h2;
+	int			h3;
+	size_t		offset;
 	uint32_t	word_a;
 	uint32_t	word_b;
 	uint32_t	word_c;
 	uint32_t	word_d;
-	int	h0;
-	int	h1;
-	int	h2;
-	int	h3;
 	uint32_t	*endian_w;
-	int	f;
-	int	g;
-	size_t		offset;
-	t_padding padding;
-	uint32_t *hashed_data;
-}				t_md5;					
+	uint32_t	*hashed_data;
+}					t_md5;
 
-
-int					md5(char *str, size_t length);
+int					md5(t_hash *hash, char *str, size_t length);
 
 /*
 ** md5_utils.c
 */
-uint32_t		left_rotate(uint32_t value, uint32_t count);
-void func_f(t_md5 *md5, int i);
-void func_g(t_md5 *md5, int i);
-void func_h(t_md5 *md5, int i);
-void func_i(t_md5 *md5, int i);
+uint32_t			left_rotate(uint32_t value, uint32_t count);
+void				func_f(t_md5 *md5, int i);
+void				func_g(t_md5 *md5, int i);
+void				func_h(t_md5 *md5, int i);
+void				func_i(t_md5 *md5, int i);
 #endif

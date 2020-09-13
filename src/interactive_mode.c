@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 12:04:12 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/05 13:16:37 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/13 16:50:05 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,14 @@ int		interactive_mode(t_parsing *list)
 	char	*line;
 	char	**args;
 	char	*binary;
-	
+
 	while (1)
 	{
 		ft_putstr("ft_ssl>");
 		if (!(binary = ft_strdup("./ft_ssl ")))
-			return (0);	
-		if ((!(line = read_line_stdin())) || (ft_strlen(line) == 1 && line[0] == 'q'))
+			return (0);
+		if ((!(line = read_line_stdin())) || (ft_strlen(line) == 1
+		&& line[0] == 'q'))
 			return (free_interactive_mode(binary, line, NULL));
 		if (!(line = ft_strjoin_free(binary, line)))
 			return (free_interactive_mode(binary, line, NULL));

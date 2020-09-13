@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/13 16:47:46 by dihauet          ###   ########.fr       */
+/*   Created: 2020/09/13 16:58:13 by dihauet           #+#    #+#             */
+/*   Updated: 2020/09/13 16:59:08 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_ssl.h"
+#include "../includes/libft.h"
 
-int		main(int argc, char **argv)
+static void	put_hexa(int nb)
 {
-	t_parsing	list;
-
-	if (argc == 1)
-	{
-		if (!(interactive_mode(&list)))
-			return (0);
-	}
+	if (nb > 15)
+		put_hexa(nb / 16);
+	nb %= 16;
+	if (nb < 10)
+		ft_putnbr(nb);
 	else
-	{
-		if (parsing_args(&list, argv, argc) == 0)
-			return (0);
-	}
-	hash_data(&list);
-	clean_parsing(list.list_data);
-	return (0);
+		ft_putchar(nb + 'a' - 10);
+}
+
+void		ft_puthexa(int nb)
+{
+	if (nb < 16)
+		ft_putchar('0');
+	put_hexa(nb);
 }
