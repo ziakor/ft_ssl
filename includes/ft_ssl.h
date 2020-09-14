@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/14 19:28:01 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/15 01:39:13 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # include "../Libft/includes/libft.h"
 # include "./md5.h"
 # include "./parsing.h"
+
+# define SUCCESS 1
+# define FAILED 0
+
 
 static const t_parsing	g_all_cmd[] =
 {

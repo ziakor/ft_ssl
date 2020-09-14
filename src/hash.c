@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 15:55:54 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/13 16:52:48 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/15 01:43:10 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int		hash_data(t_parsing *list)
 		list->list_data = list->list_data->next;
 	}
 	list->list_data = head;
-	return (1);
+	return (SUCCESS);
 }

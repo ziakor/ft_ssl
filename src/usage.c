@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 14:33:50 by dihauet           #+#    #+#             */
-/*   Updated: 2020/08/26 15:28:50 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/15 01:40:54 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int		ft_invalid_option(char *option, char *command)
 	ft_putstr_fd(option, 2);
 	ft_putstr_fd("`\n\n", 2);
 	ft_list_options();
-	return (0);
+	return (FAILED);
 }

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 12:04:12 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/13 16:50:05 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/15 01:47:15 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		free_interactive_mode(char *binary, char *line, char **args)
 		free_tab(args);
 		args = NULL;
 	}
-	return (0);
+	return (FAILED);
 }
 
 int		interactive_mode(t_parsing *list)
@@ -80,7 +80,7 @@ int		interactive_mode(t_parsing *list)
 	{
 		ft_putstr("ft_ssl>");
 		if (!(binary = ft_strdup("./ft_ssl ")))
-			return (0);
+			return (FAILED);
 		if ((!(line = read_line_stdin())) || (ft_strlen(line) == 1
 		&& line[0] == 'q'))
 			return (free_interactive_mode(binary, line, NULL));

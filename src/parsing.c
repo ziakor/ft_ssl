@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/15 01:33:02 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/15 01:41:43 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ int		get_options(t_flags *flags, char **argv, int *position_argv)
 			while (argv[*position_argv][i])
 			{
 				if (get_option(flags, argv[*position_argv][i]) == 0)
-					return (0);
+					return (FAILED);
 				i++;
 			}
 		}
 		else
 		{
 			if (get_option(flags, argv[*position_argv][1]) == 0)
-				return (0);
+				return (FAILED);
 		}
 		*position_argv = *position_argv + 1;
 		if (flags->s)
 			break;
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 char	*get_file(t_parsing *list, char *file_name)
@@ -77,23 +77,23 @@ int		get_data(t_parsing *list, char **argv, int argc)
 	if (argc == 0 || list->flags.p == 1)
 	{
 		if (!(data = read_stdin()))
-			return (0);
+			return (FAILED);
 		if (!(list->list_data = create_new_elem(data, "stdin", 0)))
-			return (0);
+			return (FAILED);
 		free(data);
 		data = NULL;
 	}
 	if (list->flags.s)
 	{
 		if (!(get_data_s_flag(&list->list_data, argv[i++])))
-			return(0);
+			return(FAILED);
 	}
 	while (i < argc)
 	{
-		data = get_file(list, argv[i]);
-		i++;
+		if (!(data = get_file(list, argv[i++])))
+			return(FAILED);
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 int		parsing_args(t_parsing *list, char **argv, int argc)
@@ -112,10 +112,10 @@ int		parsing_args(t_parsing *list, char **argv, int argc)
 			if (get_options(&list->flags, argv, &(position_argv)) == 0)
 				return (ft_invalid_option(argv[position_argv], list->cmd));
 			get_data(list, argv + position_argv, argc - position_argv - 1);
-			return (1);
+			return (SUCCESS);
 		}
 		i++;
 	}
 	ft_invalid_command(argv[1]);
-	return (0);
+	return (FAILED);
 }

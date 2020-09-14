@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/15 01:25:34 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/15 01:39:43 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		get_option(t_flags *flags, char c)
 	else if (c == 's')
 		flags->s = 1;
 	else
-		return (0);
-	return (1);
+		return (FAILED);
+	return (SUCCESS);
 }
 
 char	*read_stdin(void)
@@ -97,8 +97,8 @@ int get_data_s_flag(t_list_data **list_data, char *data)
 
 	if (!(elem = create_new_elem(data, data, 2)))
 	{
-		return (0);
+		return (FAILED);
 	}
 	add_new_elem(list_data,elem);
-	return (1);
+	return (SUCCESS);
 }
