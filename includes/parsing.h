@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/13 18:04:14 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/15 01:25:44 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ typedef struct		s_list_data
 typedef struct		s_parsing
 {
 	char						*cmd;
-	int							(*hash_func)(t_hash*, char*, size_t);
-	void						(*print_func)(void*);
 	t_flags						flags;
 	t_list_data					*list_data;
+	int							(*hash_func)(t_hash*, char*, size_t);
+	void						(*print_func)(void*);
 }					t_parsing;
 
 int					parsing_args(t_parsing *list, char **argv, int argc);
@@ -63,8 +63,9 @@ void				read_data_list(t_list_data *list);
 */
 
 int					get_option(t_flags *flags, char c);
-char				*read_stdin();
+char				*read_stdin(void);
 int					open_file(char *file_name, char *cmd);
+int get_data_s_flag(t_list_data **list_data, char *data);
 char				*get_error_message_open_file(int type);
 char				*read_file(int fd);
 

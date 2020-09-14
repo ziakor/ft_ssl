@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/08 10:23:04 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/15 01:33:02 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int		get_options(t_flags *flags, char **argv, int *position_argv)
 				return (0);
 		}
 		*position_argv = *position_argv + 1;
+		if (flags->s)
+			break;
 	}
 	return (1);
 }
@@ -80,6 +82,11 @@ int		get_data(t_parsing *list, char **argv, int argc)
 			return (0);
 		free(data);
 		data = NULL;
+	}
+	if (list->flags.s)
+	{
+		if (!(get_data_s_flag(&list->list_data, argv[i++])))
+			return(0);
 	}
 	while (i < argc)
 	{

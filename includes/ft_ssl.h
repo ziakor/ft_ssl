@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/13 18:21:48 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/14 19:28:01 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,21 @@ void		clean_parsing(t_list_data *list_data);
 
 int			hash_data(t_parsing *list);
 #endif
+
+/*
+** print.c
+** function to print hashed data
+*/
+
+void		print_list_hash(t_list_data *list, t_flags flags, char *cmd);
+
+/*
+** print_utils.c
+** functions used in print.c
+*/
+
+void		print_algo_name(char *cmd);
+void		print_hash_data(uint32_t *hash, size_t nb_words);
+void print_hash(t_hash hash, char *cmd, char *file_name);
+void print_reverse_hash(t_hash hash, char *file_name);
+void print_error(char *error, char *file_name);

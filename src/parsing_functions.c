@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/01 14:45:54 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/15 01:25:34 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,19 @@ int		open_file(char *file_name, char *cmd)
 	return (fd);
 }
 
-char	*get_error_message_open_file(int type)
+int get_data_s_flag(t_list_data **list_data, char *data)
 {
-	if (type == -1)
-		return (strerror(errno));
-	else if (type == -2)
+	
+	t_list_data *elem;
+
+	elem = NULL;
+
+	printf(">>>%s\n", data);
+
+	if (!(elem = create_new_elem(data, data, 2)))
 	{
-		return (strerror(EISDIR));
+		return (0);
 	}
-	return (NULL);
+	add_new_elem(list_data,elem);
+	return (1);
 }

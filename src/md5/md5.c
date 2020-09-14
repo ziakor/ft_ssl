@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 14:54:36 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/13 17:03:32 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/14 15:41:30 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ static int		concat_words_md5(t_md5 *md5, t_hash *hash)
 	hash->hashed_data[1] = md5->h1;
 	hash->hashed_data[2] = md5->h2;
 	hash->hashed_data[3] = md5->h3;
+	hash->nb_words = 4;
 	return (1);
 }
 

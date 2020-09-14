@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/13 16:47:46 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/14 15:40:23 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		main(int argc, char **argv)
 			return (0);
 	}
 	hash_data(&list);
+	print_list_hash(list.list_data, list.flags,list.cmd);
 	clean_parsing(list.list_data);
 	return (0);
 }
