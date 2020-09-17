@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 12:26:36 by dihauet           #+#    #+#              #
-#    Updated: 2020/09/13 16:58:44 by dihauet          ###   ########.fr        #
+#    Updated: 2020/09/16 12:21:33 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,10 @@ SRCS = 	ft_atoi.c \
 		ft_strnew.c \
 		ft_tolower.c \
 		ft_toupper.c \
-		ft_puthexa.c
+		ft_puthexa.c \
+		ft_left_rotate.c \
+		ft_right_rotate.c \
+		ft_stricmp.c
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror

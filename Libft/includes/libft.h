@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:25:39 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/14 14:38:49 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/16 12:24:34 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-
+# include <limits.h>
+# include <stdint.h>
 # define BUFF_SIZE_LIBFT 1000
 # define FD_MAX  4864
 
@@ -99,4 +100,7 @@ char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
 void				ft_puthexa(int nb);
+uint32_t			ft_left_rotate(uint32_t value, unsigned int count);
+uint32_t			ft_right_rotate(uint32_t value, unsigned int count);
+int					ft_stricmp(const char *s1, const char *s2);
 #endif

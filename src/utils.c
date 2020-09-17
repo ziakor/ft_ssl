@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/31 14:14:57 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/17 19:02:44 by dihauet          ###   ########.fr       */
+/*   Created: 2020/09/16 15:26:42 by dihauet           #+#    #+#             */
+/*   Updated: 2020/09/17 16:30:12 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
 
-void	clean_parsing(t_list_data *list_data)
+int		is_little_endian(void)
 {
-	t_list_data *tmp;
+	unsigned int i = 1; 
+	char *c = (char*)&i;
+	return(*c ? 1 : 0);
+}
 
-	tmp = NULL;
-	while (list_data)
-	{
-		tmp = list_data->next;
-		if (list_data->data.data)
-			free(list_data->data.data);
-		if (list_data->data.file_name)
-			free(list_data->data.file_name);
-		if (list_data->data.fd > 2)
-			close(list_data->data.fd);
-		if (list_data->hash.hashed_data)
-			free(list_data->hash.hashed_data);
-		free(list_data);
-		list_data = tmp;
-	}
+uint32_t swap_endian(uint32_t x)
+{
+	uint32_t a;
+	uint32_t b;
+	uint32_t c;
+	uint32_t d;
+
+	a = x >> 24 & 0xff;
+	b = x >> 8 & 0xff00; 
+	c = x << 8 & 0xff0000;
+	d = x << 24 & 0xff000000;
+
+	return a | b | c | d;
 }

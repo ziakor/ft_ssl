@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/15 01:25:44 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/16 12:44:15 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct		s_parsing
 	t_flags						flags;
 	t_list_data					*list_data;
 	int							(*hash_func)(t_hash*, char*, size_t);
-	void						(*print_func)(void*);
 }					t_parsing;
 
 int					parsing_args(t_parsing *list, char **argv, int argc);

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/14 19:31:18 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/16 15:36:33 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void print_hash(t_hash hash, char *cmd, char *file_name)
 	print_algo_name(cmd);
 	ft_putstr("(\"");
 	ft_putstr(file_name);
-	ft_putstr("\") = ");
+	ft_putstr("\")= ");
 	print_hash_data(hash.hashed_data, hash.nb_words);
 	ft_putchar('\n');
 }

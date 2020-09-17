@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_left_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/17 19:05:19 by dihauet          ###   ########.fr       */
+/*   Created: 2020/09/16 11:43:36 by dihauet           #+#    #+#             */
+/*   Updated: 2020/09/16 12:15:59 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_ssl.h"
+#include "../includes/libft.h"
 
-int		main(int argc, char **argv)
+uint32_t	ft_left_rotate(uint32_t value, unsigned int count)
 {
-	t_parsing	list;
+	const unsigned int mask = CHAR_BIT * sizeof(value) - 1;
 
-	if (argc == 1)
-	{
-		if (!(interactive_mode(&list)))
-			return (0);
-	}
-	else
-	{
-		if (parsing_args(&list, argv, argc) == 0)
-			return (0);
-	}
-	hash_data(&list);
-	print_list_hash(list.list_data, list.flags,list.cmd);
-	clean_parsing(list.list_data);
-	return (0);
+	count &= mask;
+	return (value << count) | (value >> (-count & mask));
 }

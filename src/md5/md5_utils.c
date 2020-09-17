@@ -6,16 +6,11 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 11:33:21 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/13 16:54:49 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/16 12:08:08 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
-
-uint32_t	left_rotate(uint32_t x, uint32_t nb)
-{
-	return ((x << nb) | (x >> (32 - nb)));
-}
 
 void		func_f(t_md5 *md5, int i)
 {

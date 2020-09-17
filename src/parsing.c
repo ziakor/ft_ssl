@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/15 01:41:43 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/16 12:30:53 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		parsing_args(t_parsing *list, char **argv, int argc)
 	position_argv = 1;
 	while (g_all_cmd[i].cmd != NULL)
 	{
-		if (ft_strcmp(g_all_cmd[i].cmd, argv[position_argv]) == 0)
+		if (ft_stricmp(g_all_cmd[i].cmd, argv[position_argv]) == 0)
 		{
 			*list = g_all_cmd[i];
 			if (get_options(&list->flags, argv, &(position_argv)) == 0)

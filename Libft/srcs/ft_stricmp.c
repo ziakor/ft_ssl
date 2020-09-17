@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_stricmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/17 19:05:19 by dihauet          ###   ########.fr       */
+/*   Created: 2020/09/16 12:20:09 by dihauet           #+#    #+#             */
+/*   Updated: 2020/09/16 12:25:25 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_ssl.h"
+#include "../includes/libft.h"
 
-int		main(int argc, char **argv)
+int		ft_stricmp(const char *s1, const char *s2)
 {
-	t_parsing	list;
-
-	if (argc == 1)
+	while (ft_tolower((unsigned char)*s1) == ft_tolower((unsigned char)*s2))
 	{
-		if (!(interactive_mode(&list)))
+		if (*s1 == '\0')
 			return (0);
+		s1++;
+		s2++;
 	}
-	else
-	{
-		if (parsing_args(&list, argv, argc) == 0)
-			return (0);
-	}
-	hash_data(&list);
-	print_list_hash(list.list_data, list.flags,list.cmd);
-	clean_parsing(list.list_data);
-	return (0);
+	return (ft_tolower((unsigned char)*s1) - ft_tolower((unsigned char)*s2));
 }

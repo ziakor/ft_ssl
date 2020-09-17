@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/15 01:39:43 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/16 13:56:24 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,6 @@ int get_data_s_flag(t_list_data **list_data, char *data)
 	t_list_data *elem;
 
 	elem = NULL;
-
-	printf(">>>%s\n", data);
-
 	if (!(elem = create_new_elem(data, data, 2)))
 	{
 		return (FAILED);
