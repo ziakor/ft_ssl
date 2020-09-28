@@ -6,13 +6,13 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/14 21:43:51 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/18 13:30:07 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
 
-void print_list_hash(t_list_data *list, t_flags flags, char *cmd)
+void	print_list_hash(t_list_data *list, t_flags flags, char *cmd)
 {
 	if (flags.p)
 	{

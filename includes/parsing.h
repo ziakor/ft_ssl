@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/16 12:44:15 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/28 12:05:43 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_list_data
 typedef struct		s_parsing
 {
 	char						*cmd;
+	int							size;
 	t_flags						flags;
 	t_list_data					*list_data;
 	int							(*hash_func)(t_hash*, char*, size_t);
@@ -53,7 +54,7 @@ char				*get_stdin(void);
 ** function about linked list of parsing structure
 */
 
-t_list_data			*create_new_elem(char *str, char *file_name, int fd);
+t_list_data			*create_new_elem(char *str, char *file_name, int fd, int size_data);
 void				add_new_elem(t_list_data **list, t_list_data *new_elem);
 void				read_data_list(t_list_data *list);
 
@@ -64,9 +65,9 @@ void				read_data_list(t_list_data *list);
 int					get_option(t_flags *flags, char c);
 char				*read_stdin(void);
 int					open_file(char *file_name, char *cmd);
-int get_data_s_flag(t_list_data **list_data, char *data);
+int					get_data_s_flag(t_list_data **list_data, char *data);
 char				*get_error_message_open_file(int type);
-char				*read_file(int fd);
+char				*read_file(int fd, int *count);
 
 /*
 ** file interactive_mode.c

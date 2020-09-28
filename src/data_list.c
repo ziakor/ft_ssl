@@ -6,26 +6,53 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 10:56:05 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/07 15:15:00 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/28 17:15:16 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
 
-t_list_data	*create_new_elem(char *str, char *file_name, int fd)
+void    print_bits(unsigned char octet)
+{
+    int z = 128, oct = octet;
+
+    while (z > 0)
+    {
+        if (oct & z)
+            write(1, "1", 1);
+        else
+            write(1, "0", 1);
+        z >>= 1;
+    }
+}
+
+t_list_data	*create_new_elem(char *str, char *file_name, int fd, int size_data)
 {
 	t_list_data	*new_elem;
+	int i;
 
+	i = -1;
 	new_elem = NULL;
 	if (!(new_elem = (t_list_data*)malloc(sizeof(t_list_data))))
 		return (NULL);
-	if (!(new_elem->data.data = ft_strdup(str)))
+	if (!(new_elem->data.data = (char*)malloc(sizeof(char) * size_data)))
 		return (NULL);
+	while(++i < size_data)
+		new_elem->data.data[i] = str[i];
 	if (!(new_elem->data.file_name = ft_strdup(file_name)))
 		return (NULL);
-	new_elem->data.data_length = ft_strlen(str);
+	new_elem->data.data_length = size_data;
 	new_elem->data.fd = fd;
 	new_elem->next = NULL;
+
+	
+	for (size_t t = 0; t < size_data; t++)
+	{
+		if(t > 0 && t % 8 == 0)
+			ft_putchar('\n');
+		print_bits(new_elem->data.data[t]);
+		ft_putchar(' ');
+	}
 	return (new_elem);
 }
 

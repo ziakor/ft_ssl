@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:25:39 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/16 12:24:34 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/28 13:17:40 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,5 @@ void				ft_puthexa(int nb);
 uint32_t			ft_left_rotate(uint32_t value, unsigned int count);
 uint32_t			ft_right_rotate(uint32_t value, unsigned int count);
 int					ft_stricmp(const char *s1, const char *s2);
+char    *ft_strjoin_size(const char *s1, const char *s2, int size_s1, int size_s2);
 #endif

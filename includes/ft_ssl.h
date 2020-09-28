@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/17 16:30:27 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/28 11:53:46 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,17 @@
 # include "./sha256.h"
 # include "./md5.h"
 # include "./parsing.h"
+# include "./sha3_256.h"
 
 # define SUCCESS 1
 # define FAILED 0
 
 static const t_parsing	g_all_cmd[] =
 {
-	{"md5", {0, 0, 0, 0}, NULL, md5},
-	{"sha256", {0, 0, 0, 0}, NULL, sha256},
-	{NULL, {0, 0, 0, 0}, NULL, NULL},
+	{"md5", 0, {0, 0, 0, 0}, NULL, md5},
+	{"sha256", 0, {0, 0, 0, 0}, NULL, sha256},
+	{"sha3-256", 0, {0, 0, 0, 0}, NULL, sha3_256},
+	{NULL, 0, {0, 0, 0, 0}, NULL, NULL},
 };
 
 /*
@@ -89,21 +91,22 @@ void		print_list_hash(t_list_data *list, t_flags flags, char *cmd);
 
 void		print_algo_name(char *cmd);
 void		print_hash_data(uint32_t *hash, size_t nb_words);
-void print_hash(t_hash hash, char *cmd, char *file_name);
-void print_reverse_hash(t_hash hash, char *file_name);
-void print_error(char *error, char *file_name);
+void		print_hash(t_hash hash, char *cmd, char *file_name);
+void		print_reverse_hash(t_hash hash, char *file_name);
+void		print_error(char *error, char *file_name);
 
 /*
 ** padding.c
 ** function about padding
 */
 
-int		add_padding(t_padding *padding, char *data, size_t length, size_t endian);
+int			add_padding(t_padding *padding, char *data,
+				size_t length, size_t endian);
 
 /*
 ** utils.c
 */
-int		is_little_endian(void);
-uint32_t swap_endian(uint32_t x);
+int			is_little_endian(void);
+uint32_t	swap_endian(uint32_t x);
 
 #endif

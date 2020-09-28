@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/16 13:56:24 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/28 16:57:00 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*read_stdin(void)
 	return (stdin_data);
 }
 
-char	*read_file(int fd)
+char	*read_file(int fd, int *count)
 {
 	char	*tmp;
 	char	*file_data;
@@ -61,11 +61,14 @@ char	*read_file(int fd)
 	file_data[0] = '\0';
 	while ((ret = read(fd, buffer, 1000)) > 0)
 	{
-		buffer[ret] = '\0';
-		tmp = ft_strjoin(file_data, buffer);
+		*count = *count + ret;
+		// buffer[ret] = '\0';
+		// tmp = ft_strjoin(file_data, buffer);
+		tmp = ft_strjoin_size(file_data,buffer, *count - ret, ret);
 		free(file_data);
 		file_data = tmp;
 	}
+	
 	if (ret == -1)
 		return (NULL);
 	return (file_data);
@@ -86,16 +89,15 @@ int		open_file(char *file_name, char *cmd)
 	return (fd);
 }
 
-int get_data_s_flag(t_list_data **list_data, char *data)
+int		get_data_s_flag(t_list_data **list_data, char *data)
 {
-	
 	t_list_data *elem;
 
 	elem = NULL;
-	if (!(elem = create_new_elem(data, data, 2)))
+	if (!(elem = create_new_elem(data, data, 2, ft_strlen(data))))
 	{
 		return (FAILED);
 	}
-	add_new_elem(list_data,elem);
+	add_new_elem(list_data, elem);
 	return (SUCCESS);
 }

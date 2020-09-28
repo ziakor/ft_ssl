@@ -6,16 +6,17 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/17 19:05:19 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/28 12:40:47 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
 
+
 int		main(int argc, char **argv)
 {
 	t_parsing	list;
-
+	list.size = 0;
 	if (argc == 1)
 	{
 		if (!(interactive_mode(&list)))
@@ -27,7 +28,7 @@ int		main(int argc, char **argv)
 			return (0);
 	}
 	hash_data(&list);
-	print_list_hash(list.list_data, list.flags,list.cmd);
+	print_list_hash(list.list_data, list.flags, list.cmd);
 	clean_parsing(list.list_data);
 	return (0);
 }
