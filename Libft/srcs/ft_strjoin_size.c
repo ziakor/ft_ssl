@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 13:01:04 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/28 14:45:22 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/29 10:27:32 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,5 @@ char    *ft_strjoin_size(const char *s1, const char *s2, int size_s1, int size_s
         join[i + j] = s2[j];
         j++;
     }
-    // printf(">> %d\n", size_s1 + size_s2);
-    // join[i + j] = '\0';
     return (join);
 }

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/28 16:57:00 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/29 10:54:39 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ int		get_option(t_flags *flags, char c)
 	return (SUCCESS);
 }
 
-char	*read_stdin(void)
+char	*read_stdin(int *count)
 {
 	char	*tmp;
 	char	*stdin_data;
-	char	str[1001];
+	char	buffer[1001];
 	int		ret;
 
 	if (!(stdin_data = (char*)malloc(sizeof(char))))
 		return (NULL);
 	stdin_data[0] = '\0';
-	while ((ret = read(0, str, 1000)) > 0)
+	while ((ret = read(0, buffer, 1000)) > 0)
 	{
-		str[ret] = '\0';
-		tmp = ft_strjoin(stdin_data, str);
+		*count = *count + ret;
+		tmp = ft_strjoin_size(stdin_data, buffer, *count - ret, ret);
 		free(stdin_data);
 		stdin_data = tmp;
 	}
@@ -62,8 +62,6 @@ char	*read_file(int fd, int *count)
 	while ((ret = read(fd, buffer, 1000)) > 0)
 	{
 		*count = *count + ret;
-		// buffer[ret] = '\0';
-		// tmp = ft_strjoin(file_data, buffer);
 		tmp = ft_strjoin_size(file_data,buffer, *count - ret, ret);
 		free(file_data);
 		file_data = tmp;

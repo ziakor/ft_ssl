@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/28 17:09:50 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/29 10:54:16 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*get_file(t_parsing *list, char *file_name)
 	t_list_data	*new_elem;
 	int			fd;
 
+	list->size = 0;
 	new_elem = NULL;
 	if ((fd = open_file(file_name, list->cmd)) < 0)
 	{
@@ -75,9 +76,9 @@ int		get_data(t_parsing *list, char **argv, int argc)
 	data = NULL;
 	if (argc == 0 || list->flags.p == 1)
 	{
-		if (!(data = read_stdin()))
+		if (!(data = read_stdin(&list->size)))
 			return (FAILED);
-		if (!(list->list_data = create_new_elem(data, "stdin", 0, 2)))
+		if (!(list->list_data = create_new_elem(data, "stdin", 0, list->size)))
 			return (FAILED);
 		free(data);
 		data = NULL;

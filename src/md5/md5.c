@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 14:54:36 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/28 17:11:16 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/29 10:27:26 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void		round_md5(t_md5 *md5)
 	uint32_t	tmp;
 
 	i = 0;
-	// printf("[%d] A=%zu B=%zu C=%zu D=%zu\n", i, md5->word_a, md5->word_b, md5->word_c, md5->word_d);
 	while (i < 64)
 	{
 		if (i >= 0 && i <= 15)
@@ -55,7 +54,6 @@ static int		concat_words_md5(t_md5 *md5, t_hash *hash)
 int				md5(t_hash *hash, char *str, size_t length)
 {
 	t_md5 md5;
-	printf("%d\n", length);
 	ft_bzero(&md5, sizeof(t_md5));
 	add_padding(&md5.padding, str, length, 1);
 	md5.h0 = MD5_H0;
@@ -65,11 +63,6 @@ int				md5(t_hash *hash, char *str, size_t length)
 	while (md5.offset < md5.padding.new_length)
 	{
 		md5.endian_w = (uint32_t*)(md5.padding.data_with_padding + md5.offset);
-		
-		// for (size_t i = 0; i < 16; i++)
-		// {
-		// 	printf("[%d] %d\n", i, md5.endian_w[i]);
-		// }
 		
 		md5.word_a = md5.h0;
 		md5.word_b = md5.h1;
