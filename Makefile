@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/28 11:44:24 by dihauet           #+#    #+#              #
-#    Updated: 2020/09/28 12:21:02 by dihauet          ###   ########.fr        #
+#    Updated: 2020/10/05 12:37:39 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DIRSRCS = ./src/
 
 DIROBJ = ./obj/
 
-SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c interactive_mode.c error.c clean.c md5/md5.c md5/md5_utils.c hash.c print_utils.c print.c padding.c utils.c sha256/sha256.c sha256/sha256_utils.c sha3/sha3_256.c
+SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c interactive_mode.c error.c clean.c md5/md5.c md5/md5_utils.c hash.c print_utils.c print.c padding.c utils.c sha256/sha256.c sha256/sha256_utils.c sha3/sha3_256.c sha3/sha3.c sha3/sha3_utils.c
 
 INC = ./includes/
 

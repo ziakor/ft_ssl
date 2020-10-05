@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/28 11:53:46 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/09/29 11:20:24 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "./sha256.h"
 # include "./md5.h"
 # include "./parsing.h"
-# include "./sha3_256.h"
+# include "./sha3.h"
 
 # define SUCCESS 1
 # define FAILED 0

@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sha3_256.c                                         :+:      :+:    :+:   */
+/*   ft_rotl64.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/21 11:25:38 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/05 15:44:49 by dihauet          ###   ########.fr       */
+/*   Created: 2020/10/05 14:04:06 by dihauet           #+#    #+#             */
+/*   Updated: 2020/10/05 14:05:58 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_ssl.h"
+// ROTL64(x, y) (((x) << (y)) | ((x) >> (64 - (y))))
 
-int         sha3_256(t_hash *hash, char *str, size_t length)
+#include "../includes/libft.h"
+
+uint64_t ft_rotl64(uint64_t x, uint64_t y)
 {
-    t_sha_3 sha3;
-    ft_bzero(&sha3, sizeof(t_sha_3));
-    sha3_init(&sha3,  256);
-    sha3_update(&sha3,str,length);
-    sha3_final(&sha3, hash);
+    return (((x) << (y)) | ((x) >> (64 - (y))));
 }
+

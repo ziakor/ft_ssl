@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:25:39 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/28 13:17:40 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/05 14:06:14 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,5 @@ uint32_t			ft_left_rotate(uint32_t value, unsigned int count);
 uint32_t			ft_right_rotate(uint32_t value, unsigned int count);
 int					ft_stricmp(const char *s1, const char *s2);
 char    *ft_strjoin_size(const char *s1, const char *s2, int size_s1, int size_s2);
+uint64_t ft_rotl64(uint64_t x, uint64_t y);
 #endif

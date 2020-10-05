@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 12:26:36 by dihauet           #+#    #+#              #
-#    Updated: 2020/09/28 13:16:19 by dihauet          ###   ########.fr        #
+#    Updated: 2020/10/05 14:06:29 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,8 @@ SRCS = 	ft_atoi.c \
 		ft_left_rotate.c \
 		ft_right_rotate.c \
 		ft_stricmp.c \
-		ft_strjoin_size.c
+		ft_strjoin_size.c \
+		ft_rotl64.c
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
