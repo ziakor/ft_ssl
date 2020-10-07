@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 13:38:38 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/01 10:38:17 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/07 16:57:36 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		add_padding(t_padding *padding, char *data, size_t length,
 		return (FAILED);
 	ft_memcpy(padding->data_with_padding, data, length);
 	padding->data_with_padding[length] |= 1 << 7;
-	if (is_little_endian() == endian) // a verifier la protection little endian
+	if (endian == 1)
 		ft_memcpy(padding->data_with_padding + padding->new_length - 8,
 		&padding->nb_bits, 8);
 	else
@@ -39,6 +39,5 @@ int		add_padding(t_padding *padding, char *data, size_t length,
 				(uint8_t*)&(padding->nb_bits))[7 - i];
 		}
 	}
-	
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/29 10:54:16 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/07 16:58:03 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,10 @@ char	*get_file(t_parsing *list, char *file_name)
 		if (!(file_data = read_file(fd, &list->size)))
 			return (NULL);
 	}
-	if (!(new_elem = create_new_elem(file_data, file_name, fd,list->size)))
+	if (!(new_elem = create_new_elem(file_data, file_name, fd, list->size)))
 		return (NULL);
 	if (new_elem->data.fd >= 0)
 		free(file_data);
-		
 	add_new_elem(&(list->list_data), new_elem);
 	return (file_data);
 }

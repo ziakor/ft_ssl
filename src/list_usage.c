@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:04:43 by dihauet           #+#    #+#             */
-/*   Updated: 2020/08/26 15:16:01 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/07 16:48:31 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_list_commands(void)
 void	ft_list_message_digest(void)
 {
 	ft_putstr_fd("Message Digest commands:\n", 2);
-	ft_putstr_fd("md5\nsha256\n\n", 2);
+	ft_putstr_fd("md5\nsha256\nsha3-224\nsha3-256\nsha3-384\n sha3-512\n", 2);
 }
 
 void	ft_list_cipher(void)

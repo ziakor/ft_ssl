@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/18 13:30:07 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/07 20:37:34 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_list_hash(t_list_data *list, t_flags flags, char *cmd)
 			print_error(list->data.data, list->data.file_name);
 		else if (flags.q)
 		{
-			print_hash_data(list->hash.hashed_data, list->hash.nb_words);
+			print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
 			ft_putchar('\n');
 		}
 		else if (flags.r)

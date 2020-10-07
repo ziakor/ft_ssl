@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/29 10:47:12 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/07 17:17:09 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ char				*get_stdin(void);
 ** function about linked list of parsing structure
 */
 
-t_list_data			*create_new_elem(char *str, char *file_name, int fd, int size_data);
+t_list_data			*create_new_elem(char *str, char *file_name, int fd,
+									int size_data);
 void				add_new_elem(t_list_data **list, t_list_data *new_elem);
 void				read_data_list(t_list_data *list);
 

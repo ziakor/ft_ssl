@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/18 17:38:50 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/06 14:43:42 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,16 @@ void	print_algo_name(char *cmd)
 	}
 }
 
-void	print_hash_data(uint32_t *hash, size_t nb_words)
+void	print_hash_data(uint8_t *hash, size_t nb_bits)
 {
 	int		i;
 	int		j;
 	uint8_t	*word;
 
 	i = 0;
-	while (i < nb_words)
+	while (i < nb_bits)
 	{
-		j = 0;
-		word = (uint8_t*)&(hash[i]);
-		while (j < 4)
-		{
-			ft_puthexa(word[j]);
-			j++;
-		}
+		ft_puthexa(hash[i]);
 		i++;
 	}
 }
@@ -47,16 +41,16 @@ void	print_hash_data(uint32_t *hash, size_t nb_words)
 void	print_hash(t_hash hash, char *cmd, char *file_name)
 {
 	print_algo_name(cmd);
-	ft_putstr("(\"");
+	ft_putstr("(");
 	ft_putstr(file_name);
-	ft_putstr("\")= ");
-	print_hash_data(hash.hashed_data, hash.nb_words);
+	ft_putstr(")= ");
+	print_hash_data(hash.hashed_data, hash.nb_bits);
 	ft_putchar('\n');
 }
 
 void	print_reverse_hash(t_hash hash, char *filename)
 {
-	print_hash_data(hash.hashed_data, hash.nb_words);
+	print_hash_data(hash.hashed_data, hash.nb_bits);
 	ft_putstr(" *");
 	ft_putstr(filename);
 	ft_putchar('\n');

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/29 10:54:39 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/07 20:47:11 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,10 @@ char	*read_file(int fd, int *count)
 	while ((ret = read(fd, buffer, 1000)) > 0)
 	{
 		*count = *count + ret;
-		tmp = ft_strjoin_size(file_data,buffer, *count - ret, ret);
+		tmp = ft_strjoin_size(file_data, buffer, *count - ret, ret);
 		free(file_data);
 		file_data = tmp;
 	}
-	
 	if (ret == -1)
 		return (NULL);
 	return (file_data);

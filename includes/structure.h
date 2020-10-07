@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:05:25 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/13 17:06:39 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/06 12:25:52 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct		s_padding
 
 typedef struct		s_hash
 {
-	uint32_t		*hashed_data;
-	size_t			nb_words;
+	uint8_t		*hashed_data;
+	size_t		nb_bits;
 }					t_hash;
 #endif

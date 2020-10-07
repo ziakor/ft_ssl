@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 12:50:59 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/24 10:47:24 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/07 17:06:50 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void		round_sha256(t_sha256 *sha256)
 	sha256->h5 = sha256->h5 + sha256->word_f;
 	sha256->h6 = sha256->h6 + sha256->word_g;
 	sha256->h7 = sha256->h7 + sha256->word_h;
+	free(sha256->words);
 }
 
 static int		create_words(uint8_t *msg, t_sha256 *sha256)
@@ -73,8 +74,7 @@ static int		create_words(uint8_t *msg, t_sha256 *sha256)
 		if (i < 16)
 		{
 			ft_memcpy(&(sha256->words[i]), msg + (i * 4), 32);
-			if (is_little_endian() == 1) //ameliorer la protection
-				sha256->words[i] = swap_endian(sha256->words[i]);
+			sha256->words[i] = swap_endian(sha256->words[i]);
 		}
 		else
 		{
@@ -89,18 +89,30 @@ static int		create_words(uint8_t *msg, t_sha256 *sha256)
 
 static int		concat_sha256(t_hash *hash, t_sha256 *sha256)
 {
-	free(sha256->padding.data_with_padding);
-	if (!(hash->hashed_data = (uint32_t*)malloc(sizeof(uint32_t) * 8)))
+	uint32_t	tmp[8];
+	int			i;
+	int			j;
+	uint8_t		*word;
+
+	hash->nb_bits = 32;
+	if (!(hash->hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * 32)))
 		return (FAILED);
-	hash->nb_words = 8;
-	hash->hashed_data[0] = swap_endian(sha256->h0);
-	hash->hashed_data[1] = swap_endian(sha256->h1);
-	hash->hashed_data[2] = swap_endian(sha256->h2);
-	hash->hashed_data[3] = swap_endian(sha256->h3);
-	hash->hashed_data[4] = swap_endian(sha256->h4);
-	hash->hashed_data[5] = swap_endian(sha256->h5);
-	hash->hashed_data[6] = swap_endian(sha256->h6);
-	hash->hashed_data[7] = swap_endian(sha256->h7);
+	tmp[0] = swap_endian(sha256->h0);
+	tmp[1] = swap_endian(sha256->h1);
+	tmp[2] = swap_endian(sha256->h2);
+	tmp[3] = swap_endian(sha256->h3);
+	tmp[4] = swap_endian(sha256->h4);
+	tmp[5] = swap_endian(sha256->h5);
+	tmp[6] = swap_endian(sha256->h6);
+	tmp[7] = swap_endian(sha256->h7);
+	i = -1;
+	while (++i < 8)
+	{
+		j = -1;
+		word = (uint8_t*)&(tmp[i]);
+		while (++j < 4)
+			hash->hashed_data[i * 4 + j] = word[j];
+	}
 	return (SUCCESS);
 }
 
@@ -127,8 +139,8 @@ int				sha256(t_hash *hash, char *str, size_t length)
 			return (0);
 		}
 		round_sha256(&sha256);
-		free(sha256.words);
 		sha256.offset += 64;
 	}
+	free(sha256.padding.data_with_padding);
 	return (concat_sha256(hash, &sha256));
 }

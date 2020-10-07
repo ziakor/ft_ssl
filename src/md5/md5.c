@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 14:54:36 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/29 10:27:26 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/07 17:06:50 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,34 @@ static void		round_md5(t_md5 *md5)
 
 static int		concat_words_md5(t_md5 *md5, t_hash *hash)
 {
+	uint32_t	tmp[4];
+	int			i;
+	int			j;
+	uint8_t		*word;
+
 	free(md5->padding.data_with_padding);
-	if (!(hash->hashed_data = (uint32_t*)malloc(sizeof(uint32_t) * 4)))
+	if (!(hash->hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * 16)))
 		return (FAILED);
-	hash->hashed_data[0] = md5->h0;
-	hash->hashed_data[1] = md5->h1;
-	hash->hashed_data[2] = md5->h2;
-	hash->hashed_data[3] = md5->h3;
-	hash->nb_words = 4;
+	tmp[0] = md5->h0;
+	tmp[1] = md5->h1;
+	tmp[2] = md5->h2;
+	tmp[3] = md5->h3;
+	i = -1;
+	while (++i < 4)
+	{
+		j = -1;
+		word = (uint8_t*)&(tmp[i]);
+		while (++j < 4)
+			hash->hashed_data[i * 4 + j] = word[j];
+	}
+	hash->nb_bits = 16;
 	return (SUCCESS);
 }
 
 int				md5(t_hash *hash, char *str, size_t length)
 {
-	t_md5 md5;
+	t_md5	md5;
+
 	ft_bzero(&md5, sizeof(t_md5));
 	add_padding(&md5.padding, str, length, 1);
 	md5.h0 = MD5_H0;
@@ -63,15 +77,11 @@ int				md5(t_hash *hash, char *str, size_t length)
 	while (md5.offset < md5.padding.new_length)
 	{
 		md5.endian_w = (uint32_t*)(md5.padding.data_with_padding + md5.offset);
-		
 		md5.word_a = md5.h0;
 		md5.word_b = md5.h1;
 		md5.word_c = md5.h2;
 		md5.word_d = md5.h3;
 		round_md5(&md5);
-		
-
-		
 		md5.h0 = md5.h0 + md5.word_a;
 		md5.h1 = md5.h1 + md5.word_b;
 		md5.h2 = md5.h2 + md5.word_c;

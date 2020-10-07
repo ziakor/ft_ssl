@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 10:56:05 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/29 10:28:09 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/07 16:46:57 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_list_data	*create_new_elem(char *str, char *file_name, int fd, int size_data)
 {
-	t_list_data	*new_elem;
-	int i;
+	t_list_data		*new_elem;
+	int				i;
 
 	i = -1;
 	new_elem = NULL;
@@ -23,7 +23,7 @@ t_list_data	*create_new_elem(char *str, char *file_name, int fd, int size_data)
 		return (NULL);
 	if (!(new_elem->data.data = (char*)malloc(sizeof(char) * size_data)))
 		return (NULL);
-	while(++i < size_data)
+	while (++i < size_data)
 		new_elem->data.data[i] = str[i];
 	if (!(new_elem->data.file_name = ft_strdup(file_name)))
 		return (NULL);

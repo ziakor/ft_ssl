@@ -6,16 +6,16 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/28 12:40:47 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/07 16:56:50 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
 
-
 int		main(int argc, char **argv)
 {
 	t_parsing	list;
+
 	list.size = 0;
 	if (argc == 1)
 	{
