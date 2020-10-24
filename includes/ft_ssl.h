@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/07 20:47:41 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/24 15:31:25 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void		print_algo_name(char *cmd);
 void		print_hash_data(uint8_t *hash, size_t nb_bits);
 void		print_hash(t_hash hash, char *cmd, char *file_name);
 void		print_reverse_hash(t_hash hash, char *file_name);
-void		print_error(char *error, char *file_name);
+void		print_error(char *error, char *file_name, int size_data);
 
 /*
 ** padding.c

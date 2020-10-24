@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/07 17:17:09 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/24 15:23:25 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int					get_option(t_flags *flags, char c);
 char				*read_stdin(int *count);
 int					open_file(char *file_name, char *cmd);
 int					get_data_s_flag(t_list_data **list_data, char *data);
-char				*get_error_message_open_file(int type);
+char				*get_error_message_open_file(int type, int *size);
 char				*read_file(int fd, int *count);
 
 /*

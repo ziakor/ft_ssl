@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/07 16:56:50 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/24 14:58:06 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ int		main(int argc, char **argv)
 	if (argc == 1)
 	{
 		if (!(interactive_mode(&list)))
+		{
+			// clean_parsing(list.list_data);
 			return (0);
+		}
+			
 	}
 	else
 	{

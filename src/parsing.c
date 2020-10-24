@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/07 16:58:03 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/24 15:33:01 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*get_file(t_parsing *list, char *file_name)
 	new_elem = NULL;
 	if ((fd = open_file(file_name, list->cmd)) < 0)
 	{
-		file_data = get_error_message_open_file(fd);
+		file_data = get_error_message_open_file(fd, &list->size);
 	}
 	else
 	{

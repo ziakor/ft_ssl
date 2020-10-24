@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 10:56:05 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/07 16:46:57 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/24 14:57:40 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_list_data	*create_new_elem(char *str, char *file_name, int fd, int size_data)
 	new_elem->data.data_length = size_data;
 	new_elem->data.fd = fd;
 	new_elem->next = NULL;
+	new_elem->hash.hashed_data = NULL;
 	return (new_elem);
 }
 

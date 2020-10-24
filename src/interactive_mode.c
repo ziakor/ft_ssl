@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 12:04:12 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/15 01:47:15 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/24 14:40:46 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,19 @@ int		free_interactive_mode(char *binary, char *line, char **args)
 {
 	if (binary)
 	{
+		printf("BIN\n");
 		free(binary);
 		binary = NULL;
 	}
 	if (line)
 	{
+		printf("LINE\n");
 		free(line);
 		line = NULL;
 	}
 	if (args)
 	{
+		printf("ARGS\n)");
 		free_tab(args);
 		args = NULL;
 	}
@@ -76,6 +79,10 @@ int		interactive_mode(t_parsing *list)
 	char	**args;
 	char	*binary;
 
+	args = NULL;
+	line = NULL;
+	binary = NULL;
+	int i = 0;
 	while (1)
 	{
 		ft_putstr("ft_ssl>");
@@ -87,12 +94,13 @@ int		interactive_mode(t_parsing *list)
 		if (!(line = ft_strjoin_free(binary, line)))
 			return (free_interactive_mode(binary, line, NULL));
 		if (!(args = ft_strsplit(line, ' ')))
-			return (free_interactive_mode(binary, line, args));
+			return (free_interactive_mode(NULL, line, args));
 		if (parsing_args(list, args, ft_str_tablen(args)))
 			break ;
 		free_tab(args);
 		args = NULL;
 		ft_strdel(&line);
+		i++;
 	}
 	free_tab(args);
 	ft_strdel(&line);
