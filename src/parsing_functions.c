@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/24 15:59:22 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/25 14:52:19 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,28 @@ char	*read_file(int fd, int *count)
 {
 	char	*tmp;
 	char	*file_data;
-	char	buffer[1000001];
+	char	*buffer;
 	int		ret;
 
+	if (!(buffer = (char*) malloc(sizeof(char) * 10000000001)))
+		return(NULL);
 	if (!(file_data = (char*)malloc(sizeof(char))))
 		return (NULL);
 	file_data[0] = '\0';
-	while ((ret = read(fd, buffer, 1000000)) > 0)
+	while ((ret = read(fd, buffer, 10000000000)) > 0)
 	{
 		*count = *count + ret;
-		tmp = ft_strjoin_size(file_data, buffer, *count - ret, ret);
+		if (!(tmp = ft_strjoin_size(file_data, buffer, *count - ret, ret)))
+		{
+			free(buffer);
+			free(file_data);
+			return (NULL);
+		}
 		free(file_data);
 		file_data = tmp;
 	}
-	if (ret == -1)
-		return (NULL);
-	return (file_data);
+	free(buffer);
+	return (ret == -1 ? NULL : file_data);
 }
 
 int		open_file(char *file_name, char *cmd)
