@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 12:04:12 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/24 14:40:46 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/25 15:15:23 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,16 @@ int		free_interactive_mode(char *binary, char *line, char **args)
 {
 	if (binary)
 	{
-		printf("BIN\n");
 		free(binary);
 		binary = NULL;
 	}
 	if (line)
 	{
-		printf("LINE\n");
 		free(line);
 		line = NULL;
 	}
 	if (args)
 	{
-		printf("ARGS\n)");
 		free_tab(args);
 		args = NULL;
 	}
