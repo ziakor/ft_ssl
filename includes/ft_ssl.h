@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/24 15:31:25 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/28 13:35:43 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,28 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include "../Libft/includes/libft.h"
 # include <limits.h>
 # include "structure.h"
-# include "../Libft/includes/libft.h"
+# include "./parsing.h"
 # include "./sha256.h"
 # include "./md5.h"
-# include "./parsing.h"
 # include "./sha3.h"
+# include "./base64.h"
 
 # define SUCCESS 1
 # define FAILED 0
 
 static const t_parsing	g_all_cmd[] =
 {
-	{"md5", 0, {0, 0, 0, 0}, NULL, md5},
-	{"sha256", 0, {0, 0, 0, 0}, NULL, sha256},
-	{"sha3-224", 0, {0, 0, 0, 0}, NULL, sha3_224},
-	{"sha3-256", 0, {0, 0, 0, 0}, NULL, sha3_256},
-	{"sha3-384", 0, {0, 0, 0, 0}, NULL, sha3_384},
-	{"sha3-512", 0, {0, 0, 0, 0}, NULL, sha3_512},
-	{NULL, 0, {0, 0, 0, 0}, NULL, NULL},
+	{"md5", 0, {0, 0, 0, 0}, NULL, md5, process_one},
+	{"sha256", 0, {0, 0, 0, 0}, NULL, sha256, process_one},
+	{"sha3-224", 0, {0, 0, 0, 0}, NULL, sha3_224, process_one},
+	{"sha3-256", 0, {0, 0, 0, 0}, NULL, sha3_256, process_one},
+	{"sha3-384", 0, {0, 0, 0, 0}, NULL, sha3_384, process_one},
+	{"sha3-512", 0, {0, 0, 0, 0}, NULL, sha3_512, process_one},
+	{"base64", 0, {0, 0, 0, 0}, NULL, NULL, NULL},
+	{NULL, 0, {0, 0, 0, 0}, NULL, NULL, NULL},
 };
 
 /*
@@ -111,5 +113,7 @@ int			add_padding(t_padding *padding, char *data,
 */
 int			is_little_endian(void);
 uint32_t	swap_endian(uint32_t x);
+
+
 
 #endif

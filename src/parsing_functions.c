@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/25 14:59:31 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/28 16:51:04 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,26 @@ char	*read_stdin(int *count)
 	return (stdin_data);
 }
 
-char	*read_file(int fd, int *count)
+char	*read_filee(int fd, int *count)
 {
 	char	*tmp;
 	char	*file_data;
-	char	*buffer;
+	char	buffer[10000];
 	int		ret;
-
-	if (!(buffer = (char*) malloc(sizeof(char) * 10000000001)))
-		return(NULL);
 	if (!(file_data = (char*)malloc(sizeof(char))))
 		return (NULL);
 	file_data[0] = '\0';
-	while ((ret = read(fd, buffer, 10000000000)) > 0)
+	while ((ret = read(fd, buffer, 10000)) > 0)
 	{
 		*count = *count + ret;
 		if (!(tmp = ft_strjoin_size(file_data, buffer, *count - ret, ret)))
 		{
-			free(buffer);
 			free(file_data);
 			return (NULL);
 		}
 		free(file_data);
 		file_data = tmp;
 	}
-	free(buffer);
 	return (ret == -1 ? NULL : file_data);
 }
 
@@ -97,8 +92,14 @@ int		get_data_s_flag(t_list_data **list_data, char *data)
 	t_list_data *elem;
 
 	elem = NULL;
-	if (!(elem = create_new_elem(data, data, 2, ft_strlen(data))))
+	if (!data)
 	{
+		if (!(elem = create_new_elem("Wrong option used \'-s\'", "ft_ssl", -1, 22)))
+			return (FAILED);
+	}
+	else
+	{
+	if (!(elem = create_new_elem(data, data, 1, ft_strlen(data))))
 		return (FAILED);
 	}
 	add_new_elem(list_data, elem);

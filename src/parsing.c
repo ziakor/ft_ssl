@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/24 15:33:01 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/10/28 16:54:50 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,13 @@
 
 int		get_options(t_flags *flags, char **argv, int *position_argv, int i)
 {
-	int	size;
-
 	*position_argv = *position_argv + 1;
 	while (argv[*position_argv] && argv[*position_argv][0] == '-')
 	{
 		i = 1;
-		size = ft_strlen(argv[*position_argv]);
-		if (size > 2)
-		{
-			while (argv[*position_argv][i])
-			{
-				if (get_option(flags, argv[*position_argv][i++]) == 0)
-					return (FAILED);
-			}
-		}
-		else
-		{
-			if (get_option(flags, argv[*position_argv][1]) == 0)
-				return (FAILED);
-		}
+		if (get_option(flags, argv[*position_argv][1]) == 0)
+			return (FAILED);
+		
 		*position_argv = *position_argv + 1;
 		if (flags->s)
 			break ;
@@ -55,7 +42,7 @@ char	*get_file(t_parsing *list, char *file_name)
 	}
 	else
 	{
-		if (!(file_data = read_file(fd, &list->size)))
+		if (!(file_data = read_filee(fd, &list->size)))
 			return (NULL);
 	}
 	if (!(new_elem = create_new_elem(file_data, file_name, fd, list->size)))
@@ -95,6 +82,18 @@ int		get_data(t_parsing *list, char **argv, int argc)
 	return (SUCCESS);
 }
 
+int		process_commands(char **argv, t_parsing *list)
+{
+	int i;
+
+	i = 2;
+	if (!(list->process_func(argv,list)))
+		return(FAILED);
+	// printf("%s\n", list->list_data->data.data);
+	printf("%d %d %d %d\n", list->flags.p, list->flags.q, list->flags.r, list->flags.s);
+	return (SUCCESS);
+}
+
 int		parsing_args(t_parsing *list, char **argv, int argc)
 {
 	int	i;
@@ -108,9 +107,8 @@ int		parsing_args(t_parsing *list, char **argv, int argc)
 		if (ft_stricmp(g_all_cmd[i].cmd, argv[position_argv]) == 0)
 		{
 			*list = g_all_cmd[i];
-			if (get_options(&list->flags, argv, &(position_argv), 0) == 0)
+			if (!(process_commands(argv, list)))
 				return (ft_invalid_option(argv[position_argv], list->cmd));
-			get_data(list, argv + position_argv, argc - position_argv - 1);
 			return (SUCCESS);
 		}
 		i++;
