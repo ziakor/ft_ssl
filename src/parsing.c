@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/28 16:54:50 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/02 18:26:06 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_file(t_parsing *list, char *file_name)
 
 	list->size = 0;
 	new_elem = NULL;
-	if ((fd = open_file(file_name, list->cmd)) < 0)
+	if ((fd = open_file(file_name)) < 0)
 	{
 		file_data = get_error_message_open_file(fd, &list->size);
 	}
@@ -89,8 +89,6 @@ int		process_commands(char **argv, t_parsing *list)
 	i = 2;
 	if (!(list->process_func(argv,list)))
 		return(FAILED);
-	// printf("%s\n", list->list_data->data.data);
-	printf("%d %d %d %d\n", list->flags.p, list->flags.q, list->flags.r, list->flags.s);
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/28 16:51:04 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/02 18:26:08 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,10 @@ char	*read_filee(int fd, int *count)
 	return (ret == -1 ? NULL : file_data);
 }
 
-int		open_file(char *file_name, char *cmd)
+int		open_file(char *file_name)
 {
 	int		fd;
 
-	(void)cmd;
 	fd = 0;
 	if ((fd = open(file_name, O_DIRECTORY)) != -1)
 	{
