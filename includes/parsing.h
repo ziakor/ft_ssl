@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/02 18:26:16 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/04 12:22:10 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct		s_parsing
 	t_flags						flags;
 	t_list_data					*list_data;
 	int							(*hash_func)(t_hash*, char*, size_t);
-	int							(*process_func)(char **argv, struct s_parsing *list);
+	int							(*process_func)(char **argv, struct s_parsing *list, int i);
 
 }					t_parsing;
 
@@ -85,13 +85,29 @@ int					free_interactive_mode(char *binary, char *line,
 **
 */
 
+/*
+**parsing_file.c
+**parsing data from file
+*/
+
+char		*read_file_data(int fd, int *size);
+int 		get_file_data(t_parsing *list, char *filename);
+char		*concat_list_to_str(t_list *list, int size);
+
+/*
+**list_read_data.c
+**
+*/
+
+t_list		*ft_lst_add_data_to_end(t_list *list, char *data, int size);
+char	*free_read_data_list(t_list *list);
 
 /*
 ** process.c
 ** file about get flag and data
 */
 
-int			process_one(char **argv, t_parsing *list);
+int			process_one(char **argv, t_parsing *list, int i);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/02 18:26:06 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/04 13:01:57 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int		get_data(t_parsing *list, char **argv, int argc)
 	}
 	while (i < argc)
 	{
+		list->size = 0;
 		if (!(data = get_file(list, argv[i++])))
 			return (FAILED);
 	}
@@ -87,7 +88,7 @@ int		process_commands(char **argv, t_parsing *list)
 	int i;
 
 	i = 2;
-	if (!(list->process_func(argv,list)))
+	if (!(list->process_func(argv, list, 2)))
 		return(FAILED);
 	return (SUCCESS);
 }
