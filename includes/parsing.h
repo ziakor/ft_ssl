@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/04 12:22:10 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/08 02:49:28 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ typedef	struct		s_flags
 	int		q;
 	int		r;
 	int		s;
+	int		d;
+	int 	e;
+	int		i;
+	int		o;
+	char	*o_file;
 }					t_flags;
 
 typedef struct		s_data
@@ -41,6 +46,7 @@ typedef struct		s_parsing
 {
 	char						*cmd;
 	int							size;
+	int							is_cipher;
 	t_flags						flags;
 	t_list_data					*list_data;
 	int							(*hash_func)(t_hash*, char*, size_t);
@@ -70,7 +76,6 @@ char				*read_stdin(int *count);
 int					open_file(char *file_name);
 int		get_data_s_flag(t_list_data **list_data, char *data);
 char				*get_error_message_open_file(int type, int *size);
-char				*read_filee(int fd, int *count);
 
 /*
 ** file interactive_mode.c
@@ -102,12 +107,22 @@ char		*concat_list_to_str(t_list *list, int size);
 t_list		*ft_lst_add_data_to_end(t_list *list, char *data, int size);
 char	*free_read_data_list(t_list *list);
 
+
+/*
+** flag.c
+**
+*/
+
+int flag_input(t_parsing *list, char **argv, int *i);
+int flag_output(t_parsing *list, char **argv, int *i);
 /*
 ** process.c
 ** file about get flag and data
 */
 
 int			process_one(char **argv, t_parsing *list, int i);
+
+int			process_base64(char **argv, t_parsing *list, int i);
 
 #endif
 

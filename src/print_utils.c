@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/24 15:32:35 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/08 02:28:45 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	print_hash(t_hash hash, char *cmd, char *file_name)
 	ft_putstr(file_name);
 	ft_putstr(")= ");
 	print_hash_data(hash.hashed_data, hash.nb_bits);
-	ft_putchar('\n');
 }
 
 void	print_reverse_hash(t_hash hash, char *filename)
@@ -53,7 +52,6 @@ void	print_reverse_hash(t_hash hash, char *filename)
 	print_hash_data(hash.hashed_data, hash.nb_bits);
 	ft_putstr(" *");
 	ft_putstr(filename);
-	ft_putchar('\n');
 }
 
 void	print_error(char *error, char *file_name, int size_data)

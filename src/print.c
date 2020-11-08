@@ -6,11 +6,26 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/24 15:31:35 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/08 02:55:45 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
+
+int 	write_output(char *output_file, uint8_t *data, size_t size)
+{
+	int fd;
+
+	if (!output_file)
+		return (FAILED);
+	if ((fd = open(output_file, O_WRONLY | O_CREAT | O_TRUNC, 0666)) < 0)
+		return (FAILED);
+
+	write(fd, data, size);
+
+	return (SUCCESS);
+}
+
 
 void	print_list_hash(t_list_data *list, t_flags flags, char *cmd)
 {
@@ -23,16 +38,19 @@ void	print_list_hash(t_list_data *list, t_flags flags, char *cmd)
 	while (list)
 	{
 		if (list->data.fd < 0)
-			print_error(list->data.data, list->data.file_name, list->data.data_length);
+			print_error(list->data.data, list->data.file_name,
+			list->data.data_length);
 		else if (flags.q)
-		{
 			print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
-			ft_putchar('\n');
-		}
 		else if (flags.r)
 			print_reverse_hash(list->hash, list->data.file_name);
 		else
 			print_hash(list->hash, cmd, list->data.file_name);
+		if (flags.o)
+			write_output(flags.o_file, list->hash.hashed_data, list->hash.nb_bits);
+		if (list->data.fd >= 0)
+			close(list->data.fd);
+		ft_putchar('\n');
 		list = list->next;
 	}
 }

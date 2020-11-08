@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/02 18:26:08 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/04 13:42:04 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,6 @@ char	*read_stdin(int *count)
 	if (ret == -1)
 		return (NULL);
 	return (stdin_data);
-}
-
-char	*read_filee(int fd, int *count)
-{
-	char	*tmp;
-	char	*file_data;
-	char	buffer[10000];
-	int		ret;
-	if (!(file_data = (char*)malloc(sizeof(char))))
-		return (NULL);
-	file_data[0] = '\0';
-	while ((ret = read(fd, buffer, 10000)) > 0)
-	{
-		*count = *count + ret;
-		if (!(tmp = ft_strjoin_size(file_data, buffer, *count - ret, ret)))
-		{
-			free(file_data);
-			return (NULL);
-		}
-		free(file_data);
-		file_data = tmp;
-	}
-	return (ret == -1 ? NULL : file_data);
 }
 
 int		open_file(char *file_name)

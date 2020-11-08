@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/28 11:44:24 by dihauet           #+#    #+#              #
-#    Updated: 2020/11/04 11:42:17 by dihauet          ###   ########.fr        #
+#    Updated: 2020/11/06 16:02:11 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DIRSRCS = ./src/
 
 DIROBJ = ./obj/
 
-SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c interactive_mode.c error.c clean.c md5/md5.c md5/md5_utils.c hash.c print_utils.c print.c padding.c utils.c sha256/sha256.c sha256/sha256_utils.c sha3/sha3_256.c sha3/sha3.c sha3/sha3_utils.c sha3/sha3_512.c sha3/sha3_224.c sha3/sha3_384.c process.c parsing_file.c list_read_data.c parsing_stdin.c
+SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c interactive_mode.c error.c clean.c md5/md5.c md5/md5_utils.c hash.c print_utils.c print.c padding.c utils.c sha256/sha256.c sha256/sha256_utils.c sha3/sha3_256.c sha3/sha3.c sha3/sha3_utils.c sha3/sha3_512.c sha3/sha3_224.c sha3/sha3_384.c flag.c process.c parsing_file.c list_read_data.c parsing_stdin.c base64/base64_utils.c
 
 INC = ./includes/
 
@@ -57,7 +57,7 @@ $(NAME):		$(LIB_A) $(OBJ)
 				@echo "\n\n${OK_COLOR}${NAME} : Compilation complete${NO_COLOR}"
 
 $(DIROBJ)%.o:	$(DIRSRCS)%.c $(INC)
-				@mkdir -p $(DIROBJ)/md5 $(DIROBJ)/sha256 $(DIROBJ)/sha3
+				@mkdir -p $(DIROBJ)/md5 $(DIROBJ)/sha256 $(DIROBJ)/sha3 $(DIROBJ)/base64
 				@if [[ $(verif) -eq 0 ]]; then printf "\n$(_BLUE)|==========================>  $(_PURPLE)$(NAME)   $(_BLUE)<==========================|$(_DEF)\n";\
 				else printf "\e[1A"; fi
 				$(eval FNCT = $(words $(SRCS)))

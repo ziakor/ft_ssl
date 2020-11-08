@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/28 13:35:43 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/07 10:00:06 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,24 @@
 # include <limits.h>
 # include "structure.h"
 # include "./parsing.h"
+# include "./base64.h"
 # include "./sha256.h"
 # include "./md5.h"
 # include "./sha3.h"
-# include "./base64.h"
 
 # define SUCCESS 1
 # define FAILED 0
 
 static const t_parsing	g_all_cmd[] =
 {
-	{"md5", 0, {0, 0, 0, 0}, NULL, md5, process_one},
-	{"sha256", 0, {0, 0, 0, 0}, NULL, sha256, process_one},
-	{"sha3-224", 0, {0, 0, 0, 0}, NULL, sha3_224, process_one},
-	{"sha3-256", 0, {0, 0, 0, 0}, NULL, sha3_256, process_one},
-	{"sha3-384", 0, {0, 0, 0, 0}, NULL, sha3_384, process_one},
-	{"sha3-512", 0, {0, 0, 0, 0}, NULL, sha3_512, process_one},
-	{"base64", 0, {0, 0, 0, 0}, NULL, NULL, NULL},
-	{NULL, 0, {0, 0, 0, 0}, NULL, NULL, NULL},
+	{"md5", 0, 0, {0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, md5, process_one},
+	{"sha256", 0, 0, {0,  0, 0, 0, 1, 0, 0, 0, 0}, NULL, sha256, process_one},
+	{"sha3-224", 0, 0, { 0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, sha3_224, process_one},
+	{"sha3-256", 0, 0, { 0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, sha3_256, process_one},
+	{"sha3-384", 0, 0, { 0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, sha3_384, process_one},
+	{"sha3-512", 0, 0, { 0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, sha3_512, process_one},
+	{"base64", 0, 1, { 0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, NULL, process_base64},
+	{NULL, 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, NULL, NULL},
 };
 
 /*
@@ -73,7 +73,7 @@ void		error_open_file(char *file_name, char *cmd);
 ** function free malloc
 */
 
-void		clean_parsing(t_list_data *list_data);
+void		clean_parsing(t_parsing *list);
 
 /*
 ** hash.c
