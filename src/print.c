@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/08 02:55:45 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 03:16:57 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int 	write_output(char *output_file, uint8_t *data, size_t size)
 }
 
 
-void	print_list_hash(t_list_data *list, t_flags flags, char *cmd)
+void	print_list_hash(t_list_data *list, t_flags flags, char *cmd, int write_hexa)
 {
 	if (flags.p)
 	{
@@ -41,11 +41,11 @@ void	print_list_hash(t_list_data *list, t_flags flags, char *cmd)
 			print_error(list->data.data, list->data.file_name,
 			list->data.data_length);
 		else if (flags.q)
-			print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
+			print_hash_data(list->hash.hashed_data, list->hash.nb_bits, 1);
 		else if (flags.r)
 			print_reverse_hash(list->hash, list->data.file_name);
 		else
-			print_hash(list->hash, cmd, list->data.file_name);
+			print_hash(list->hash, cmd, list->data.file_name, write_hexa);
 		if (flags.o)
 			write_output(flags.o_file, list->hash.hashed_data, list->hash.nb_bits);
 		if (list->data.fd >= 0)

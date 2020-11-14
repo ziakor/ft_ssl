@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/08 02:49:46 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 03:19:22 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int			process_one(char **argv, t_parsing *list, int i)
 
 int			process_base64(char **argv, t_parsing *list, int i)
 {
+	list->is_cipher = 1;
 	while (argv[i] && argv[i][0] == '-')
 	{
 		if (!(parse_flag_base64(list, argv, &i)))
@@ -76,5 +77,6 @@ int			process_base64(char **argv, t_parsing *list, int i)
 		if (!(get_file_data(list, NULL)))
 			return (FAILED);
 	}
+	base64(&list->list_data->hash, list->list_data->data.data, list->list_data->data.data_length, list->flags.e);
 	return (SUCCESS);
 }

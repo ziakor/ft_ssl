@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/08 02:28:45 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 03:20:02 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_algo_name(char *cmd)
 	}
 }
 
-void	print_hash_data(uint8_t *hash, size_t nb_bits)
+void	print_hash_data(uint8_t *hash, size_t nb_bits, int write_hexa)
 {
 	int		i;
 	int		j;
@@ -33,23 +33,26 @@ void	print_hash_data(uint8_t *hash, size_t nb_bits)
 	i = 0;
 	while (i < nb_bits)
 	{
-		ft_puthexa(hash[i]);
+		if (write_hexa)
+			ft_puthexa(hash[i]);
+		else
+			ft_putchar(hash[i]);
 		i++;
 	}
 }
 
-void	print_hash(t_hash hash, char *cmd, char *file_name)
+void	print_hash(t_hash hash, char *cmd, char *file_name, int write_hexa)
 {
 	print_algo_name(cmd);
 	ft_putstr("(");
 	ft_putstr(file_name);
 	ft_putstr(")= ");
-	print_hash_data(hash.hashed_data, hash.nb_bits);
+	print_hash_data(hash.hashed_data, hash.nb_bits, write_hexa);
 }
 
 void	print_reverse_hash(t_hash hash, char *filename)
 {
-	print_hash_data(hash.hashed_data, hash.nb_bits);
+	print_hash_data(hash.hashed_data, hash.nb_bits, 1);
 	ft_putstr(" *");
 	ft_putstr(filename);
 }

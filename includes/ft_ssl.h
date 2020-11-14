@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/07 10:00:06 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 03:11:48 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			hash_data(t_parsing *list);
 ** function to print hashed data
 */
 
-void		print_list_hash(t_list_data *list, t_flags flags, char *cmd);
+void		print_list_hash(t_list_data *list, t_flags flags, char *cmd, int is_cypher);
 
 /*
 ** print_utils.c
@@ -95,8 +95,8 @@ void		print_list_hash(t_list_data *list, t_flags flags, char *cmd);
 */
 
 void		print_algo_name(char *cmd);
-void		print_hash_data(uint8_t *hash, size_t nb_bits);
-void		print_hash(t_hash hash, char *cmd, char *file_name);
+void		print_hash_data(uint8_t *hash, size_t nb_bits, int write_hexa);
+void		print_hash(t_hash hash, char *cmd, char *file_name, int write_hexa);
 void		print_reverse_hash(t_hash hash, char *file_name);
 void		print_error(char *error, char *file_name, int size_data);
 
