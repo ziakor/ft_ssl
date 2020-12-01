@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 15:28:04 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/28 11:42:50 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 12:45:37 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct		s_md5
 	t_padding	padding;
 }					t_md5;
 
-int					md5(t_hash *hash, char *str, size_t length);
+int				md5(t_parsing *list, char *str, size_t length);
 
 /*
 ** md5_utils.c

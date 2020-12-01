@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 13:16:28 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/18 17:58:55 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 12:49:05 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct		s_sha256
 ** file about algorithm sha256
 */
 
-int					sha256(t_hash *hash, char *str, size_t length);
+int					sha256(t_parsing *list, char *str, size_t length);
 void				init_sha256(t_sha256 *sha256);
 uint32_t			func_s0(int i, t_sha256 *sha256);
 uint32_t			func_s1(int i, t_sha256 *sha256);

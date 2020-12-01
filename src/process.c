@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/14 03:19:22 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 13:25:22 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ int			process_base64(char **argv, t_parsing *list, int i)
 		if (!(get_file_data(list, NULL)))
 			return (FAILED);
 	}
-	base64(&list->list_data->hash, list->list_data->data.data, list->list_data->data.data_length, list->flags.e);
+	// base64(&list->list_data->hash, list->list_data->data.data, list->list_data->data.data_length, list->flags.e);
 	return (SUCCESS);
 }

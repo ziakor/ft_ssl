@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/14 03:19:00 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/30 00:17:28 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ int		main(int argc, char **argv)
 	{
 		if (parsing_args(&list, argv, argc) == 0)
 		{
-			printf("%d %d %d %d", list.flags.d, list.flags.e,list.flags.i, list.flags.o);
 			print_list_hash(list.list_data, list.flags, list.cmd, !list.is_cipher);
 			clean_parsing(&list);
 			return (0);
 		}
 	}
-	if (!list.is_cipher)
-		hash_data(&list);
+	hash_data(&list);
 	print_list_hash(list.list_data, list.flags, list.cmd, !list.is_cipher);
 	clean_parsing(&list);
 

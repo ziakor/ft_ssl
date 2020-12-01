@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 14:54:36 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/08 02:48:37 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 12:45:15 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int		concat_words_md5(t_md5 *md5, t_hash *hash)
 	return (SUCCESS);
 }
 
-int				md5(t_hash *hash, char *str, size_t length)
+int				md5(t_parsing *list, char *str, size_t length)
 {
 	t_md5	md5;
 
@@ -88,7 +88,7 @@ int				md5(t_hash *hash, char *str, size_t length)
 		md5.h3 = md5.h3 + md5.word_d;
 		md5.offset += 64;
 	}
-	if (!(concat_words_md5(&md5, hash)))
+	if (!(concat_words_md5(&md5, &list->list_data->hash)))
 		return (FAILED);
 	return (SUCCESS);
 }

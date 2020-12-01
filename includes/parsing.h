@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/08 02:49:28 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 12:44:56 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct		s_parsing
 	int							is_cipher;
 	t_flags						flags;
 	t_list_data					*list_data;
-	int							(*hash_func)(t_hash*, char*, size_t);
+	int							(*hash_func)(struct s_parsing*, char*, size_t);
 	int							(*process_func)(char **argv, struct s_parsing *list, int i);
 
 }					t_parsing;

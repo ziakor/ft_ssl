@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/14 03:11:48 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/16 17:22:20 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include "./sha256.h"
 # include "./md5.h"
 # include "./sha3.h"
+# include "./des.h"
 
 # define SUCCESS 1
 # define FAILED 0
@@ -43,7 +44,7 @@ static const t_parsing	g_all_cmd[] =
 	{"sha3-256", 0, 0, { 0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, sha3_256, process_one},
 	{"sha3-384", 0, 0, { 0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, sha3_384, process_one},
 	{"sha3-512", 0, 0, { 0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, sha3_512, process_one},
-	{"base64", 0, 1, { 0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, NULL, process_base64},
+	{"base64", 0, 1, { 0, 0, 0, 0, 1, 0, 0, 0, 0}, NULL, base64, process_base64},
 	{NULL, 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, NULL, NULL},
 };
 

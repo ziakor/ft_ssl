@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 11:00:51 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/07 20:41:28 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 13:08:21 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ typedef struct			s_sha_3
 int						sha3_init(t_sha_3 *sha3, int output_length);
 int						sha3_update(t_sha_3 *sha3, char *data, size_t length);
 int						sha3_final(t_sha_3 *sha3, t_hash *hash);
-int						sha3_224(t_hash *hash, char *str, size_t length);
-int						sha3_256(t_hash *hash, char *str, size_t length);
-int						sha3_384(t_hash *hash, char *str, size_t length);
-int						sha3_512(t_hash *hash, char *str, size_t length);
+int						sha3_224(t_parsing *list, char *str, size_t length);
+int						sha3_256(t_parsing *list, char *str, size_t length);
+int						sha3_384(t_parsing *list, char *str, size_t length);
+int						sha3_512(t_parsing *list, char *str, size_t length);
 
 /*
 ** sha3_utils.c

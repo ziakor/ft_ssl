@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 12:50:59 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/07 17:06:50 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/11/14 12:54:35 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static int		concat_sha256(t_hash *hash, t_sha256 *sha256)
 	return (SUCCESS);
 }
 
-int				sha256(t_hash *hash, char *str, size_t length)
+int				sha256(t_parsing *list, char *str, size_t length)
 {
 	t_sha256	sha256;
 
@@ -142,5 +142,5 @@ int				sha256(t_hash *hash, char *str, size_t length)
 		sha256.offset += 64;
 	}
 	free(sha256.padding.data_with_padding);
-	return (concat_sha256(hash, &sha256));
+	return (concat_sha256(&list->list_data->hash, &sha256));
 }
