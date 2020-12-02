@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 12:57:37 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/07 10:11:02 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 17:16:48 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int flag_input(t_parsing *list, char **argv, int *i)
         if (!(get_file_data(list, argv[*i])))
             return (FAILED);
     }
-    *i++;
+    *i+= 1;
     return (SUCCESS);
 }
 
@@ -52,7 +52,7 @@ int flag_output(t_parsing *list, char **argv, int *i)
     {
         if (!(list->flags.o_file = ft_strdup(argv[*i])))
             return(FAILED);
-        *i++;
+        *i += 1;;
     }
     return (SUCCESS);
 }

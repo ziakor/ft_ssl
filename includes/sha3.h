@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 11:00:51 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/14 13:08:21 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 16:59:04 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void					keccak_theta(uint64_t st[25], uint64_t bc[5],
 								uint64_t t);
 void					keccak_rho_pi(uint64_t st[25], uint64_t bc[5],
 								uint64_t t);
-void					keccak_chi(uint64_t st[25], uint64_t bc[5], uint64_t t);
-void					keccak_iota(uint64_t st[25], uint64_t bc[5], int r);
+void					keccak_chi(uint64_t st[25], uint64_t bc[5]);
+void					keccak_iota(uint64_t st[25], int r);
 
 #endif

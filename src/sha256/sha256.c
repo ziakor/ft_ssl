@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 12:50:59 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/14 12:54:35 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 16:55:16 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int				sha256(t_parsing *list, char *str, size_t length)
 	t_sha256	sha256;
 
 	init_sha256(&sha256);
-	add_padding(&sha256.padding, str, ft_strlen(str), 0);
+	add_padding(&sha256.padding, str, length, 0);
 	while (sha256.offset < sha256.padding.new_length)
 	{
 		sha256.word_a = sha256.h0;

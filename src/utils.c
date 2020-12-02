@@ -6,21 +6,11 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 15:26:42 by dihauet           #+#    #+#             */
-/*   Updated: 2020/09/18 17:40:07 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 16:30:46 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
-
-int			is_little_endian(void)
-{
-	unsigned int	i;
-	char			*c;
-
-	i = 1;
-	c = (char*)&i;
-	return (*c ? 1 : 0);
-}
 
 uint32_t	swap_endian(uint32_t x)
 {

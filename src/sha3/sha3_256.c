@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 11:25:38 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/14 12:59:30 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 16:55:40 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ int		sha3_256(t_parsing *list, char *str, size_t length)
 	sha3_update(&sha3, str, length);
 	if (!(sha3_final(&sha3, &list->list_data->hash)))
 		return (FAILED);
+    return (SUCCESS);
 }

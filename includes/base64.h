@@ -30,7 +30,7 @@ typedef struct s_base64
   uint8_t n2;
   uint8_t n3;
   uint32_t buffer;
-  int i;
+  size_t i;
   int j;
   unsigned char c;
   char iter;

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 11:32:52 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/07 17:09:37 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 17:32:53 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ void		sha3_keccakf(uint64_t st[25])
 	uint64_t	bc[5];
 
 	r = 0;
+    t = 0;
 	while (r < 24)
 	{
 		keccak_theta(st, bc, t);
 		keccak_rho_pi(st, bc, t);
-		keccak_chi(st, bc, t);
-		keccak_iota(st, bc, r);
+		keccak_chi(st, bc);
+		keccak_iota(st, r);
 		r++;
 	}
 }

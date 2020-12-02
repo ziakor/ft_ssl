@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/30 00:17:28 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 16:09:48 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,8 @@ int		main(int argc, char **argv)
 	list.size = 0;
 	if (argc == 1)
 	{
-		if (!(interactive_mode(&list)))
-		{
-			print_list_hash(list.list_data, list.flags, list.cmd, !list.is_cipher);
-			clean_parsing(&list);
-			return (0);
-		}
-			
+		printf("ERROR\n");
+		return (0);
 	}
 	else
 	{
@@ -40,6 +35,5 @@ int		main(int argc, char **argv)
 	print_list_hash(list.list_data, list.flags, list.cmd, !list.is_cipher);
 	clean_parsing(&list);
 
-	int i = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/14 12:44:56 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 16:39:23 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,9 @@ void				read_data_list(t_list_data *list);
 */
 
 int					get_option(t_flags *flags, char c);
-char				*read_stdin(int *count);
 int					open_file(char *file_name);
 int		get_data_s_flag(t_list_data **list_data, char *data);
 char				*get_error_message_open_file(int type, int *size);
-
-/*
-** file interactive_mode.c
-** functions about the interactive mode
-*/
-
-int					interactive_mode(t_parsing *list);
-int					free_interactive_mode(char *binary, char *line,
-							char **args);
 /*
 ** flag.c
 **

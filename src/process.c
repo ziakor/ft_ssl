@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/14 13:25:22 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 17:17:05 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ static int		get_option_process_one(t_flags *flags, char *str, char *cmd)
 		return (FAILED);
 	}
 	return (SUCCESS);
-}
-
-int			get_stdin_data(t_parsing *list)
-{
-
 }
 
 int			process_one(char **argv, t_parsing *list, int i)

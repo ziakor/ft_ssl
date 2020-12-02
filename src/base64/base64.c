@@ -6,13 +6,13 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:52:29 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/17 21:03:23 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 17:36:22 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
 
-static int  init_base64_encrypt(t_hash *hash, t_base64 *b64, char *data, size_t length)
+static int  init_base64_encrypt(t_hash *hash, t_base64 *b64, size_t length)
 {
 	b64->pad_count = length % 3;
 
@@ -37,14 +37,14 @@ static int init_base64_decrypt(t_hash *hash, t_base64 *b64, char *data, size_t l
 		return (FAILED);
 	if (!(hash->hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * hash->nb_bits)))
 		return (FAILED);
-	
+	return (SUCCESS);
 }
 
 int convert_base64_decrypt(t_base64 *b64, t_parsing *list, char *data, size_t length)
 {
     while (b64->i < length)
     {
-        b64->c = g_base64_d[data[b64->i++]];
+        b64->c = g_base64_d[(int)data[b64->i++]];
 		if (b64->c == WHITESPACE)
 			continue;
 		else if (b64->c == INVALID)
@@ -93,7 +93,7 @@ int base64_decrypt(t_parsing *list, char *data, size_t length)
 	return (SUCCESS);
 }
 
-static void convert_base64_encrypt(t_base64 *b64, char *data, int i, size_t length)
+static void convert_base64_encrypt(t_base64 *b64, char *data, size_t i, size_t length)
 {
 	b64->n = ((uint32_t)data[i]) << 16;
 	if ((i + 1 ) < length)
@@ -109,13 +109,13 @@ static void convert_base64_encrypt(t_base64 *b64, char *data, int i, size_t leng
 
 int     base64_encrypt(t_parsing *list, char *data, size_t length)
 {
-	int i;
+	size_t i;
 	t_base64 b64;
 	int res_i;
 
 	res_i = 0;
 	i = 0;
-	if (!(init_base64_encrypt(&list->list_data->hash, &b64, data, length)))
+	if (!(init_base64_encrypt(&list->list_data->hash, &b64, length)))
 		return (FAILED);
 	while (i <  length)
 	{
@@ -133,15 +133,6 @@ int     base64_encrypt(t_parsing *list, char *data, size_t length)
 		while (b64.pad_count++ < 3)
 			list->list_data->hash.hashed_data[res_i++] = '=';
 	}
-    // int h = 0;
-    // while (h < list->list_data->hash.nb_bits)
-    // {
-    //     ft_putchar(list->list_data->hash.hashed_data[h]);
-    //     int pd = open("salsifi", O_RDWR |O_APPEND, 0666);
-    //     write(pd, &list->list_data->hash.hashed_data[h], 1);
-    //     h++;
-    // }
-    // exit(0);
 	return (SUCCESS);
 }
 

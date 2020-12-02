@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/14 03:20:02 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/02 16:46:07 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ void	print_algo_name(char *cmd)
 
 void	print_hash_data(uint8_t *hash, size_t nb_bits, int write_hexa)
 {
-	int		i;
-	int		j;
-	uint8_t	*word;
-
+	size_t		i;
+    
 	i = 0;
 	while (i < nb_bits)
 	{
