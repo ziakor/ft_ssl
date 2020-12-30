@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/28 11:44:24 by dihauet           #+#    #+#              #
-#    Updated: 2020/12/02 16:43:58 by dihauet          ###   ########.fr        #
+#    Updated: 2020/12/11 19:00:10 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIB_A = ./Libft/libft.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g 
+CFLAGS = -g 
 
 OBJ = $(patsubst %.c,$(DIROBJ)%.o,$(SRCS))
 

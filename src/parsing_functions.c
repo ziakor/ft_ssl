@@ -6,26 +6,11 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 13:27:13 by dihauet           #+#    #+#             */
-/*   Updated: 2020/12/02 16:38:19 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/27 17:54:26 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
-
-int		get_option(t_flags *flags, char c)
-{
-	if (c == 'q')
-		flags->q = 1;
-	else if (c == 'p')
-		flags->p = 1;
-	else if (c == 'r')
-		flags->r = 1;
-	else if (c == 's')
-		flags->s = 1;
-	else
-		return (FAILED);
-	return (SUCCESS);
-}
 
 int		open_file(char *file_name)
 {

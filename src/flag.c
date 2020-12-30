@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 12:57:37 by dihauet           #+#    #+#             */
-/*   Updated: 2020/12/02 17:16:48 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/30 13:33:16 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int flag_input(t_parsing *list, char **argv, int *i)
 {
     t_list_data *new_elem;
-
     new_elem = NULL;
     list->flags.i = 1;
     if (!(argv[++*i]))
@@ -31,16 +30,16 @@ int flag_input(t_parsing *list, char **argv, int *i)
         if (!(get_file_data(list, argv[*i])))
             return (FAILED);
     }
-    *i+= 1;
     return (SUCCESS);
 }
 
 int flag_output(t_parsing *list, char **argv, int *i)
 {
     t_list_data *new_elem;
-
     new_elem = NULL;
     list->flags.o = 1;
+    if (list->flags.o_file)
+        free(list->flags.o_file);
     if (!(argv[++*i]))
     {
         if (!(new_elem = create_new_elem("Option \'-o\' need a value", "ft_ssl", -1, 24)))

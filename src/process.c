@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2020/12/02 17:17:05 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/30 15:06:02 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			process_one(char **argv, t_parsing *list, int i)
 	return(SUCCESS);
 }
 
-int			process_base64(char **argv, t_parsing *list, int i)
+int			process_two(char **argv, t_parsing *list, int i)
 {
 	list->is_cipher = 1;
 	while (argv[i] && argv[i][0] == '-')
@@ -72,6 +72,34 @@ int			process_base64(char **argv, t_parsing *list, int i)
 		if (!(get_file_data(list, NULL)))
 			return (FAILED);
 	}
-	// base64(&list->list_data->hash, list->list_data->data.data, list->list_data->data.data_length, list->flags.e);
 	return (SUCCESS);
+}
+
+int     get_password(t_parsing *list, char *prompt)
+{
+    if (list->flags.password = getpass(prompt))
+        return (FAILED);
+}
+
+int         process_des(char **argv, t_parsing *list, int i)
+{
+    while (argv[i] && argv[i][0] == '-')
+    {
+        if (!(parse_flag_des(list, argv, &i)))
+            return (FAILED);
+        i++;
+    }
+    if (!list->flags.password)
+    {
+        if (!(get_password(list, "enter des-cbc encryption password:")))
+            return (FAILED);
+    }
+    printf("DES\n");
+    exit(0);
+    if (!list->flags.i)
+	{
+		if (!(get_file_data(list, NULL)))
+			return (FAILED);
+	}
+
 }

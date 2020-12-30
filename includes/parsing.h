@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/12/02 16:39:23 by dihauet          ###   ########.fr       */
+/*   Updated: 2020/12/29 14:57:01 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ typedef	struct		s_flags
 	int		q;
 	int		r;
 	int		s;
+	uint8_t	salt[16];
+	uint8_t	key[16];
+	uint8_t	vector[16];
+	char	*password;
+	int		a;
 	int		d;
 	int 	e;
 	int		i;
@@ -50,7 +55,8 @@ typedef struct		s_parsing
 	t_flags						flags;
 	t_list_data					*list_data;
 	int							(*hash_func)(struct s_parsing*, char*, size_t);
-	int							(*process_func)(char **argv, struct s_parsing *list, int i);
+	int							(*process_func)(char**, struct s_parsing*, int);
+  void            (*print_func)(t_list_data*, t_flags, char*, int);
 
 }					t_parsing;
 
@@ -112,7 +118,8 @@ int flag_output(t_parsing *list, char **argv, int *i);
 
 int			process_one(char **argv, t_parsing *list, int i);
 
-int			process_base64(char **argv, t_parsing *list, int i);
+int			process_two
+(char **argv, t_parsing *list, int i);
 
 #endif
 
