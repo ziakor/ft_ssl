@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2020/12/29 14:57:01 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/07 18:00:40 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ char	*free_read_data_list(t_list *list);
 
 int flag_input(t_parsing *list, char **argv, int *i);
 int flag_output(t_parsing *list, char **argv, int *i);
+int flag_a(t_parsing *list);
+int flag_vector(t_parsing *list, char **argv, int *i);
 /*
 ** process.c
 ** file about get flag and data

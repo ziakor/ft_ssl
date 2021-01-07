@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:49:59 by dihauet           #+#    #+#             */
-/*   Updated: 2020/12/30 13:42:15 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/07 18:02:28 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int flag_salt(t_parsing *list, char **argv, int *i)
 					add_new_elem(&list->list_data, new_elem);
 					return (FAILED);
 				}
-				list->flags.vector[j] = argv[*i][j];
+				list->flags.vector[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? argv[*i][j] - 32 : argv[*i][j];
 			}
 			else
 				list->flags.vector[j] = 0;
@@ -82,7 +82,7 @@ int flag_vector(t_parsing *list, char **argv, int *i)
 					add_new_elem(&list->list_data, new_elem);
 					return (FAILED);
 				}
-				list->flags.salt[j] = argv[*i][j];
+				list->flags.salt[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? argv[*i][j] - 32 : argv[*i][j];
 			}
 			else
 				list->flags.salt[j] = 0;
@@ -123,7 +123,7 @@ int flag_key(t_parsing *list, char **argv, int *i)
 					add_new_elem(&list->list_data, new_elem);
 					return (FAILED);
 				}
-				list->flags.key[j] = argv[*i][j];
+				list->flags.key[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? argv[*i][j] - 32 : argv[*i][j];
 			}
 			else
 				list->flags.key[j] = 0;
@@ -145,25 +145,26 @@ int flag_password(t_parsing *list, char **argv, int *i)
 		if (!(new_elem = create_new_elem("Option \'-p\' need a value", "ft_ssl", -1, 24)))
 			return (FAILED);
 		add_new_elem(&list->list_data, new_elem);
-		return(FAILED);
+		return (FAILED);
 	}
 	else if (argv[*i][0] == '-')
 	{
 		if (!(new_elem = create_new_elem("Invalid password argument", "ft_ssl", -1, 25)))
 			return (FAILED);
 		add_new_elem(&list->list_data, new_elem);
-		return(FAILED);
+        return(FAILED);
 	}
 	else
 	{
-		if (list->flags.password = ft_strdup(argv[*i]))
+		if (!(list->flags.password = ft_strdup(argv[*i])))
 			return (FAILED);
 	}
 	return (SUCCESS);
 }
 
-int			parse_flag_des(t_parsing *list, char **argv, int *i)
 
+
+int			parse_flag_des(t_parsing *list, char **argv, int *i)
 {
 	if (ft_strcmp(argv[*i], "-d") == 0)
 	{
@@ -199,9 +200,15 @@ int			parse_flag_des(t_parsing *list, char **argv, int *i)
 		if (!(flag_key(list,argv,i)))
 			return(FAILED);
 	}
-		else if (ft_strcmp(argv[*i], "-s") == 0)
+	else if (ft_strcmp(argv[*i], "-s") == 0)
 	{
 		if (!(flag_salt(list,argv,i)))
 			return(FAILED);
 	}
+    else if (ft_strcmp(argv[*i], "-v") == 0)
+    {
+        if (!(flag_vector(list, argv, i)))
+            return (FAILED);
+    }
+    return (SUCCESS);
 }
