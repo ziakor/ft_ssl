@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/07 17:52:22 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/09 18:33:57 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,82 @@ int     get_password(t_parsing *list, char *prompt)
     return (SUCCESS);
 }
 
+
+void        generate_salt(t_parsing *list)
+{
+    int i;
+    const char tab[]= "0123456789ABCDEF";
+    unsigned char data[8];
+    int fd;
+    int j;
+
+    j = 0;
+    i = 0;
+    fd = open("/dev/urandom", O_RDONLY);
+    read(fd, data, 8);
+    while (i < 16)
+    {
+        list->flags.salt[i] = data[j]  < 16 ? '0' : tab[data[j] / 16];
+        list->flags.salt[i + 1] = tab[data[j] % 16];
+        i = i + 2;
+        j++;
+    }
+}
+
+
+void         pbfdk2(t_parsing *list, char *data, size_t length)
+{
+    char *tmp;
+    size_t len;
+    int i;
+
+    tmp = NULL;
+    i = 0;
+    tmp = data;
+    len = length;
+    while (i < 2)
+    {
+        if (list->list_data->hash.hashed_data)
+            free(list->list_data->hash.hashed_data);
+        sha256(list, tmp, len);
+        tmp = list->list_data->hash.hashed_data;
+        len = list->list_data->hash.nb_bits;
+        i++;
+    }
+
+}
+
+int         generate_key(t_parsing *list)
+{
+    printf("GENERATEKEY\n");
+    char *password_with_salt;
+    const char tab[]= "0123456789ABCDEF";
+    size_t len;
+    int i;
+    int j;
+    
+    j = 0;
+    i = 0;
+    len = (ft_strlen(list->flags.password) * 2) + 16;
+    password_with_salt = NULL;
+    if (!(password_with_salt = (char*) malloc(sizeof(char) * len)))
+        return (FAILED);
+    while (list->flags.password[j])
+    {
+        password_with_salt[i] = list->flags.password[j] < 16 ? '0' : tab[list->flags.password[j] / 16];
+        password_with_salt[i + 1] = tab[list->flags.password[j] % 16];
+        i = i + 2;
+        j++;
+    }
+    j = 0;
+    while (j < 16)
+        password_with_salt[i++] = list->flags.salt[j++];
+    i = 0;
+    // pbfdk2(list, password_with_salt, len);
+    free(password_with_salt);
+}
+
+
 int         process_des(char **argv, t_parsing *list, int i)
 {
     printf("PROCESS DES\n");
@@ -120,8 +196,13 @@ int         process_des(char **argv, t_parsing *list, int i)
     if (list->flags.a)
     {
         flag_a(list);
-
     }
-        exit(0);
+    if (list->flags.salt[0] == 0)
+        generate_salt(list);
+    if (list->flags.key[0] == 0)
+    {
+        if (!(generate_key(list)))
+            return (FAILED);
+    }
     return (SUCCESS);
 }

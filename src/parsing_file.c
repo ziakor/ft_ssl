@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:56:43 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/07 17:31:04 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/09 11:00:26 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char		*read_file_data(int fd, int *size)
 		return (free_read_data_list(list));
 	return(concat_list_to_str(list, *size));
 }
+
 int 		get_file_data(t_parsing *list, char *filename)
 {
 	char *data;

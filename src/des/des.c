@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:50:18 by dihauet           #+#    #+#             */
-/*   Updated: 2020/12/02 17:38:52 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/09 18:25:45 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int		des_ecb(t_parsing *list, char *str, size_t length)
 {
 	ft_putstr(list->cmd);
-    ft_putstr(str);
+    ft_putnstr(str, length);
     ft_putnbr(length);
     return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:49:59 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/07 18:02:28 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/09 17:10:13 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int flag_salt(t_parsing *list, char **argv, int *i)
 	
 	j = 0;
 	new_elem = NULL;
-	*i++;
+	*i += 1;
 	if (!argv[*i])
 	{
 		if (!(new_elem = create_new_elem("Option \'-s\' need a value", "ft_ssl", -1, 24)))
@@ -41,10 +41,10 @@ int flag_salt(t_parsing *list, char **argv, int *i)
 					add_new_elem(&list->list_data, new_elem);
 					return (FAILED);
 				}
-				list->flags.vector[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? argv[*i][j] - 32 : argv[*i][j];
+				list->flags.salt[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? argv[*i][j] - 32 : argv[*i][j];
 			}
 			else
-				list->flags.vector[j] = 0;
+				list->flags.salt[j] = '0';
 			j++;
 		}
 		if (len > 16)
@@ -61,7 +61,7 @@ int flag_vector(t_parsing *list, char **argv, int *i)
 	
 	j = 0;
 	new_elem = NULL;
-	*i+=1;
+	*i += 1;
 	if (!argv[*i])
 	{
 		if (!(new_elem = create_new_elem("Option \'-v\' need a value", "ft_ssl", -1, 24)))
@@ -82,10 +82,10 @@ int flag_vector(t_parsing *list, char **argv, int *i)
 					add_new_elem(&list->list_data, new_elem);
 					return (FAILED);
 				}
-				list->flags.salt[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? argv[*i][j] - 32 : argv[*i][j];
+				list->flags.vector[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? argv[*i][j] - 32 : argv[*i][j];
 			}
 			else
-				list->flags.salt[j] = 0;
+				list->flags.vector[j] = '0';
 			j++;
 		}
 		if (len > 16)
@@ -126,7 +126,7 @@ int flag_key(t_parsing *list, char **argv, int *i)
 				list->flags.key[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? argv[*i][j] - 32 : argv[*i][j];
 			}
 			else
-				list->flags.key[j] = 0;
+				list->flags.key[j] = '0';
 			j++;
 		}
 		if (len > 16)
