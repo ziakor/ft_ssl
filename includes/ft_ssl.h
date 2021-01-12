@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/09 18:21:54 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/12 16:12:39 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,15 @@ static const t_parsing	g_all_cmd[] =
 	{NULL, 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, NULL, NULL, NULL},
 };
 
+/*
+**flag_utils.c
+*/
+int		get_option_process_one(t_flags *flags, char *str, char *cmd);
+
+int     get_password(t_parsing *list, char *prompt);
+void        generate_salt(t_parsing *list);
+void         pbfdk2(t_parsing *list, char *data, size_t length);
+int         generate_key(t_parsing *list);
 /*
 ** usage.c
 ** functions about usage error message
