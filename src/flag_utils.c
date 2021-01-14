@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/12 16:15:54 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/14 12:45:55 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)
         len = list->list_data->hash.nb_bits;
         i++;
     }
-    print_hash_data(list->list_data->hash.hashed_data, list->list_data->hash.nb_bits);
     i = 0;
     while (i < list->list_data->hash.nb_bits)
     {
@@ -125,13 +124,11 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)
         put_key(list, list->list_data->hash.hashed_data[i], &j);
         i++;
     }
-    ft_putchar('\n');
 
 }
 
 int         generate_key(t_parsing *list)
 {
-    printf("GENERATEKEY\n");
     char *password_with_salt;
     const char tab[]= "0123456789ABCDEF";
     size_t len;
@@ -157,4 +154,5 @@ int         generate_key(t_parsing *list)
     i = 0;
     pbfdk2(list, password_with_salt, len);
     free(password_with_salt);
+    return (SUCCESS);
 }
