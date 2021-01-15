@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/14 12:45:55 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/15 13:32:36 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void        generate_salt(t_parsing *list)
         i = i + 2;
         j++;
     }
+    close(fd);
 }
 
 static void    put_key(t_parsing *list, int nb, int *count_key)
@@ -102,7 +103,6 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)
     int i;
     const char tab[]= "0123456789ABCDEF";
     int j;
-    
     j = 0;
     i = 0;
     tmp = data;

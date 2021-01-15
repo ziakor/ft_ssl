@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:49:59 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/09 17:10:13 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/15 13:32:47 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int flag_salt(t_parsing *list, char **argv, int *i)
 				list->flags.salt[j] = '0';
 			j++;
 		}
-		if (len > 16)
+		if (len > 8)
 			write(1, "hex string is too long ignoring excess\n", 39);
 	}
 	return (SUCCESS);
@@ -102,7 +102,7 @@ int flag_key(t_parsing *list, char **argv, int *i)
 	
 	j = 0;
 	new_elem = NULL;
-	*i+=1;;
+	*i+=1;
 	if (!argv[*i])
 	{
 		if (!(new_elem = create_new_elem("Option \'-k\' need a value", "ft_ssl", -1, 24)))
@@ -123,7 +123,7 @@ int flag_key(t_parsing *list, char **argv, int *i)
 					add_new_elem(&list->list_data, new_elem);
 					return (FAILED);
 				}
-				list->flags.key[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? argv[*i][j] - 32 : argv[*i][j];
+				list->flags.key[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? ft_toupper(argv[*i][j]) : argv[*i][j];
 			}
 			else
 				list->flags.key[j] = '0';
@@ -210,5 +210,7 @@ int			parse_flag_des(t_parsing *list, char **argv, int *i)
         if (!(flag_vector(list, argv, i)))
             return (FAILED);
     }
+    else
+        return (FAILED);
     return (SUCCESS);
 }

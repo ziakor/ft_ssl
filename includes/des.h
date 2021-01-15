@@ -136,12 +136,16 @@ static const int g_des_cp2[] =
 	46, 42, 50, 36, 29, 32
 };
 
-
+static const int g_des_shift[] = 
+{ 
+  1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1 
+};
 
 typedef struct s_des
 {
-	int key48bit[17][48];
-	int key56bit[56];
+	uint8_t key48bit[17][48];
+	uint8_t key56bit[56];
+
 	int left[17][32];
 	int right[17][32];
 }   t_des;
