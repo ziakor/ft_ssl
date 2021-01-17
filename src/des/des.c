@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:50:18 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/15 17:29:37 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/17 19:06:24 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,47 @@ void key56to48(int round, int pos, int text, t_des *des)
 	des->key48bit[round][i] = text;
 }
 
+void rotate_array(int c[17][28], int d[17][28])
+{
+    int i;
+    int j;
+    int first_c;
+    int first_d;
+    
+    j = 0;
+    i = 1;
+    while (i <= 17)
+    {   
+        first_c = c[i - 1][0];
+        first_d = d[i - 1][0];
+
+        j = 0;
+        while (j < 27)
+        {
+            c[i][j] = c[i - 1][j + 1];
+            d[i][j] = d[i - 1][j + 1];
+            j++; 
+        }
+        c[i][j] = first_c;
+        d[i][j] = first_d;
+        if (i != 1 && i != 2 && i != 9 && i != 16)
+        {
+            j = 0;
+            first_c = c[i][0];
+            first_d = d[i][0];
+            while (j < 27)
+            {
+                c[i][j] = c[i][j + 1];
+                d[i][j] = d[i][j + 1];
+                j++; 
+            }
+            c[i][j] = first_c;
+            d[i][j] = first_d;
+        }
+        i++;
+    }
+}
+
 void    key64to48(t_des *des, unsigned int key[64])
 {
     int k;
@@ -72,29 +113,23 @@ void    key64to48(t_des *des, unsigned int key[64])
 		if (i < 28)
 			c[0][i] = des->key56bit[i];
 		else
-			d[0][i] = des->key56bit[i];
+			d[0][i - 28] = des->key56bit[i];
     }
-    int j = 0;
-    for (size_t x = 0; x < 17; x++)
+    for (size_t i = 0; i < 28; i++)
     {
-		int shift = g_des_shift[x - 1];
-
-		for (int i = 0; i < shift; i++)
-			backup[x - 1][i] = c[x - 1][i];
-		for (int i = 0; i < (28 - shift); i++)
-			c[x][i] = c[x - 1][i + shift];
-		k = 0;
-		for (int i = 28 - shift; i < 28; i++)
-			c[x][i] = backup[x - 1][k++];
-
-		for (int i = 0; i < shift; i++)
-			backup[x - 1][i] = d[x - 1][i];
-		for (int i = 0; i < (28 - shift); i++)
-			d[x][i] = d[x - 1][i + shift];
-		k = 0;
-		for (int i = 28 - shift; i < 28; i++)
-			d[x][i] = backup[x - 1][k++];
+        printf("%d", c[0][i]);
     }
+    printf("\n");
+    for (size_t i = 0; i < 28; i++)
+    {
+        printf("%d", d[0][i]);
+    }
+    printf("\n-----\n");
+    
+    int j = 0;
+    
+    rotate_array(c, d);
+
     for (int j = 0; j < 17; j++) 
 	{
 		for (int i = 0; i < 28; i++)
@@ -102,11 +137,20 @@ void    key64to48(t_des *des, unsigned int key[64])
 		for (int i = 28; i < 56; i++)
 			cd[j][i] = d[j][i - 28];
 	}
+    for (size_t j = 0; j < 16; j++)
+    {
+        for (size_t i = 0; i < 56; i++)
+        {
+            printf("%d", cd[j][i]);
+        }
+        printf("\n");
+    }
 
-	for (int j = 1; j < 17; j++)
-		for (int i = 0; i < 56; i++)
-			key56to48(j, i, cd[j][i], des);
-	
+
+////////////////////
+    for (int j = 0; j < 16; j++)
+        for (int i = 0; i < 56; i++)
+            key56to48(j, i, cd[j + 1][i], des);
 }
 
 int get_hexa(int c)

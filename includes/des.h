@@ -143,7 +143,7 @@ static const int g_des_shift[] =
 
 typedef struct s_des
 {
-	uint8_t key48bit[17][48];
+	uint8_t key48bit[16][48];
 	uint8_t key56bit[56];
 
 	int left[17][32];
@@ -155,3 +155,4 @@ int		des_ecb(t_parsing *list, char *str, size_t length);
 
 
 #endif
+// 0101111111100001100110010101%
