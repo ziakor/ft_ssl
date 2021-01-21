@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:50:18 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/21 13:02:34 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/21 18:32:56 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,10 @@ uint64_t make_cp2(uint64_t c, uint64_t d)
 }
 void create_key_des_ecb(t_parsing *list, t_des *des)
 {
-    ///NEW VERSION
-
     uint64_t key64;
     uint64_t key56;
-    uint64_t c[16];//<
-    uint64_t d[16];//<
+    uint64_t c[16];
+    uint64_t d[16];
 
 
     key64 = hex_to_uint64(list->flags.key);
@@ -111,19 +109,62 @@ void create_key_des_ecb(t_parsing *list, t_des *des)
             key64 = 15 - n;
         des->key48[key64] = make_cp2(c[n], d[n]);
     }
-       printf("\n");
-       for (size_t i = 63; i < -1; i--)
+}
+
+uint64_t    ecb_get_64bit(char *data, int bit)
+{
+    int i;
+    uint64_t ret;
+    int pad;
+
+    pad = 0;
+    i = 0;
+    ret = 0;
+    while (i < 8)
     {
-        printf("%d", (des->key48[15] >> i) & 1);
+        ret <<= 8;
+        if (pad == 0)
+        {
+            if (data[i])
+                ret |= data[i];
+        }
+        else
+        {
+            pad = 1;
+            ret |= bit;
+        }
+        i++;
     }
-    
+    return (ret);
+}
+
+int     des_ecb_encode(t_parsing *list, t_des *des, char *str, size_t length)
+{
+    size_t i;
+    uint64_t data;
+    int bit;
+
+    i = 0;
+    bit = (((length / 8) + 1 ) * 8) * length; 
+    while (i < length || i % 8 != 0)
+    {
+        printf("%d| mod: %d | boucle\n", i, i % 8);
+        data = ecb_get_64bit(str, bit);
+        i++;
+    }
 }
 
 int		des_ecb(t_parsing *list, char *str, size_t length)
 {
     t_des des;
     create_key_des_ecb(list, &des);
-    printf("\n");
+    printf("%d", length);
+    printf("\n%d\n", list->flags.e);
+    if(list->flags.e)
+    {
+        if (!(des_ecb_encode(list, &des, str, length)))
+            return (FAILED);
+    }
     // uint64_t t = hex_to_uint64(list->flags.key);
     
 	exit(0);
