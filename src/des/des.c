@@ -6,198 +6,126 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:50:18 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/17 19:06:24 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/21 13:02:34 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
-
-
-void printBits(unsigned int num)
-{
-   const int bit_cnt = sizeof(unsigned int) * 8;
-   unsigned int mask = (1 << (bit_cnt - 1));
-
-   do
-   {
-      printf("%u", (num & mask) != 0?1:0);
-      mask >>= 1;
-   } while (mask > 0);
-}
+#include <inttypes.h>
 
 int rotateLeft(int x, int n) {
 	return (x << n) | (x >> (32 - n)) & ~(-1 << n);
 }
 
-int key64to56(int pos, int bit, t_des *des)
+uint64_t shift_left_half_keys(uint64_t key, int bits )
 {
-    int i = 0;
+    uint64_t ret;
+    uint64_t tmp;
+    uint64_t mutate;
 
+    tmp = bits;
+    mutate = 0;
+    while (tmp--)
+        mutate = (mutate << 1) + 1;
+    tmp = (key >> (bits - 1)) & 1;
+    ret = ((key << 1) + tmp) & mutate;
+    return(ret);
+}
+
+void make_half_keys(uint64_t half_keys[16], uint64_t starter)
+{
+    int i;
+    unsigned char shift;
+    uint64_t new_half;
+
+    i = 0;
+    while (i < 16)
+    {
+        shift = g_des_shift[i];
+        while (shift--)
+        {
+            new_half = shift_left_half_keys(starter, 28);
+            starter = new_half;
+        }
+        half_keys[i] = new_half;
+        i++;
+    }
+}
+
+uint64_t    make_cp1(uint64_t key64)
+{
+    int i;
+    uint64_t ret;
+    uint64_t tmp;
+
+    ret = 0;
     i = 0;
     while (i < 56)
     {
-        if (g_des_cp1[i] == pos + 1)
-            break;
+        ret <<=1;
+        ret |= (key64 >> (64 - g_des_cp1[i])) & 1;
         i++;
     }
-    des->key56bit[i] = bit;
+    ret <<= 8;
+    return(ret);
 }
 
-void key56to48(int round, int pos, int text, t_des *des)
-{
-	int i;
-	for (i = 0; i < 56; i++)
-		if (g_des_cp2[i] == pos + 1)
-			break;
-	des->key48bit[round][i] = text;
-}
-
-void rotate_array(int c[17][28], int d[17][28])
+uint64_t make_cp2(uint64_t c, uint64_t d)
 {
     int i;
-    int j;
-    int first_c;
-    int first_d;
-    
-    j = 0;
-    i = 1;
-    while (i <= 17)
-    {   
-        first_c = c[i - 1][0];
-        first_d = d[i - 1][0];
+    uint64_t key48;
+    uint64_t cd;
 
-        j = 0;
-        while (j < 27)
-        {
-            c[i][j] = c[i - 1][j + 1];
-            d[i][j] = d[i - 1][j + 1];
-            j++; 
-        }
-        c[i][j] = first_c;
-        d[i][j] = first_d;
-        if (i != 1 && i != 2 && i != 9 && i != 16)
-        {
-            j = 0;
-            first_c = c[i][0];
-            first_d = d[i][0];
-            while (j < 27)
-            {
-                c[i][j] = c[i][j + 1];
-                d[i][j] = d[i][j + 1];
-                j++; 
-            }
-            c[i][j] = first_c;
-            d[i][j] = first_d;
-        }
+    cd = (c << 28) | d;
+    i = 0;
+    key48 = 0;
+    while (i < 48)
+    {
+        key48 <<= 1;
+        key48 += ((cd >> (56 - g_des_cp2[i])) & 1);
         i++;
     }
-}
+    return(key48);
 
-void    key64to48(t_des *des, unsigned int key[64])
-{
-    int k;
-    int backup[17][2];
-	int cd[17][56];
-	int c[17][28];
-	int d[17][28];
-	int i;
-
-    i = 0;
-    for (size_t i = 0; i < 64; i++)
-    {
-        key64to56(i,key[i], des);
-    }
-
-    for (size_t i = 0; i < 56; i++)
-    {
-		if (i < 28)
-			c[0][i] = des->key56bit[i];
-		else
-			d[0][i - 28] = des->key56bit[i];
-    }
-    for (size_t i = 0; i < 28; i++)
-    {
-        printf("%d", c[0][i]);
-    }
-    printf("\n");
-    for (size_t i = 0; i < 28; i++)
-    {
-        printf("%d", d[0][i]);
-    }
-    printf("\n-----\n");
-    
-    int j = 0;
-    
-    rotate_array(c, d);
-
-    for (int j = 0; j < 17; j++) 
-	{
-		for (int i = 0; i < 28; i++)
-			cd[j][i] = c[j][i];
-		for (int i = 28; i < 56; i++)
-			cd[j][i] = d[j][i - 28];
-	}
-    for (size_t j = 0; j < 16; j++)
-    {
-        for (size_t i = 0; i < 56; i++)
-        {
-            printf("%d", cd[j][i]);
-        }
-        printf("\n");
-    }
-
-
-////////////////////
-    for (int j = 0; j < 16; j++)
-        for (int i = 0; i < 56; i++)
-            key56to48(j, i, cd[j + 1][i], des);
-}
-
-int get_hexa(int c)
-{
-    const char tabhexa[] = "0123456789ABCDEF";
-    for (size_t i = 0; i < 16; i++)
-    {
-        if (c == tabhexa[i])
-            return i;
-    }
-    return(-1);
     
 }
-
-void create_key_des(t_parsing *list, t_des *des)
+void create_key_des_ecb(t_parsing *list, t_des *des)
 {
-    unsigned int key[64];
-    int i;
-    int j;
-    int k;
-    int b;
-    uint8_t c;
+    ///NEW VERSION
 
-    i = 0;
-    j = 0;
-    b = 0;
-    while (i < 8)
+    uint64_t key64;
+    uint64_t key56;
+    uint64_t c[16];//<
+    uint64_t d[16];//<
+
+
+    key64 = hex_to_uint64(list->flags.key);
+    key56 = make_cp1(key64);
+    make_half_keys(c, (key56 >> 36) & 0xfffffff);
+    make_half_keys(d, (key56 >> 8) & 0xfffffff);
+
+    for (size_t n = 0; n < 16; n++)
     {
-        c = get_hexa(list->flags.key[b]) << 4 | get_hexa(list->flags.key[b + 1]);
-        k = 7;
-        while (k > -1)
-        {
-            key[j] = (c >> k) & 1;
-            k--;
-            j++;
-        }
-        b += 2;
-        i++;
+        key64 = n;
+        if (!list->flags.e)
+            key64 = 15 - n;
+        des->key48[key64] = make_cp2(c[n], d[n]);
     }
-    key64to48(des,key);
-
+       printf("\n");
+       for (size_t i = 63; i < -1; i--)
+    {
+        printf("%d", (des->key48[15] >> i) & 1);
+    }
+    
 }
 
 int		des_ecb(t_parsing *list, char *str, size_t length)
 {
     t_des des;
-    create_key_des(list, &des);
+    create_key_des_ecb(list, &des);
+    printf("\n");
+    // uint64_t t = hex_to_uint64(list->flags.key);
+    
 	exit(0);
 	return (SUCCESS);
 }
