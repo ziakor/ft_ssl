@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   des.c                                              :+:      :+:    :+:   */
+/*   keys2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 16:50:18 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/22 16:00:57 by dihauet          ###   ########.fr       */
+/*   Created: 2021/01/22 10:44:11 by dihauet           #+#    #+#             */
+/*   Updated: 2021/01/22 15:14:47 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
-#include <inttypes.h>
 
-int		des_ecb(t_parsing *list, char *str, size_t length)
+uint64_t    ecb_get_64bit(char *data, int bit)
 {
-    t_des des;
-    create_key_des_ecb(list, &des);
-    if(list->flags.e)
+    int i;
+    uint64_t ret;
+    int pad;
+    pad = 0;
+    i = 0;
+    ret = 0;
+    while (i < 8)
     {
-        if (!(des_ecb_encode(list, &des, str, length)))
-            return (FAILED);
+        ret <<= 8;
+        if (pad == 0)
+        {
+            if (data[i])
+                ret |= data[i];
+            else
+            {
+                pad = 1;
+                ret |= bit;
+            }
+        }
+        else
+            ret |= bit;
+        i++;
     }
-    // uint64_t t = hex_to_uint64(list->flags.key);
-    write(1,list->list_data->hash.hashed_data, list->list_data->hash.nb_bits);
-	exit(0);
-	return (SUCCESS);
+    return (ret);
 }
