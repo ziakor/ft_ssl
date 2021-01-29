@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 14:54:36 by dihauet           #+#    #+#             */
-/*   Updated: 2020/11/14 12:45:15 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/29 11:49:36 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int		concat_words_md5(t_md5 *md5, t_hash *hash)
 	return (SUCCESS);
 }
 
-int				md5(t_parsing *list, char *str, size_t length)
+int				md5(t_parsing *list, unsigned char *str, size_t length)
 {
 	t_md5	md5;
 

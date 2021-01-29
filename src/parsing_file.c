@@ -6,27 +6,28 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:56:43 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/09 11:00:26 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/29 13:51:05 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
 
-char		*read_file_data(int fd, int *size)
+unsigned char		*read_file_data(int fd, int *size)
 {
 	t_list 	*list;
-	char	*buffer;
+	unsigned char	*buffer;
 	int		ret;
 
-	if (!(buffer = (char*)malloc(sizeof(char) * 32000000)))
+	if (!(buffer = (char*)malloc(sizeof(char) * 1)))
 		return (NULL);
 	list = NULL;
-	while ((ret = read(fd, buffer, 32000000)) > 0)
+
+	while ((ret = read(fd, buffer, 1)) > 0)
 	{
 		*size = *size + ret;
 		if (!(list = ft_lst_add_data_to_end(list, buffer, ret)))
 			return (free_read_data_list(list));
-	if (!(buffer = (char*)malloc(sizeof(char) * 32000000)))
+	if (!(buffer = (char*)malloc(sizeof(char) * 1)))
 		return (free_read_data_list(list));
 	}
 	if (buffer)
@@ -62,17 +63,28 @@ int 		get_file_data(t_parsing *list, char *filename)
 	return (SUCCESS);
 }
 
-char		*concat_list_to_str(t_list *list, int size)
+unsigned char *concat_list_to_str(t_list *list, int size)
 {
-	char *str;
+	unsigned char *str;
 	int pos;
 	t_list *tmp;
+    size_t i;
+
+    i = 0;
 	pos = 0;
-	if (!(str = (char*)malloc(sizeof(char) * size)))
+	if (!(str = (unsigned char*)malloc(sizeof(unsigned char) * size)))
 		return (NULL);
+
 	while (list)
 	{
-		ft_memcpy(str + pos,list->content,list->content_size);
+		// ft_memcpy(str + pos,(unsigned char*)list->content,list->content_size);
+        while (i < list->content_size)
+        {
+            str[pos] = ((unsigned char*)list->content)[i];
+            i++;
+            pos++;
+        }
+        i = 0;
 		tmp = list->next;
 		free(list->content);
 		free(list);

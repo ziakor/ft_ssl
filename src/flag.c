@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 12:57:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/10 13:06:55 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/29 11:15:43 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int flag_input(t_parsing *list, char **argv, int *i)
     t_list_data *new_elem;
     new_elem = NULL;
     list->flags.i = 1;
+    
     if (!(argv[++*i]))
     {
         if (!(new_elem = create_new_elem("Option \'-i\' need a value", "ft_ssl", -1, 24)))

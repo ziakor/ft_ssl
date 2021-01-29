@@ -200,7 +200,7 @@ typedef struct s_des
 }   t_des;
 
 int			parse_flag_des(t_parsing *list, char **argv, int *i);
-int		des_ecb(t_parsing *list, char *str, size_t length);
+int		des_ecb(t_parsing *list, unsigned char *str, size_t length);
 
 
 /*
@@ -234,10 +234,10 @@ uint64_t make_reverse_permutation(uint64_t r);
 ** des_ecb_encode.c
 */
 
-uint64_t    ecb_encode_algo(uint64_t data, uint64_t keys[16]);
-int     des_ecb_encode(t_parsing *list, t_des *des, char *str, size_t length);
+uint64_t    ecb_algo(uint64_t data, uint64_t keys[16]);
+int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t length);
 void    des_put_data(uint8_t *hash_data, uint64_t data);
-
+int     des_ecb_decode(t_parsing *list, t_des *des, unsigned char *str, size_t length);
 
 #endif
 // 0101111111100001100110010101%

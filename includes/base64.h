@@ -37,7 +37,7 @@ typedef struct s_base64
 }           t_base64;
 
 int			parse_flag_base64(t_parsing *list, char **argv, int *i);
-int     base64_encrypt(t_parsing *list, char *data, size_t length);
-int     base64_decrypt(t_parsing *list, char *data, size_t length);
-int base64(t_parsing *list, char *data, size_t length);
+int     base64_encrypt(t_parsing *list, unsigned char *data, size_t length);
+int     base64_decrypt(t_parsing *list, unsigned char *data, size_t length);
+int base64(t_parsing *list, unsigned char *data, size_t length);
 #endif

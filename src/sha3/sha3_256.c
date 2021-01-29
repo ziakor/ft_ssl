@@ -6,13 +6,13 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 11:25:38 by dihauet           #+#    #+#             */
-/*   Updated: 2020/12/02 16:55:40 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/29 11:49:43 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
 
-int		sha3_256(t_parsing *list, char *str, size_t length)
+int		sha3_256(t_parsing *list, unsigned char *str, size_t length)
 {
 	t_sha_3		sha3;
 

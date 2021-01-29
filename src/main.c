@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/12 11:56:49 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/29 13:51:40 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		main(int argc, char **argv)
 		}
 	}
 	hash_data(&list);
-    // list.print_func(list.list_data, list.flags, list.cmd, list.is_cipher);
+    list.print_func(list.list_data, list.flags, list.cmd, list.is_cipher);
 	clean_parsing(&list);
 
 	return (0);

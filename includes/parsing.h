@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/15 13:30:14 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/29 11:49:08 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct		s_data
 {
 	char		*file_name;
 	int			fd;
-	char		*data;
+	unsigned char		*data;
 	size_t		data_length;
 }					t_data;
 
@@ -54,7 +54,7 @@ typedef struct		s_parsing
 	int							is_cipher;
 	t_flags						flags;
 	t_list_data					*list_data;
-	int							(*hash_func)(struct s_parsing*, char*, size_t);
+	int							(*hash_func)(struct s_parsing*, unsigned char*, size_t);
 	int							(*process_func)(char**, struct s_parsing*, int);
   void            (*print_func)(t_list_data*, t_flags, char*, int);
 
@@ -91,9 +91,9 @@ char				*get_error_message_open_file(int type, int *size);
 **parsing data from file
 */
 
-char		*read_file_data(int fd, int *size);
+unsigned char		*read_file_data(int fd, int *size);
 int 		get_file_data(t_parsing *list, char *filename);
-char		*concat_list_to_str(t_list *list, int size);
+unsigned char		*concat_list_to_str(t_list *list, int size);
 
 /*
 **list_read_data.c

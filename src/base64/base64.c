@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:52:29 by dihauet           #+#    #+#             */
-/*   Updated: 2020/12/27 19:31:02 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/29 11:52:12 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int convert_base64_decrypt(t_base64 *b64, t_parsing *list, char *data, size_t le
 
 
 
-int base64_decrypt(t_parsing *list, char *data, size_t length)
+int base64_decrypt(t_parsing *list, unsigned char *data, size_t length)
 {
 	t_base64 b64;
 
@@ -107,7 +107,7 @@ static void convert_base64_encrypt(t_base64 *b64, char *data, size_t i, size_t l
 
 }
 
-int     base64_encrypt(t_parsing *list, char *data, size_t length)
+int     base64_encrypt(t_parsing *list, unsigned char *data, size_t length)
 {
 	size_t i;
 	t_base64 b64;
@@ -138,7 +138,7 @@ int     base64_encrypt(t_parsing *list, char *data, size_t length)
 
 
 
-int base64(t_parsing *list, char *data, size_t length)
+int base64(t_parsing *list, unsigned char *data, size_t length)
 {
 	if (list->flags.e)
 	{

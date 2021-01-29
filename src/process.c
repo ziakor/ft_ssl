@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/15 13:32:34 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/29 08:52:23 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int         process_des(char **argv, t_parsing *list, int i)
 		if (!(get_file_data(list, NULL)))
 			return (FAILED);
 	}
-    if (list->flags.a && list->flags.e)
-        flag_a(list);
+    if (list->flags.a)
+        list->flags.a = 1;
     if (list->flags.salt[0] == 0)
     {
         generate_salt(list);
