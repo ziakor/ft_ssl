@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 15:59:57 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/29 20:41:13 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/01/30 10:23:41 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t l
     size_t i;
     uint64_t data;
     size_t bit;
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>ENCULER DONNER MAL COPIER EN BINAIRE FDP
+    
     i = 0;
     printf("str");
     for (size_t j = 0; j < length; j++)
@@ -99,9 +99,6 @@ int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t l
     }
 
     printf("\nEND ENCODE POST\n");
-    int fd = open("salsifi", O_WRONLY);
-    write(1, list->list_data->hash.hashed_data, list->list_data->hash.nb_bits);
-    exit (0);
     return (SUCCESS);
 }
 
@@ -110,12 +107,19 @@ int     des_ecb_decode(t_parsing *list, t_des *des, unsigned char *str, size_t l
     size_t i;
     size_t bit;
     i = 0;
-    bit = str[length - 1];
 
-    if (!(list->list_data->hash.hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * (length))))
+    /* !!! Ajouter le decode de base64 quand flag a :) !!!*/ 
+
+   if (!(list->list_data->hash.hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * (length))))
         return (FAILED);
+        list->list_data->hash.nb_bits = length;
     des_ecb_encode(list, des,str,length);
+    bit = list->list_data->hash.hashed_data[list->list_data->hash.nb_bits - 1];
     list->list_data->hash.nb_bits = length - bit;
-    
+    for (size_t j = 0; j < list->list_data->hash.nb_bits; j++)
+    {
+        printf("%c", list->list_data->hash.hashed_data[j]);
+    }
+    exit(0);
     return(SUCCESS);
 }
