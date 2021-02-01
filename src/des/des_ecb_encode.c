@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 15:59:57 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/30 10:23:41 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/01 14:11:55 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void    des_put_data(uint8_t *hash_data, uint64_t data)
 {
     int i;
     
+    i = 0;
     while (i < 8)
     {
         hash_data[i] = (data >> (56 - (i * 8))) & 0xff;
@@ -55,22 +56,6 @@ int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t l
     size_t bit;
     
     i = 0;
-    printf("str");
-    for (size_t j = 0; j < length; j++)
-    {
-        printf("|%d|", str[j]);
-    }
-    printf("\n--data brute----\n");
-    for (size_t j = 0; j < length; j++)
-    {
-        if (j > 0 && j % 8 == 0)
-            printf("\n");
-        for (size_t k = 7; k < -1; k--)
-        {
-            printf("%d", (str[j] >> k) & 1);
-        }
-    }
-    printf("\n-----commencement algo----\n");
     bit = (((length / 8) + 1 ) * 8) - length; 
     if (list->flags.e)
     {
@@ -81,24 +66,12 @@ int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t l
     while (i < list->list_data->hash.nb_bits)
     {
         data = ecb_get_64bit(&str[i], bit);
-        for (size_t j = 63; j < -1; j--)
-        {
-            printf("%d", (data >> j) & 1);
-        }
-        printf("\n");
-        
         data = ecb_algo(data,des->key48);
         des_put_data(&list->list_data->hash.hashed_data[i], data);
         i+= 8;
     }
-    printf("ENCODE POST %d\n", length);
-    printf("hash\n");
-    for (size_t j = 0; j < list->list_data->hash.nb_bits; j++)
-    {
-        printf("|%d|", list->list_data->hash.hashed_data[j]);
-    }
 
-    printf("\nEND ENCODE POST\n");
+
     return (SUCCESS);
 }
 
@@ -108,18 +81,11 @@ int     des_ecb_decode(t_parsing *list, t_des *des, unsigned char *str, size_t l
     size_t bit;
     i = 0;
 
-    /* !!! Ajouter le decode de base64 quand flag a :) !!!*/ 
-
    if (!(list->list_data->hash.hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * (length))))
         return (FAILED);
         list->list_data->hash.nb_bits = length;
     des_ecb_encode(list, des,str,length);
     bit = list->list_data->hash.hashed_data[list->list_data->hash.nb_bits - 1];
     list->list_data->hash.nb_bits = length - bit;
-    for (size_t j = 0; j < list->list_data->hash.nb_bits; j++)
-    {
-        printf("%c", list->list_data->hash.hashed_data[j]);
-    }
-    exit(0);
     return(SUCCESS);
 }

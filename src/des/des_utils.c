@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:49:59 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/29 08:52:18 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/01 16:54:06 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,6 @@ int			parse_flag_des(t_parsing *list, char **argv, int *i)
             return (FAILED);
     }
     else
-        return (FAILED);
+        return (ft_invalid_option(argv[*i], list->cmd, ft_list_options_des));
     return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/12 11:54:42 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/01 14:05:04 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,19 @@ void	print_one(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
 }
 
 void    print_two(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
+{
+    if (print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd))
+        return ;
+    if (flag.o)
+    {
+        write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
+    }
+    else {
+        ft_putnstr(list->hash.hashed_data, list->hash.nb_bits);
+    }
+}
+
+void    print_des(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
 {
     if (print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd))
         return ;

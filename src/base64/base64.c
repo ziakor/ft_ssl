@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:52:29 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/29 11:52:12 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/01 13:20:35 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int     base64_encrypt(t_parsing *list, unsigned char *data, size_t length)
 	i = 0;
 	if (!(init_base64_encrypt(&list->list_data->hash, &b64, length)))
 		return (FAILED);
+
 	while (i <  length)
 	{
 		convert_base64_encrypt(&b64, data, i, length);
@@ -150,5 +151,11 @@ int base64(t_parsing *list, unsigned char *data, size_t length)
 	    if (!(base64_decrypt(list, data, length)))
 	        return (FAILED);
 	}
+    // for (size_t i = 0; i < list->list_data->hash.nb_bits; i++)
+    // {
+    //     printf("|%d|", list->list_data->hash.hashed_data[i]);
+    // }
+    // printf("\n");
+    
 	return (SUCCESS);
 }

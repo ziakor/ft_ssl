@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/21 09:43:31 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/01 16:50:15 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 
 void	print_one(t_list_data *list, t_flags flag, char *cmd, int is_cipher);
 void    print_two(t_list_data *list, t_flags flag, char *cmd, int is_cipher);
+void    print_des(t_list_data *list, t_flags flag, char *cmd, int is_cipher);
 int         process_des(char **argv, t_parsing *list, int i);
 static const t_parsing	g_all_cmd[] =
 {
@@ -49,10 +50,10 @@ static const t_parsing	g_all_cmd[] =
 	{"sha3-384", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, sha3_384, process_one, print_one},
 	{"sha3-512", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, sha3_512, process_one, print_one},
 	{"base64", 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, base64, process_two, print_two},
-  {"des", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, des_ecb, process_des, NULL},
+  {"des", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, des_ecb, process_des, print_des},
   {"des-ebc", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, NULL, NULL, NULL},
   {"des-cbc", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, NULL, NULL, NULL},
-	{NULL, 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, NULL, NULL, NULL},
+	{NULL, 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, NULL, NULL, NULL},
 };
 
 /*
@@ -73,9 +74,11 @@ void		ft_ssl_usage();
 void		ft_list_commands();
 void		ft_list_message_digest();
 void		ft_list_cipher();
-void		ft_list_options();
+void	  ft_list_options_1(void);
+void    ft_list_options_base64(void);
 void		ft_invalid_command(char *command);
-int			ft_invalid_option(char *option, char *command);
+int		ft_invalid_option(char *option, char *command, void list_options(void));
+void    ft_list_options_des(void);
 
 /*
 ** error.c

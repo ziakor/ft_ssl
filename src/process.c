@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/29 08:52:23 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/01 13:13:43 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int			process_one(char **argv, t_parsing *list, int i)
 int			process_two(char **argv, t_parsing *list, int i)
 {
 	list->is_cipher = 1;
+    list->flags.e = 1;
 	while (argv[i] && argv[i][0] == '-')
 	{
 		if (!(parse_flag_base64(list, argv, &i)))

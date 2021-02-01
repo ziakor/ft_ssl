@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/15 13:32:36 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/01 16:33:09 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		get_option_process_one(t_flags *flags, char *str, char *cmd)
 			flags->s = 1;
 	else
 	{
-		ft_invalid_option(str, cmd);
+		ft_invalid_option(str, cmd, ft_list_options_1);
 		return (FAILED);
 	}
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:50:18 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/29 20:39:58 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/01 13:35:28 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ int		des_ecb(t_parsing *list, unsigned char *str, size_t length)
         if (!(des_ecb_decode(list, &des, str, length)))
             return (FAILED);
     }
-	exit(0);
 	return (SUCCESS);
 }
