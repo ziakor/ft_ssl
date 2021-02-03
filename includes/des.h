@@ -197,6 +197,7 @@ static const int g_des_shift[] =
 typedef struct s_des
 {
 	uint64_t key48[16];
+  size_t pad_bit;
 }   t_des;
 
 int			parse_flag_des(t_parsing *list, char **argv, int *i);

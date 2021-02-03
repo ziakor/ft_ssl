@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 15:59:57 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/01 14:11:55 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/03 16:26:33 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,44 @@ void    des_put_data(uint8_t *hash_data, uint64_t data)
     }
 }
 
+static void  des_core(t_parsing *list, t_des *des, unsigned char *str, size_t length)
+{
+    size_t i;
+    uint64_t data;
+
+    i = 0;
+    while (i < list->list_data->hash.nb_bits)
+    {
+        data = ecb_get_64bit(&str[i], des->pad_bit);
+        data = ecb_algo(data,des->key48);
+        des_put_data(&list->list_data->hash.hashed_data[i], data);
+        i+= 8;
+    }
+}
+
 int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t length)
 {
     size_t i;
     uint64_t data;
-    size_t bit;
-    
+    uint8_t* tmp;
     i = 0;
-    bit = (((length / 8) + 1 ) * 8) - length; 
-    if (list->flags.e)
+    des->pad_bit = (((length / 8) + 1 ) * 8) - length; 
+    if (!(list->list_data->hash.hashed_data = (uint8_t*) malloc(sizeof(uint8_t) * (des->pad_bit + length) )))
+        return (FAILED);
+    list->list_data->hash.nb_bits = des->pad_bit + length;
+    des_core(list, des, str, length);
+
+    for (size_t j = 0; j < list->list_data->hash.nb_bits; j++)
     {
-        if (!(list->list_data->hash.hashed_data = (uint8_t*) malloc(sizeof(uint8_t) * (bit + length) )))
-            return (FAILED);
-        list->list_data->hash.nb_bits = bit + length;
+        printf("|%d|",list->list_data->hash.hashed_data[j]);
     }
-    while (i < list->list_data->hash.nb_bits)
+    printf("\n");
+    if (list->flags.a)
     {
-        data = ecb_get_64bit(&str[i], bit);
-        data = ecb_algo(data,des->key48);
-        des_put_data(&list->list_data->hash.hashed_data[i], data);
-        i+= 8;
+        tmp = list->list_data->hash.hashed_data;
+        if (!(base64(list, list->list_data->hash.hashed_data, list->list_data->hash.nb_bits)))
+            return (FAILED);
+        free(tmp);
     }
 
 
@@ -78,14 +96,28 @@ int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t l
 int     des_ecb_decode(t_parsing *list, t_des *des, unsigned char *str, size_t length)
 {
     size_t i;
-    size_t bit;
     i = 0;
+    uint8_t*  tmp;
 
-   if (!(list->list_data->hash.hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * (length))))
+    tmp = NULL;
+    
+    if (list->flags.a)
+    {
+
+        if (!(base64(list,str,length)))
+            return (FAILED);
+
+        tmp = list->list_data->hash.hashed_data;
+        str = tmp;
+        length = list->list_data->hash.nb_bits;
+    }
+    if (!(list->list_data->hash.hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * (length))))
         return (FAILED);
-        list->list_data->hash.nb_bits = length;
-    des_ecb_encode(list, des,str,length);
-    bit = list->list_data->hash.hashed_data[list->list_data->hash.nb_bits - 1];
-    list->list_data->hash.nb_bits = length - bit;
+    list->list_data->hash.nb_bits = length;
+    des_core(list,des,str,length);
+    des->pad_bit = list->list_data->hash.hashed_data[list->list_data->hash.nb_bits - 1];
+    list->list_data->hash.nb_bits = length - des->pad_bit;
+    if (tmp)
+        free(tmp);
     return(SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/01 13:13:43 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/03 12:25:36 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			process_two(char **argv, t_parsing *list, int i)
 
 int         process_des(char **argv, t_parsing *list, int i)
 {
-    printf("PROCESS DES\n");
+    list->flags.e = 1;
     while (argv[i] && argv[i][0] == '-')
     {
         if (!(parse_flag_des(list, argv, &i)))
