@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/28 11:44:24 by dihauet           #+#    #+#              #
-#    Updated: 2021/01/22 16:04:38 by dihauet          ###   ########.fr        #
+#    Updated: 2021/02/04 09:57:12 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DIRSRCS = ./src/
 
 DIROBJ = ./obj/
 
-SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c  error.c clean.c md5/md5.c md5/md5_utils.c hash.c print_utils.c print.c padding.c utils.c sha256/sha256.c sha256/sha256_utils.c sha3/sha3_256.c sha3/sha3.c sha3/sha3_utils.c sha3/sha3_512.c sha3/sha3_224.c sha3/sha3_384.c flag.c process.c parsing_file.c list_read_data.c parsing_stdin.c base64/base64_utils.c base64/base64.c des/des.c des/des_utils.c des/keys.c des/keys2.c  des/des_ecb_encode.c des/des_ecb_utils.c flag_utils.c
+SRCS = main.c usage.c parsing.c parsing_functions.c list_usage.c data_list.c  error.c clean.c md5/md5.c md5/md5_utils.c hash.c print_utils.c print.c padding.c utils.c sha256/sha256.c sha256/sha256_utils.c sha3/sha3_256.c sha3/sha3.c sha3/sha3_utils.c sha3/sha3_512.c sha3/sha3_224.c sha3/sha3_384.c flag.c process.c parsing_file.c list_read_data.c parsing_stdin.c base64/base64_utils.c base64/base64.c des/des.c des/des_utils.c des/keys.c des/keys2.c  des/des_ecb_encode.c des/des_ecb_utils.c des/des_cbc.c flag_utils.c
 
 INC = ./includes/
 

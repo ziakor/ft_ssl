@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/01 16:50:15 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/04 10:03:14 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static const t_parsing	g_all_cmd[] =
 	{"sha3-512", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, sha3_512, process_one, print_one},
 	{"base64", 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, base64, process_two, print_two},
   {"des", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, des_ecb, process_des, print_des},
-  {"des-ebc", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, NULL, NULL, NULL},
-  {"des-cbc", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, NULL, NULL, NULL},
+  {"des-ebc", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, des_ecb, process_des, print_des},
+  {"des-cbc", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, des_cbc, process_des, print_des},
 	{NULL, 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, NULL, NULL, NULL},
 };
 

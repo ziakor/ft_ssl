@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/03 12:25:36 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/04 10:12:03 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int         process_des(char **argv, t_parsing *list, int i)
             return (FAILED);
         i++;
     }
-    if (!list->flags.password)
+    if (!list->flags.password && list->flags.key[0] == 0)
     {
         if (!(get_password(list, "enter des-cbc encryption password:")))
             return (FAILED);

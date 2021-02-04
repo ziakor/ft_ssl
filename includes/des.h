@@ -198,10 +198,12 @@ typedef struct s_des
 {
 	uint64_t key48[16];
   size_t pad_bit;
+  uint64_t iv;
 }   t_des;
 
 int			parse_flag_des(t_parsing *list, char **argv, int *i);
 int		des_ecb(t_parsing *list, unsigned char *str, size_t length);
+
 
 
 /*
@@ -240,5 +242,10 @@ int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t l
 void    des_put_data(uint8_t *hash_data, uint64_t data);
 int     des_ecb_decode(t_parsing *list, t_des *des, unsigned char *str, size_t length);
 
+/*
+** des_cbc.c
+*/
+
+int     des_cbc(t_parsing *list, unsigned char *str, size_t length);
+
 #endif
-// 0101111111100001100110010101%
