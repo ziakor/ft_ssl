@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/01 14:05:00 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/07 17:13:21 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,11 @@ int print_error(uint8_t *data, size_t length, char *filename, int fd)
 {
 	if (fd < 0)
 	{
+        if (fd == -1)
+        {
         ft_putstr_fd(filename, 2);
         ft_putstr_fd(": ", 2);
+        }
         ft_putnstr(data, length);
         ft_putchar_fd('\n', 2);
         return (SUCCESS);

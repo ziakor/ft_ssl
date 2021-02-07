@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:49:59 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/01 16:54:06 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/07 17:31:08 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,10 @@ int			parse_flag_des(t_parsing *list, char **argv, int *i)
 		if (!(flag_password(list,argv,i)))
 			return(FAILED);
 	}
+    else if (ft_strcmp(argv[*i], "-P") == 0)
+    {
+        list->flags.P = 1;
+    }
 	else if (ft_strcmp(argv[*i], "-k") == 0)
 	{
 		if (!(flag_key(list,argv,i)))

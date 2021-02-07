@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 12:57:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/29 11:15:43 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/07 17:32:04 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,13 @@ int flag_a(t_parsing *list)
     list->list_data->data.data = list->list_data->hash.hashed_data;
     list->list_data->hash.hashed_data = NULL;
     list->list_data->data.data_length = list->list_data->hash.nb_bits;
+}
+
+int flag_print(uint8_t key[16], uint8_t vector[16])
+{
+    ft_putstr("key: ");
+    ft_putnstr(key, 16);
+    ft_putstr("\niv: ");
+    ft_putnstr(vector, 16);
+    ft_putchar('\n');
 }

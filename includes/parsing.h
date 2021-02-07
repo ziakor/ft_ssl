@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/01 11:43:05 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/07 17:29:32 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef	struct		s_flags
 	int 	e;
 	int		i;
 	int		o;
+  int   P;
 	char	*o_file;
 }					t_flags;
 
@@ -85,6 +86,8 @@ char				*get_error_message_open_file(int type, int *size);
 ** flag.c
 **
 */
+
+int flag_print(uint8_t key[16], uint8_t vector[16]);
 
 /*
 **parsing_file.c

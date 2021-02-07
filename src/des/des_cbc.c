@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:01:05 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/04 14:23:02 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/07 17:13:31 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ int     des_cbc(t_parsing *list, unsigned char *str, size_t length)
 
     t_des des;
     //add error iv undefined
+    if (list->flags.vector[0] == 0)
+    {
+        ft_strcpy(list->list_data->data.data, "iv undefined");
+        list->list_data->data.data_length = 12;
+        list->list_data->data.fd = -2;
+        return (FAILED);
+    }
     des.iv = hex_to_uint64(list->flags.vector);
     create_key_des_ecb(list, &des);
     if (list->flags.e)
