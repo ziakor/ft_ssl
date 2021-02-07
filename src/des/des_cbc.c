@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:01:05 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/07 17:13:31 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/02/07 19:27:01 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ int     des_cbc(t_parsing *list, unsigned char *str, size_t length)
     //add error iv undefined
     if (list->flags.vector[0] == 0)
     {
-        ft_strcpy(list->list_data->data.data, "iv undefined");
+        free(list->list_data->data.data);
+        if (!(list->list_data->data.data = ft_strdup("iv undefined")))
+            return (FAILED);
         list->list_data->data.data_length = 12;
         list->list_data->data.fd = -2;
         return (FAILED);
