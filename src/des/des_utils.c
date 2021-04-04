@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:49:59 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 16:50:31 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 20:42:02 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,17 +143,19 @@ int flag_password(t_parsing *list, char **argv, int *i)
 
 	if (!argv[*i])
 	{
-		if (!(new_elem = create_new_elem("Option \'-p\' need a value", "ft_ssl", -1, 24)))
+    free(list->list_data->data.data);
+    free(list->list_data->data.file_name);
+		if (!(new_elem = create_new_elem("Option \'-p\' need a value", "ft_ssl", -1, 24)))//a supprimer
 			return (FAILED);
+    if (!(list->list_data->data.data = ft_strdup("Option \'-p\' need a value")))
+      return(FAILED);
+    list->list_data->data.data_length = 24;
+    if (!(list->list_data->data.file_name = ft_strdup(list->cmd)))
+    {
+      return (FAILED);
+    }
 		add_new_elem(&list->list_data, new_elem);
 		return (FAILED);
-	}
-	else if (argv[*i][0] == '-')
-	{
-		if (!(new_elem = create_new_elem("Invalid password argument", "ft_ssl", -1, 25)))
-			return (FAILED);
-		add_new_elem(&list->list_data, new_elem);
-    return(FAILED);
 	}
 	else
 	{
