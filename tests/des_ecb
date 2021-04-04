@@ -1,0 +1,16 @@
+
+-- demande un password et attend stdin
+./ft_ssl_des_ecb
+openssl des_ecb
+
+Resultat different vu que pas la meme cle
+
+--test fichier auteur
+
+./ft_ssl des-ecb -p "dev" -i auteur -o res;
+openssl des-ecb -p "pass:dev" -in auteur -o res2;
+
+--test fichier auteur avec meme cle
+
+./ft_ssl des-ecb -p "dev" -i auteur -o res -k CB6836DE80511354;
+openssl des-ecb  -in auteur -o res2 -K CB6836DE80511354;
