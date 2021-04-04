@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 12:26:36 by dihauet           #+#    #+#              #
-#    Updated: 2020/12/29 13:21:43 by dihauet          ###   ########.fr        #
+#    Updated: 2021/04/04 16:04:30 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,8 +97,8 @@ SRCS = 	ft_atoi.c \
 		ft_putnstr.c \
 		ft_is_hexa.c
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CC = clang
+CFLAGS = -Wall -Wextra -Werror  -g 
 SRCO = $(patsubst %.c,$(DIROBJ)%.o,$(SRCS))
 
 INC = ./includes/libft.h

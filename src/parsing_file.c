@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:56:43 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 14:17:45 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 14:32:40 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,14 @@ unsigned char *concat_list_to_str(t_list *list, int size)
 
 	while (list)
 	{
-		// ft_memcpy(str + pos,(unsigned char*)list->content,list->content_size);
-        while (i < list->content_size)
-        {
-            str[pos] = ((unsigned char*)list->content)[i];
-            i++;
-            pos++;
-        }
-        i = 0;
 		tmp = list->next;
+    while (i < list->content_size)
+    {
+        str[pos] = ((unsigned char*)list->content)[i];
+        i++;
+        pos++;
+    }
+    i = 0;
     if (list->content)
 		  free(list->content);
 		if (list)

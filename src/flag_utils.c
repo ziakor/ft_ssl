@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 14:00:10 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 15:38:58 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)//
     len = length;
     while (i < 1)
     {
-        if (list->list_data->hash.hashed_data)
-            printf("SALSIFI");
         sha256(list, tmp, len);
         tmp = list->list_data->hash.hashed_data;
         len = list->list_data->hash.nb_bits;
@@ -124,8 +122,6 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)//
         put_key(list, list->list_data->hash.hashed_data[i], &j);
         i++;
     }
-    if (list->list_data->hash.hashed_data)
-        printf("SALSIFI");
     free(list->list_data->hash.hashed_data);
     list->list_data->hash.nb_bits = 0;
     
