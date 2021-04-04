@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/01 13:45:13 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 10:54:00 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int		main(int argc, char **argv)
 	t_parsing	list;
 
 	list.size = 0;
+  ft_bzero(&list, sizeof(t_parsing));
 	if (argc == 1)
 	{
-		printf("ERROR\n");
+    ft_ssl_usage();
 		return (0);
 	}
 	else
@@ -32,7 +33,7 @@ int		main(int argc, char **argv)
 		}
 	}
 	hash_data(&list);
-    list.print_func(list.list_data, list.flags, list.cmd, list.is_cipher);
+  list.print_func(list.list_data, list.flags, list.cmd, list.is_cipher);
 	clean_parsing(&list);
 
 	return (0);

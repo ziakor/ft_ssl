@@ -220,7 +220,7 @@ void create_key_des_ecb(t_parsing *list, t_des *des);
 ** keys2.c
 */
 
-uint64_t    ecb_get_64bit(char *data, int bit);
+uint64_t    ecb_get_64bit(char *data, int bit, int length_left);
 
 
 /*

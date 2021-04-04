@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/28 11:44:24 by dihauet           #+#    #+#              #
-#    Updated: 2021/02/04 09:57:12 by dihauet          ###   ########.fr        #
+#    Updated: 2021/04/04 12:51:17 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIB_A = ./Libft/libft.a
 
 CC = gcc
 
-CFLAGS = -g 
+CFLAGS = -g -fsanitize=address
 
 OBJ = $(patsubst %.c,$(DIROBJ)%.o,$(SRCS))
 

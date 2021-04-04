@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 12:50:59 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/29 11:49:57 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 13:59:06 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ static int		concat_sha256(t_hash *hash, t_sha256 *sha256)
 	uint8_t		*word;
 
 	hash->nb_bits = 32;
+  if (hash->hashed_data)
+    free(hash->hashed_data);
 	if (!(hash->hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * 32)))
 		return (FAILED);
 	tmp[0] = swap_endian(sha256->h0);

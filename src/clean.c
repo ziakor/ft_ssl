@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 14:14:57 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/01 13:44:59 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 14:08:09 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	clean_parsing(t_parsing *list)
 	
 	if (list->flags.o_file)
 		free(list->flags.o_file);
-    if (list->flags.password)
-        free(list->flags.password);
+  if (list->flags.password)
+      free(list->flags.password);
 	while (list->list_data)
 	{
 		tmp = list->list_data->next;
@@ -33,7 +33,11 @@ void	clean_parsing(t_parsing *list)
 			close(list->list_data->data.fd);
 		if (list->list_data->hash.hashed_data)
 			free(list->list_data->hash.hashed_data);
-		free(list->list_data);
+    if (list->list_data)
+    {
+      free(list->list_data);
+      list->list_data = NULL;
+    }
 		list->list_data = tmp;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:01:05 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/07 19:27:01 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 12:31:51 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int  des_cbc_encode(t_parsing *list, t_des *des, unsigned char *str, size
 
     while (i < list->list_data->hash.nb_bits)
 	{
-		data = ecb_get_64bit(str + i, des->pad_bit);
+		data = ecb_get_64bit(str + i, des->pad_bit, length - i);
 
 		data ^= iv;
 
@@ -54,7 +54,7 @@ static int  des_cbc_decode(t_parsing *list, t_des *des, unsigned char *str, size
     i = 0;
     while (i < length)
     {
-        data = ecb_get_64bit(&str[i], des->pad_bit);
+        data = ecb_get_64bit(&str[i], des->pad_bit, length - i);
 		next_iv = data;
 		data = ecb_algo(data, des->key48);
 		data ^= iv;

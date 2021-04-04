@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 14:33:50 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/01 16:43:22 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/02 16:42:51 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_ssl_usage(void)
 {
-	ft_putstr_fd("usage: ft_ssl command [command opts] [command args]\n\n", 2);
+	ft_putstr_fd("usage: ft_ssl command [command opts] [command args]\n", 2);
 }
 
 void	ft_invalid_command(char *command)

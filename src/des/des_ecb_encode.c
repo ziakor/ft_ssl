@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 15:59:57 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/03 16:26:33 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 13:55:54 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void  des_core(t_parsing *list, t_des *des, unsigned char *str, size_t le
     i = 0;
     while (i < list->list_data->hash.nb_bits)
     {
-        data = ecb_get_64bit(&str[i], des->pad_bit);
+        data = ecb_get_64bit(&str[i], des->pad_bit, length - i);
         data = ecb_algo(data,des->key48);
         des_put_data(&list->list_data->hash.hashed_data[i], data);
         i+= 8;
@@ -75,20 +75,13 @@ int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t l
         return (FAILED);
     list->list_data->hash.nb_bits = des->pad_bit + length;
     des_core(list, des, str, length);
-
-    for (size_t j = 0; j < list->list_data->hash.nb_bits; j++)
-    {
-        printf("|%d|",list->list_data->hash.hashed_data[j]);
-    }
-    printf("\n");
     if (list->flags.a)
     {
-        tmp = list->list_data->hash.hashed_data;
-        if (!(base64(list, list->list_data->hash.hashed_data, list->list_data->hash.nb_bits)))
-            return (FAILED);
-        free(tmp);
+      tmp = list->list_data->hash.hashed_data;
+      if (!(base64(list, list->list_data->hash.hashed_data, list->list_data->hash.nb_bits)))
+          return (FAILED);
+      free(tmp);
     }
-
 
     return (SUCCESS);
 }

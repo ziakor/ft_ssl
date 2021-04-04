@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/04 10:12:03 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 12:11:18 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int			process_one(char **argv, t_parsing *list, int i)
 {
+  ft_bzero(&list->flags, sizeof(t_flags));
 	while (argv[i] && argv[i][0] == '-')
 	{
 		if (!(get_option_process_one(&list->flags, argv[i++], list->cmd)))
@@ -23,7 +24,7 @@ int			process_one(char **argv, t_parsing *list, int i)
 	}
 	if ((!argv[i] && !list->flags.s) || list->flags.p)
 	{
-		if (!(get_file_data(list, NULL)))
+		if (!(get_file_data(list, NULL)))// probleme ici
 			return (FAILED);
 	}
 	if (list->flags.s)
@@ -42,8 +43,9 @@ int			process_one(char **argv, t_parsing *list, int i)
 
 int			process_two(char **argv, t_parsing *list, int i)
 {
+  ft_bzero(&list->flags, sizeof(t_flags));
 	list->is_cipher = 1;
-    list->flags.e = 1;
+  list->flags.e = 1;
 	while (argv[i] && argv[i][0] == '-')
 	{
 		if (!(parse_flag_base64(list, argv, &i)))
@@ -61,6 +63,7 @@ int			process_two(char **argv, t_parsing *list, int i)
 
 int         process_des(char **argv, t_parsing *list, int i)
 {
+    ft_bzero(&list->flags, sizeof(t_flags));
     list->flags.e = 1;
     while (argv[i] && argv[i][0] == '-')
     {
@@ -70,7 +73,7 @@ int         process_des(char **argv, t_parsing *list, int i)
     }
     if (!list->flags.password && list->flags.key[0] == 0)
     {
-        if (!(get_password(list, "enter des-cbc encryption password:")))
+        if (!(get_password(list, "enter des encryption password:")))//A MODIFIER
             return (FAILED);
     }
     if (!list->flags.i)

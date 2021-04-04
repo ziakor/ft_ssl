@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:52:29 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/03 16:26:48 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 10:31:20 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,77 +14,77 @@
 
 int base64encode(const void* data_buf, size_t dataLength, char* result, size_t resultSize)
 {
-   const char base64chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-   const uint8_t *data = (const uint8_t *)data_buf;
-   size_t resultIndex = 0;
-   size_t x;
-   uint32_t n = 0;
-   int padCount = dataLength % 3;
-   uint8_t n0, n1, n2, n3;
+	 const char base64chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+	 const uint8_t *data = (const uint8_t *)data_buf;
+	 size_t resultIndex = 0;
+	 size_t x;
+	 uint32_t n = 0;
+	 int padCount = dataLength % 3;
+	 uint8_t n0, n1, n2, n3;
 
-   /* increment over the length of the string, three characters at a time */
-   for (x = 0; x < dataLength; x += 3) 
-   {
-      /* these three 8-bit (ASCII) characters become one 24-bit number */
-      n = ((uint32_t)data[x]) << 16; //parenthesis needed, compiler depending on flags can do the shifting before conversion to uint32_t, resulting to 0
-      
-      if((x+1) < dataLength)
-         n += ((uint32_t)data[x+1]) << 8;//parenthesis needed, compiler depending on flags can do the shifting before conversion to uint32_t, resulting to 0
-      
-      if((x+2) < dataLength)
-         n += data[x+2];
+	 /* increment over the length of the string, three characters at a time */
+	 for (x = 0; x < dataLength; x += 3) 
+	 {
+			/* these three 8-bit (ASCII) characters become one 24-bit number */
+			n = ((uint32_t)data[x]) << 16; //parenthesis needed, compiler depending on flags can do the shifting before conversion to uint32_t, resulting to 0
+			
+			if((x+1) < dataLength)
+				 n += ((uint32_t)data[x+1]) << 8;//parenthesis needed, compiler depending on flags can do the shifting before conversion to uint32_t, resulting to 0
+			
+			if((x+2) < dataLength)
+				 n += data[x+2];
 
-      /* this 24-bit number gets separated into four 6-bit numbers */
-      n0 = (uint8_t)(n >> 18) & 63;
-      n1 = (uint8_t)(n >> 12) & 63;
-      n2 = (uint8_t)(n >> 6) & 63;
-      n3 = (uint8_t)n & 63;
-            
-      /*
-       * if we have one byte available, then its encoding is spread
-       * out over two characters
-       */
-      if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
-      result[resultIndex++] = base64chars[n0];
-      if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
-      result[resultIndex++] = base64chars[n1];
+			/* this 24-bit number gets separated into four 6-bit numbers */
+			n0 = (uint8_t)(n >> 18) & 63;
+			n1 = (uint8_t)(n >> 12) & 63;
+			n2 = (uint8_t)(n >> 6) & 63;
+			n3 = (uint8_t)n & 63;
+						
+			/*
+			 * if we have one byte available, then its encoding is spread
+			 * out over two characters
+			 */
+			if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
+			result[resultIndex++] = base64chars[n0];
+			if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
+			result[resultIndex++] = base64chars[n1];
 
-      /*
-       * if we have only two bytes available, then their encoding is
-       * spread out over three chars
-       */
-      if((x+1) < dataLength)
-      {
-         if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
-         result[resultIndex++] = base64chars[n2];
-      }
+			/*
+			 * if we have only two bytes available, then their encoding is
+			 * spread out over three chars
+			 */
+			if((x+1) < dataLength)
+			{
+				 if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
+				 result[resultIndex++] = base64chars[n2];
+			}
 
-      /*
-       * if we have all three bytes available, then their encoding is spread
-       * out over four characters
-       */
-      if((x+2) < dataLength)
-      {
-         if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
-         result[resultIndex++] = base64chars[n3];
-      }
-   }
+			/*
+			 * if we have all three bytes available, then their encoding is spread
+			 * out over four characters
+			 */
+			if((x+2) < dataLength)
+			{
+				 if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
+				 result[resultIndex++] = base64chars[n3];
+			}
+	 }
 
-   /*
-    * create and add padding that is required if we did not have a multiple of 3
-    * number of characters available
-    */
-   if (padCount > 0) 
-   { 
-      for (; padCount < 3; padCount++) 
-      { 
-         if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
-         result[resultIndex++] = '=';
-      } 
-   }
-   if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
-   result[resultIndex] = 0;
-   return 0;   /* indicate success */
+	 /*
+		* create and add padding that is required if we did not have a multiple of 3
+		* number of characters available
+		*/
+	 if (padCount > 0) 
+	 { 
+			for (; padCount < 3; padCount++) 
+			{ 
+				 if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
+				 result[resultIndex++] = '=';
+			} 
+	 }
+	 if(resultIndex >= resultSize) return 1;   /* indicate failure: buffer too small */
+	 result[resultIndex] = 0;
+	 return 0;   /* indicate success */
 }
 
 
@@ -95,8 +95,6 @@ static int  init_base64_encrypt(t_hash *hash, t_base64 *b64, size_t length)
 	hash->nb_bits = ((length + 2) / 3 * 4);
 	if (!(hash->hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * hash->nb_bits)))
 		return (FAILED);
-
-    printf(">>>%d\n", hash->nb_bits);
 	return (SUCCESS);
 }
 
@@ -106,8 +104,8 @@ static int init_base64_decrypt(t_hash *hash, t_base64 *b64, unsigned char *data,
 	b64->decode_length = 0;
 	b64->buffer = 0;
 	b64->iter = 0;
-    b64->j = 0;
-    b64->i = 0;
+		b64->j = 0;
+		b64->i = 0;
 	while (data[length - b64->pad_count - 1] == '=')
 		b64->pad_count++;
 	hash->nb_bits = (3 * (length / 4)) - b64->pad_count;
@@ -120,30 +118,30 @@ static int init_base64_decrypt(t_hash *hash, t_base64 *b64, unsigned char *data,
 
 int convert_base64_decrypt(t_base64 *b64, t_parsing *list, unsigned char *data, size_t length)
 {
-    while (b64->i < length)
-    {
-        b64->c = g_base64_d[(int)data[b64->i++]];
+		while (b64->i < length)
+		{
+				b64->c = g_base64_d[(int)data[b64->i++]];
 		if (b64->c == WHITESPACE)
 			continue;
 		else if (b64->c == INVALID)
 			return (FAILED);
 		else if (b64->c == EQUALS)
 			break;
-        else
+				else
 		{
-            b64->buffer = b64->buffer << 6 | b64->c;
-            if (++b64->iter == 4)
-            {
-            b64->decode_length +=3;
-            list->list_data->hash.hashed_data[b64->j++] = (b64->buffer >> 16) & 255;
-            list->list_data->hash.hashed_data[b64->j++] = (b64->buffer >> 8) & 255;
-            list->list_data->hash.hashed_data[b64->j++] = b64->buffer & 255;
-            b64->buffer = 0;
-            b64->iter = 0;
-            }
-        }
-    }
-    return (SUCCESS);
+						b64->buffer = b64->buffer << 6 | b64->c;
+						if (++b64->iter == 4)
+						{
+						b64->decode_length +=3;
+						list->list_data->hash.hashed_data[b64->j++] = (b64->buffer >> 16) & 255;
+						list->list_data->hash.hashed_data[b64->j++] = (b64->buffer >> 8) & 255;
+						list->list_data->hash.hashed_data[b64->j++] = b64->buffer & 255;
+						b64->buffer = 0;
+						b64->iter = 0;
+						}
+				}
+		}
+		return (SUCCESS);
 }
 
 
@@ -154,35 +152,35 @@ int base64_decrypt(t_parsing *list, unsigned char *data, size_t length)
 
 	if (!(init_base64_decrypt(&list->list_data->hash, &b64, data, length)))
 		return (FAILED);
-    if (!(convert_base64_decrypt(&b64, list, data, length)))
-        return (FAILED);
-    if (b64.iter == 3)
-    {
-        b64.decode_length += 2;
-        list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 10) & 255;
-        list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 2) & 255;
-    }
-    else if (b64.iter == 2)
-    {
-        b64.decode_length++;
-        list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 4) & 255;
-    }
-    list->list_data->hash.nb_bits = b64.decode_length;
+		if (!(convert_base64_decrypt(&b64, list, data, length)))
+				return (FAILED);
+		if (b64.iter == 3)
+		{
+				b64.decode_length += 2;
+				list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 10) & 255;
+				list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 2) & 255;
+		}
+		else if (b64.iter == 2)
+		{
+				b64.decode_length++;
+				list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 4) & 255;
+		}
+		list->list_data->hash.nb_bits = b64.decode_length;
 	return (SUCCESS);
 }
 
 static void convert_base64_encrypt(t_base64 *b64, unsigned char *data, size_t i, size_t length)
 {
-        b64->n = ((uint32_t)data[i]) << 16;
+				b64->n = ((uint32_t)data[i]) << 16;
 
-        if ((i + 1) < length)
-            b64->n += ((uint32_t)data[i + 1]) << 8;
-        if ((i + 2) < length)
-            b64->n += data[i + 2];
-        b64->n0 = (uint8_t)(b64->n >> 18) & 63;
-        b64->n1 = (uint8_t)(b64->n >> 12) & 63;
-        b64->n2 = (uint8_t)(b64->n >> 6) & 63;
-        b64->n3 = (uint8_t)(b64->n) & 63;
+				if ((i + 1) < length)
+						b64->n += ((uint32_t)data[i + 1]) << 8;
+				if ((i + 2) < length)
+						b64->n += data[i + 2];
+				b64->n0 = (uint8_t)(b64->n >> 18) & 63;
+				b64->n1 = (uint8_t)(b64->n >> 12) & 63;
+				b64->n2 = (uint8_t)(b64->n >> 6) & 63;
+				b64->n3 = (uint8_t)(b64->n) & 63;
 
 }
 
@@ -197,18 +195,17 @@ int     base64_encrypt(t_parsing *list, unsigned char *data, size_t length)
 	if (!(init_base64_encrypt(&list->list_data->hash, &b64, length)))
 		return (FAILED);
 
-    // base64encode(data, length, list->list_data->hash.hashed_data, list->list_data->hash.nb_bits);
+		// base64encode(data, length, list->list_data->hash.hashed_data, list->list_data->hash.nb_bits);
 	while (i <  length)
 	{
 
 		convert_base64_encrypt(&b64, data, i, length);
-        list->list_data->hash.hashed_data[res_i++] = g_base64_char[b64.n0];
+		list->list_data->hash.hashed_data[res_i++] = g_base64_char[b64.n0];
 		list->list_data->hash.hashed_data[res_i++] = g_base64_char[b64.n1];
 		if ((i + 1 ) < length)
 			list->list_data->hash.hashed_data[res_i++] = g_base64_char[b64.n2];
 		if ((i + 2) < length)
 			list->list_data->hash.hashed_data[res_i++] = g_base64_char[b64.n3];
-        printf("%d %d %d %d\n", g_base64_char[b64.n0], g_base64_char[b64.n1], g_base64_char[b64.n2], g_base64_char[b64.n3]);
 		i += 3;
 	}
 	if (b64.pad_count > 0)
@@ -228,13 +225,13 @@ int base64(t_parsing *list, unsigned char *data, size_t length)
 
 	if (list->flags.e)
 	{
-	    if (!(base64_encrypt(list, data, length)))
-	        return (FAILED);
+		if (!(base64_encrypt(list, data, length)))
+			return (FAILED);
 	}
 	else
 	{
-	    if (!(base64_decrypt(list, data, length)))
-            return (FAILED);
+		if (!(base64_decrypt(list, data, length)))
+			return (FAILED);
 	}
 	return (SUCCESS);
 }

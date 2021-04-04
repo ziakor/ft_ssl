@@ -6,13 +6,13 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 10:44:11 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/29 20:55:21 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 12:44:40 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_ssl.h"
 
-uint64_t    ecb_get_64bit(char *data, int bit)
+uint64_t    ecb_get_64bit(char *data, int bit, int length_left)
 {
     uint64_t ret;
     int pad;
@@ -24,13 +24,12 @@ uint64_t    ecb_get_64bit(char *data, int bit)
     ret = 0;
     for (size_t i = 0; i < 8; i++)
     {
-
         for (size_t j = 7; j < -1; j--)
         {
             ret =  ret << 1;
             if (!pad)
             {
-                if (data[i])
+                if (length_left > 0)
                     ret |= ((data[i] >> j) & 1);
                 else
                 {
@@ -43,6 +42,7 @@ uint64_t    ecb_get_64bit(char *data, int bit)
                 ret |= ((bit >> j) & 1);
             }
         }
+        length_left--;
         
     }
 	return (ret);

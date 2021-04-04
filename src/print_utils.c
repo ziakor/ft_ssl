@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/07 17:13:21 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/02 17:17:00 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	print_hash_data(uint8_t *hash, size_t nb_bits)
 		ft_puthexa(hash[i]);
 		i++;
 	}
-    ft_putchar('\n');
 }
 
 void	print_hash(t_hash hash, char *cmd, char *file_name, int write_hexa)
@@ -48,6 +47,7 @@ void	print_hash(t_hash hash, char *cmd, char *file_name, int write_hexa)
 	ft_putstr(file_name);
 	ft_putstr(")= ");
 	print_hash_data(hash.hashed_data, hash.nb_bits);
+  ft_putchar('\n');
 }
 
 void	print_reverse_hash(t_hash hash, char *filename)
@@ -63,9 +63,10 @@ int	print_flag_p(uint8_t *data, size_t length, int flag_p)
 	if (flag_p)
 	{
 		ft_putnstr(data, length);
+    print_hash_data(data, length);
 		if (!data[length - 1] == '\n')
 			ft_putchar('\n');
-        return (SUCCESS);
+    return (SUCCESS);
 	}
     return (FAILED);
 }
@@ -75,7 +76,8 @@ int print_flag_q(uint8_t *data, size_t length, int flag_q)
 	if (flag_q)
 	{
 		print_hash_data(data, length);
-        return(SUCCESS);
+    ft_putchar('\n');
+    return(SUCCESS);
 	}
     return(FAILED);
 }
@@ -96,14 +98,14 @@ int print_error(uint8_t *data, size_t length, char *filename, int fd)
 {
 	if (fd < 0)
 	{
-        if (fd == -1)
-        {
-        ft_putstr_fd(filename, 2);
-        ft_putstr_fd(": ", 2);
-        }
-        ft_putnstr(data, length);
-        ft_putchar_fd('\n', 2);
-        return (SUCCESS);
+    if (fd == -1)
+    {
+      ft_putstr_fd(filename, 2);
+      ft_putstr_fd(": ", 2);
+    }
+    ft_putnstr(data, length);
+    ft_putchar_fd('\n', 2);
+    return (SUCCESS);
 	}
     return (FAILED);
 }

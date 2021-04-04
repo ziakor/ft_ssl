@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/07 17:31:54 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 11:34:40 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,46 +42,46 @@ void	print_one(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
 	(void)is_cipher;
 	while (list)
 	{
-		print_flag_q(list->hash.hashed_data, list->hash.nb_bits, flag.q);
-        if (!print_error(list->hash.hashed_data, list->hash.nb_bits, list->data.file_name, list->data.fd) &&
-            !print_flag_r(list->hash.hashed_data, list->hash.nb_bits, list->data.file_name, flag.r))
-        {
-            print_algo_name(cmd, list->data.fd);
-            ft_putstr("(");
-            ft_putstr(list->data.file_name);
-            ft_putstr(")= ");
-            print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
-        }
-        if (list->data.fd > 0)
-            close(list->data.fd);
-        list = list->next;
+		if (!print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd) && !print_flag_q(list->hash.hashed_data, list->hash.nb_bits, flag.q) &&
+				!print_flag_r(list->hash.hashed_data, list->hash.nb_bits, list->data.file_name, flag.r))
+		{
+			print_algo_name(cmd, list->data.fd);
+			ft_putstr("(");
+			ft_putstr(list->data.file_name);
+			ft_putstr(")= ");
+			print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
+			ft_putchar('\n');
+		}
+		if (list->data.fd > 0)
+			close(list->data.fd);
+		list = list->next;
 	}
 }
 
 void    print_two(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
 {
-    if (print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd))
-        return ;
-    if (flag.o)
-    {
-        write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
-    }
-    else {
-        ft_putnstr(list->hash.hashed_data, list->hash.nb_bits);
-    }
+		if (print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd))
+				return ;
+		if (flag.o)
+		{
+			write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
+		}
+		else {
+			ft_putnstr(list->hash.hashed_data, list->hash.nb_bits);
+		}
 }
 
 void    print_des(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
 {
-    if (print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd))
-        return ;
-    if (flag.P && flag.e == 1)
-        flag_print(flag.key, flag.vector);
-    if (flag.o)
-    {
-        write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
-    }
-    else {
-        ft_putnstr(list->hash.hashed_data, list->hash.nb_bits);
-    }
+		if (print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd))
+				return ;
+		if (flag.P && flag.e == 1)
+				flag_print(flag.key, flag.vector);
+		if (flag.o)
+		{
+				write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
+		}
+		else {
+				ft_putnstr(list->hash.hashed_data, list->hash.nb_bits);
+		}
 }

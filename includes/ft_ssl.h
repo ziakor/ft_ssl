@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/04 10:03:14 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 12:13:33 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ void    print_des(t_list_data *list, t_flags flag, char *cmd, int is_cipher);
 int         process_des(char **argv, t_parsing *list, int i);
 static const t_parsing	g_all_cmd[] =
 {
-	{"md5", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, md5, process_one, print_one},
-	{"sha256", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, sha256, process_one, print_one},
-	{"sha3-224", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, sha3_224, process_one, print_one},
-	{"sha3-256", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, sha3_256, process_one, print_one},
-	{"sha3-384", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, sha3_384, process_one, print_one},
-	{"sha3-512", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, sha3_512, process_one, print_one},
-	{"base64", 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, base64, process_two, print_two},
-  {"des", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, des_ecb, process_des, print_des},
-  {"des-ebc", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, des_ecb, process_des, print_des},
-  {"des-cbc", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, des_cbc, process_des, print_des},
-	{NULL, 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, NULL, NULL, NULL, NULL},
+	{"md5", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, md5, process_one, print_one},
+	{"sha256", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha256, process_one, print_one},
+	{"sha3-224", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha3_224, process_one, print_one},
+	{"sha3-256", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha3_256, process_one, print_one},
+	{"sha3-384", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha3_384, process_one, print_one},
+	{"sha3-512", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha3_512, process_one, print_one},
+	{"base64", 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, base64, process_two, print_two},
+  {"des", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, des_ecb, process_des, print_des},
+  {"des-ecb", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, des_ecb, process_des, print_des},
+  {"des-cbc", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, des_cbc, process_des, print_des},
+	{NULL, 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, NULL, NULL, NULL},
 };
 
 /*
