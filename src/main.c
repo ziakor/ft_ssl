@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 14:54:51 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 16:42:17 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(int argc, char **argv)
 	t_parsing	list;
 
 	list.size = 0;
-  ft_bzero(&list, sizeof(t_parsing));
+  // ft_bzero(&list, sizeof(t_parsing));
 	if (argc == 1)
 	{
     ft_ssl_usage();

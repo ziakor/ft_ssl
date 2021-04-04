@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 12:11:18 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 16:51:36 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int			process_two(char **argv, t_parsing *list, int i)
 int         process_des(char **argv, t_parsing *list, int i)
 {
     ft_bzero(&list->flags, sizeof(t_flags));
+    list->flags.password = NULL;
     list->flags.e = 1;
     while (argv[i] && argv[i][0] == '-')
     {
@@ -73,10 +74,10 @@ int         process_des(char **argv, t_parsing *list, int i)
     }
     if (!list->flags.password && list->flags.key[0] == 0)
     {
-        if (!(get_password(list, "enter des encryption password:")))//A MODIFIER
+        if (!(get_password(list, "enter des encryption password:")))
             return (FAILED);
     }
-    if (!list->flags.i)
+  if (!list->flags.i)
 	{
 		if (!(get_file_data(list, NULL)))
 			return (FAILED);

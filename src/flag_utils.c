@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 15:38:58 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 16:47:43 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int         generate_key(t_parsing *list)
     
     j = 0;
     i = 0;
+
     len = (ft_strlen(list->flags.password) * 2) + 16;
     password_with_salt = NULL;
     if (!(password_with_salt = (char*) malloc(sizeof(char) * len)))

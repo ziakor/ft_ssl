@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:49:59 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/07 17:31:08 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 16:50:31 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ int flag_password(t_parsing *list, char **argv, int *i)
 	t_list_data *new_elem;
 	new_elem = NULL;
 	*i += 1;
+
 	if (!argv[*i])
 	{
 		if (!(new_elem = create_new_elem("Option \'-p\' need a value", "ft_ssl", -1, 24)))
@@ -152,13 +153,13 @@ int flag_password(t_parsing *list, char **argv, int *i)
 		if (!(new_elem = create_new_elem("Invalid password argument", "ft_ssl", -1, 25)))
 			return (FAILED);
 		add_new_elem(&list->list_data, new_elem);
-        return(FAILED);
+    return(FAILED);
 	}
 	else
 	{
-		if (!(list->flags.password = ft_strdup(argv[*i])))
-			return (FAILED);
+    list->flags.password = argv[*i];
 	}
+  printf("><%s\n", list->flags.password);
 	return (SUCCESS);
 }
 
