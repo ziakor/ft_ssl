@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:52:29 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 10:31:20 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/05 16:07:50 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static int  init_base64_encrypt(t_hash *hash, t_base64 *b64, size_t length)
 {
 	b64->pad_count = length % 3;
 
-	hash->nb_bits = ((length + 2) / 3 * 4);
+	hash->nb_bits = ((length + 2) / 3 * 4) + 1;
 	if (!(hash->hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * hash->nb_bits)))
 		return (FAILED);
 	return (SUCCESS);
@@ -213,6 +213,8 @@ int     base64_encrypt(t_parsing *list, unsigned char *data, size_t length)
 		while (b64.pad_count++ < 3)
 			list->list_data->hash.hashed_data[res_i++] = '=';
 	}
+  list->list_data->hash.hashed_data[res_i] = '\n';
+
 
 	return (SUCCESS);
 }

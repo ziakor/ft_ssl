@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 15:59:57 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 21:56:11 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/05 16:05:16 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,8 @@ int     des_ecb_decode(t_parsing *list, t_des *des, unsigned char *str, size_t l
     
     if (list->flags.a)
     {
-
         if (!(base64(list,str,length)))
             return (FAILED);
-
         tmp = list->list_data->hash.hashed_data;
         str = tmp;
         length = list->list_data->hash.nb_bits;
