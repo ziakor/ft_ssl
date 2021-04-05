@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 16:47:43 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/05 10:09:02 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void    put_key(t_parsing *list, int nb, int *count_key)
 	else
     {
         if (*count_key < 16)
-            list->flags.key[*count_key] = nb + 'a' - 10;
+            list->flags.key[*count_key] = nb + 'A' - 10;
     }
      *count_key = *count_key + 1;
 
@@ -115,12 +115,12 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)//
         i++;
     }
     i = 0;
-    while (i < list->list_data->hash.nb_bits)
+    while (i < list->list_data->hash.nb_bits && j < 16)
     {
-        if (list->list_data->hash.hashed_data[i] < 16)
-            list->flags.key[j++] = '0';
-        put_key(list, list->list_data->hash.hashed_data[i], &j);
-        i++;
+      if (list->list_data->hash.hashed_data[i] < 16)
+          list->flags.key[j++] = '0';
+      put_key(list, list->list_data->hash.hashed_data[i], &j);
+      i++;
     }
     free(list->list_data->hash.hashed_data);
     list->list_data->hash.nb_bits = 0;

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 16:04:36 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 22:24:58 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char				*get_error_message_open_file(int type, int *size);
 **
 */
 
-int flag_print(uint8_t key[16], uint8_t vector[16]);
+int flag_print(uint8_t key[16], uint8_t vector[16], uint8_t salt[16]);
 
 /*
 **parsing_file.c
@@ -116,6 +116,7 @@ int flag_input(t_parsing *list, char **argv, int *i);
 int flag_output(t_parsing *list, char **argv, int *i);
 int flag_a(t_parsing *list);
 int flag_vector(t_parsing *list, char **argv, int *i);
+void init_flag(t_flags *flag);
 /*
 ** process.c
 ** file about get flag and data

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/02 17:17:00 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 22:00:55 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,5 @@ int print_error(uint8_t *data, size_t length, char *filename, int fd)
     ft_putchar_fd('\n', 2);
     return (SUCCESS);
 	}
-    return (FAILED);
+  return (FAILED);
 }

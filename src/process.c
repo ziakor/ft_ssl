@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 16:51:36 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/05 09:53:19 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			process_one(char **argv, t_parsing *list, int i)
 {
-  ft_bzero(&list->flags, sizeof(t_flags));
+	init_flag(&list->flags);
 	while (argv[i] && argv[i][0] == '-')
 	{
 		if (!(get_option_process_one(&list->flags, argv[i++], list->cmd)))
@@ -43,9 +43,9 @@ int			process_one(char **argv, t_parsing *list, int i)
 
 int			process_two(char **argv, t_parsing *list, int i)
 {
-  ft_bzero(&list->flags, sizeof(t_flags));
+	init_flag(&list->flags);
 	list->is_cipher = 1;
-  list->flags.e = 1;
+	list->flags.e = 1;
 	while (argv[i] && argv[i][0] == '-')
 	{
 		if (!(parse_flag_base64(list, argv, &i)))
@@ -63,35 +63,33 @@ int			process_two(char **argv, t_parsing *list, int i)
 
 int         process_des(char **argv, t_parsing *list, int i)
 {
-    ft_bzero(&list->flags, sizeof(t_flags));
-    list->flags.password = NULL;
-    list->flags.e = 1;
-    while (argv[i] && argv[i][0] == '-')
-    {
-        if (!(parse_flag_des(list, argv, &i)))
-            return (FAILED);
-        i++;
-    }
-    if (!list->flags.password && list->flags.key[0] == 0)
-    {
-        if (!(get_password(list, "enter des encryption password:")))
-            return (FAILED);
-    }
-  if (!list->flags.i)
+	list->flags.e = 1;
+	while (argv[i] && argv[i][0] == '-')
+	{
+		if (!(parse_flag_des(list, argv, &i)))
+				return (FAILED);
+		i++;
+	}
+	if (!list->flags.password && list->flags.key[0] == 0)
+	{
+			if (!(get_password(list, "enter des encryption password:")))
+					return (FAILED);
+	}
+	if (!list->flags.i)
 	{
 		if (!(get_file_data(list, NULL)))
 			return (FAILED);
 	}
-    if (list->flags.a)
-        list->flags.a = 1;
-    if (list->flags.salt[0] == 0)
-    {
-        generate_salt(list);
-    }
-    if (list->flags.key[0] == 0)
-    {
-        if (!(generate_key(list)))
-            return (FAILED);
-    }
-    return (SUCCESS);
+		if (list->flags.a)
+				list->flags.a = 1;
+		if (list->flags.salt[0] == 0)
+		{
+				generate_salt(list);
+		}
+		if (list->flags.key[0] == 0)
+		{
+				if (!(generate_key(list)))
+						return (FAILED);
+		}
+		return (SUCCESS);
 }

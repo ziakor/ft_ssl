@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 12:57:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 17:37:45 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/04 22:26:24 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ int flag_input(t_parsing *list, char **argv, int *i)
 						return (FAILED);
 		}
 		return (SUCCESS);
+}
+
+void init_flag(t_flags *flag)
+{
+  flag->a = 0;
+  flag->d = 0;
+  flag->e = 0;
+  flag->i = 0;
+  flag->o = 0;
+  flag->P = 0;
+  flag->p = 0;
+  flag->password = NULL;
+  flag->q = 0;
+  flag->r = 0;
+  flag->s = 0;
 }
 
 int flag_output(t_parsing *list, char **argv, int *i)
@@ -67,7 +82,7 @@ int flag_a(t_parsing *list)
 		list->list_data->data.data_length = list->list_data->hash.nb_bits;
 }
 
-int flag_print(uint8_t key[16], uint8_t vector[16])
+int flag_print(uint8_t key[16], uint8_t vector[16], uint8_t salt[16])
 {
 	if (key[0] != 0)
 	{
@@ -75,10 +90,16 @@ int flag_print(uint8_t key[16], uint8_t vector[16])
 		ft_putnstr(key, 16);
 		ft_putchar('\n');
 	}
+  if (salt[0] != 0)
+  {
+    ft_putstr("salt:");
+    ft_putnstr(salt, 16);
+    ft_putchar('\n');
+  }
 	if (vector[0] != 0)
 	{
 		ft_putstr("iv: ");
 		ft_putnstr(vector, 16);
+	  ft_putchar('\n');
 	}
-	ft_putchar('\n');
 }

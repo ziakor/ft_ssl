@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "cstdint": "cpp",
-    "typeinfo": "c"
+    "typeinfo": "c",
+    "ft_ssl.h": "c"
   }
 }

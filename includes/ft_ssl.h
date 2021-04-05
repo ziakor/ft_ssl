@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 12:13:33 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/05 09:05:33 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_one(t_list_data *list, t_flags flag, char *cmd, int is_cipher);
 void    print_two(t_list_data *list, t_flags flag, char *cmd, int is_cipher);
 void    print_des(t_list_data *list, t_flags flag, char *cmd, int is_cipher);
 int         process_des(char **argv, t_parsing *list, int i);
-static const t_parsing	g_all_cmd[] =
+static  t_parsing	g_all_cmd[] =
 {
 	{"md5", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, md5, process_one, print_one},
 	{"sha256", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha256, process_one, print_one},
