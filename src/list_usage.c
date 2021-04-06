@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 15:04:43 by dihauet           #+#    #+#             */
-/*   Updated: 2021/02/01 16:54:26 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/06 10:32:29 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ void    ft_list_options_des(void)
 	ft_putstr_fd("-d\t\t\tdecrypt mode\n", 2);
 	ft_putstr_fd("-e\t\t\tencrypt mode (default)\n", 2);
 	ft_putstr_fd("-i\t\t\tinput file for message\n", 2);
-	ft_putstr_fd("-k\t\t\tkey in hex is the next arguement.\n", 2);
+	ft_putstr_fd("-k\t\t\tkey in hex is the next arguement\n", 2);
 	ft_putstr_fd("-o\t\t\toutput file for message\n", 2);
-	ft_putstr_fd("-p\t\t\tpassword in ascii is the next argument.\n", 2);
-	ft_putstr_fd("-s\t\t\tthe salt in hex is the next argument.\n", 2);
-	ft_putstr_fd("-v\t\t\tinitialization vector in hex is the next argument.\n", 2);
+	ft_putstr_fd("-p\t\t\tpassword in ascii is the next argument\n", 2);
+	ft_putstr_fd("-s\t\t\tthe salt in hex is the next argument\n", 2);
+	ft_putstr_fd("-v\t\t\tinitialization vector in hex is the next argument\n", 2);
+	ft_putstr_fd("-P\t\t\tprint iv/salt/key and exit\n", 2);
+
 
 
 }

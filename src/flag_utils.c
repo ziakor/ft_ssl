@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/05 11:24:14 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/06 10:33:00 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)//
     i = 0;
     tmp = data;
     len = length;
-    while (i < 100100)
+    while (i < 10000)
     {
         sha256(list, tmp, len);
         tmp = list->list_data->hash.hashed_data;
