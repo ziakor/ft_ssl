@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/05 16:04:32 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/04/06 10:28:53 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,24 @@ void    print_two(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
 
 void    print_des(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
 {
-	if (print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd))
-			return ;
-	if (flag.P && flag.e == 1)
-	{
-    flag_print(flag.key, flag.vector, flag.salt);
-    return;
+  if (list)
+  {
+    if (!print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd))
+    {
+      if (flag.P && flag.e == 1)
+      {
+        flag_print(flag.key, flag.vector, flag.salt);
+        if (flag.o)
+          write_output(flag.o_file, "", 0);
+      }
+      else if (flag.o)
+      {
+          write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
+      }
+      else {
+        ft_putnstr(list->hash.hashed_data, list->hash.nb_bits);
+        
+      }
+    }
   }
-	if (flag.o)
-	{
-			write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
-	}
-	else {
-    ft_putnstr(list->hash.hashed_data, list->hash.nb_bits);
-    
-	}
 }
