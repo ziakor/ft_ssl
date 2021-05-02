@@ -6,6 +6,9 @@ FT_SSL: A miniature implementation of openssl implementing several features, nam
 * sha3-224
 * sha3-384
 * sha3-512
+* base64
+* des-ecb
+* des-cbc
 
 USAGE:
 ```
