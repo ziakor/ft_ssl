@@ -30,7 +30,7 @@ LIB_A = ./Libft/libft.a
 
 CC = gcc
 
-CFLAGS = -g 
+CFLAGS = -Wall -Wextra -Werror
 
 OBJ = $(patsubst %.c,$(DIROBJ)%.o,$(SRCS))
 
