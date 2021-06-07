@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/06 10:28:53 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:12:18 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,18 @@ int 	write_output(char *output_file, uint8_t *data, size_t size)
 }
 
 
-void	print_list_hash(t_list_data *list, t_flags flags, char *cmd, int write_hexa)
+void	print_list_hash(t_list_data *list, t_flags flags)
 {
 	if (flags.p)
 	{
-		ft_putstr(list->data.data);
+		ft_putstr((const char*)list->data.data);
 		if (list->data.data[list->data.data_length - 1] != '\n')
 			ft_putchar('\n');
 	}
 }
 
-void	print_one(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
+void	print_one(t_list_data *list, t_flags flag, char *cmd)
 {
-	(void)is_cipher;
 	while (list)
 	{
 		if (!print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd) && !print_flag_q(list->hash.hashed_data, list->hash.nb_bits, flag.q) &&
@@ -58,8 +57,9 @@ void	print_one(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
 	}
 }
 
-void    print_two(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
+void    print_two(t_list_data *list, t_flags flag, char *cmd)
 {
+    (void)cmd;
 		if (print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd))
 				return ;
 		if (flag.o)
@@ -67,12 +67,13 @@ void    print_two(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
 			write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
 		}
 		else {
-			ft_putnstr(list->hash.hashed_data, list->hash.nb_bits);
+			ft_putnstr((char*)list->hash.hashed_data, list->hash.nb_bits);
 		}
 }
 
-void    print_des(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
+void    print_des(t_list_data *list, t_flags flag, char *cmd)
 {
+  (void)cmd;
   if (list)
   {
     if (!print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd))
@@ -81,14 +82,14 @@ void    print_des(t_list_data *list, t_flags flag, char *cmd, int is_cipher)
       {
         flag_print(flag.key, flag.vector, flag.salt);
         if (flag.o)
-          write_output(flag.o_file, "", 0);
+          write_output(flag.o_file, (uint8_t*)"", 0);
       }
       else if (flag.o)
       {
           write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
       }
       else {
-        ft_putnstr(list->hash.hashed_data, list->hash.nb_bits);
+        ft_putnstr((char*)list->hash.hashed_data, list->hash.nb_bits);
         
       }
     }

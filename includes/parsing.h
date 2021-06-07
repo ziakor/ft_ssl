@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 22:24:58 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:11:19 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct		s_parsing
 	t_list_data					*list_data;
 	int							(*hash_func)(struct s_parsing*, unsigned char*, size_t);
 	int							(*process_func)(char**, struct s_parsing*, int);
-  void            (*print_func)(t_list_data*, t_flags, char*, int);
+  void            (*print_func)(t_list_data*, t_flags, char*);
 
 }					t_parsing;
 

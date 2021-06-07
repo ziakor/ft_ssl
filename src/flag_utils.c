@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/06 10:33:00 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 13:07:39 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,11 @@ static void    put_key(t_parsing *list, int nb, int *count_key)
 
 }
 
-void         pbfdk2(t_parsing *list, char *data, size_t length)//
+void         pbfdk2(t_parsing *list, char *data, size_t length)
 {
     char *tmp;
     size_t len;
-    int i;
-    const char tab[]= "0123456789ABCDEF";
+    size_t i;
     int j;
     j = 0;
     i = 0;
@@ -109,8 +108,8 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)//
     len = length;
     while (i < 10000)
     {
-        sha256(list, tmp, len);
-        tmp = list->list_data->hash.hashed_data;
+        sha256(list, (unsigned char*)tmp, len);
+        tmp = (char*)list->list_data->hash.hashed_data;
         len = list->list_data->hash.nb_bits;
         i++;
     }

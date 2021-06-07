@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 10:44:11 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 12:44:40 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:41:38 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,12 @@ uint64_t    ecb_get_64bit(char *data, int bit, int length_left)
 {
     uint64_t ret;
     int pad;
-    int i;
-    int b;
     
-    i = 0;
     pad = 0;
     ret = 0;
-    for (size_t i = 0; i < 8; i++)
+    for (int i = 0; i < 8; i++)
     {
-        for (size_t j = 7; j < -1; j--)
+        for (int  j = 7; j < -1; j--)
         {
             ret =  ret << 1;
             if (!pad)

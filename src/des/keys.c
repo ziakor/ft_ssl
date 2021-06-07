@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 10:10:16 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/22 10:11:44 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:40:25 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ uint64_t    make_cp1(uint64_t key64)
 {
     int i;
     uint64_t ret;
-    uint64_t tmp;
 
     ret = 0;
     i = 0;

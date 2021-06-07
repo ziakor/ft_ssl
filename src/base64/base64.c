@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:52:29 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/05 16:07:50 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:39:42 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,20 +152,20 @@ int base64_decrypt(t_parsing *list, unsigned char *data, size_t length)
 
 	if (!(init_base64_decrypt(&list->list_data->hash, &b64, data, length)))
 		return (FAILED);
-		if (!(convert_base64_decrypt(&b64, list, data, length)))
-				return (FAILED);
-		if (b64.iter == 3)
-		{
-				b64.decode_length += 2;
-				list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 10) & 255;
-				list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 2) & 255;
-		}
-		else if (b64.iter == 2)
-		{
-				b64.decode_length++;
-				list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 4) & 255;
-		}
-		list->list_data->hash.nb_bits = b64.decode_length;
+	if (!(convert_base64_decrypt(&b64, list, data, length)))
+			return (FAILED);
+	if (b64.iter == 3)
+	{
+			b64.decode_length += 2;
+			list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 10) & 255;
+			list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 2) & 255;
+	}
+	else if (b64.iter == 2)
+	{
+			b64.decode_length++;
+			list->list_data->hash.hashed_data[b64.j++] = (b64.buffer >> 4) & 255;
+	}
+	list->list_data->hash.nb_bits = b64.decode_length;
 	return (SUCCESS);
 }
 

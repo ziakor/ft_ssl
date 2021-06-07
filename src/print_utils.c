@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 22:00:55 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 11:23:29 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ void	print_hash_data(uint8_t *hash, size_t nb_bits)
 	}
 }
 
-void	print_hash(t_hash hash, char *cmd, char *file_name, int write_hexa)
+void	print_hash(t_hash hash, char *file_name, int write_hexa)
 {
     ft_putnbr(write_hexa);
-	// print_algo_name(cmd);
 	ft_putstr("(");
 	ft_putstr(file_name);
 	ft_putstr(")= ");
@@ -62,9 +61,9 @@ int	print_flag_p(uint8_t *data, size_t length, int flag_p)
 {
 	if (flag_p)
 	{
-		ft_putnstr(data, length);
+		ft_putnstr((char*)data, length);
     print_hash_data(data, length);
-		if (!data[length - 1] == '\n')
+		if (!(data[length - 1] == '\n'))
 			ft_putchar('\n');
     return (SUCCESS);
 	}
@@ -103,7 +102,7 @@ int print_error(uint8_t *data, size_t length, char *filename, int fd)
       ft_putstr_fd(filename, 2);
       ft_putstr_fd(": ", 2);
     }
-    ft_putnstr(data, length);
+    ft_putnstr((char*)data, length);
     ft_putchar_fd('\n', 2);
     return (SUCCESS);
 	}

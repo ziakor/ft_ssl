@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 15:26:42 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/21 11:06:40 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:12:42 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,9 @@ uint32_t	swap_endian(uint32_t x)
 uint64_t    hex_to_uint64(unsigned char *str)
 {
     int i;
-    int j;
-    int k;
     uint64_t key;
 
     i = 0;
-    j = 0;
-    k = 0;
     key = 0;
     while (i < 16)
     {

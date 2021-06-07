@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/05 09:05:33 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:11:02 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,23 @@
 # define SUCCESS 1
 # define FAILED 0
 
-void	print_one(t_list_data *list, t_flags flag, char *cmd, int is_cipher);
-void    print_two(t_list_data *list, t_flags flag, char *cmd, int is_cipher);
-void    print_des(t_list_data *list, t_flags flag, char *cmd, int is_cipher);
+void	print_one(t_list_data *list, t_flags flag, char *cmd);
+void    print_two(t_list_data *list, t_flags flag, char *cmd);
+void    print_des(t_list_data *list, t_flags flag, char *cmd);
 int         process_des(char **argv, t_parsing *list, int i);
-static  t_parsing	g_all_cmd[] =
+static const t_parsing	g_all_cmd[] =
 {
-	{"md5", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, md5, process_one, print_one},
-	{"sha256", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha256, process_one, print_one},
-	{"sha3-224", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha3_224, process_one, print_one},
-	{"sha3-256", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha3_256, process_one, print_one},
-	{"sha3-384", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha3_384, process_one, print_one},
-	{"sha3-512", 0, 0, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, sha3_512, process_one, print_one},
-	{"base64", 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, base64, process_two, print_two},
-  {"des", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, des_ecb, process_des, print_des},
-  {"des-ecb", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, des_ecb, process_des, print_des},
-  {"des-cbc", 0 , 1 , {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, des_cbc, process_des, print_des},
-	{NULL, 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, NULL, NULL, NULL},
+	{"md5", 0, 0, {0}, NULL, md5, process_one, print_one},
+	{"sha256", 0, 0, {0}, NULL, sha256, process_one, print_one},
+	{"sha3-224", 0, 0, {0}, NULL, sha3_224, process_one, print_one},
+	{"sha3-256", 0, 0, {0}, NULL, sha3_256, process_one, print_one},
+	{"sha3-384", 0, 0, {0}, NULL, sha3_384, process_one, print_one},
+	{"sha3-512", 0, 0, {0}, NULL, sha3_512, process_one, print_one},
+	{"base64", 0, 1, {0}, NULL, base64, process_two, print_two},
+  {"des", 0 , 1 , {0}, NULL, des_ecb, process_des, print_des},
+  {"des-ecb", 0 , 1 , {0}, NULL, des_ecb, process_des, print_des},
+  {"des-cbc", 0 , 1 , {0}, NULL, des_cbc, process_des, print_des},
+	{NULL, 0, 1, {0}, NULL, NULL, NULL, NULL},
 };
 
 /*
@@ -107,7 +107,7 @@ int			hash_data(t_parsing *list);
 ** function to print hashed data
 */
 
-void		print_list_hash(t_list_data *list, t_flags flags, char *cmd, int is_cypher);
+void		print_list_hash(t_list_data *list, t_flags flags);
 
 /*
 ** print_utils.c
@@ -116,7 +116,7 @@ void		print_list_hash(t_list_data *list, t_flags flags, char *cmd, int is_cypher
 
 void		print_algo_name(char *cmd, int fd);
 void		print_hash_data(uint8_t *hash, size_t nb_bits);
-void		print_hash(t_hash hash, char *cmd, char *file_name, int write_hexa);
+void		print_hash(t_hash hash, char *file_name, int write_hexa);
 void		print_reverse_hash(t_hash hash, char *file_name);
 
 int	print_flag_p(uint8_t *data, size_t length, int flag_p);
@@ -128,7 +128,7 @@ int print_error(uint8_t *data, size_t length, char *filename, int fd);
 ** function about padding
 */
 
-int			add_padding(t_padding *padding, char *data,
+int			add_padding(t_padding *padding, unsigned  char *data,
 				size_t length, size_t endian);
 
 /*

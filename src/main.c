@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/05 11:05:02 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 09:32:54 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int		main(int argc, char **argv)
 {
-	t_parsing	list;
-
-	list.size = 0;
-  list = (t_parsing){NULL, 0, 1, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, NULL, NULL, NULL};
+	t_parsing	list = {NULL, 0, 1, {0, 0, 0, 0, {0}, {0}, {0}, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, NULL, NULL, NULL};
   
 	if (argc == 1)
 	{

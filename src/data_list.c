@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 10:56:05 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/24 14:57:40 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 10:54:38 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list_data	*create_new_elem(char *str, char *file_name, int fd, int size_data)
 	new_elem = NULL;
 	if (!(new_elem = (t_list_data*)malloc(sizeof(t_list_data))))
 		return (NULL);
-	if (!(new_elem->data.data = (char*)malloc(sizeof(char) * size_data)))
+	if (!(new_elem->data.data = (unsigned char*)malloc(sizeof(unsigned char) * size_data)))
 		return (NULL);
 	while (++i < size_data)
 		new_elem->data.data[i] = str[i];
@@ -54,9 +54,12 @@ void		read_data_list(t_list_data *list)
 	while (list)
 	{
 		ft_putstr("ELEM\n");
-		ft_putstr(list->data.file_name);
+		ft_putstr((const char*)list->data.file_name);
+
+    
 		ft_putchar('\n');
-		ft_putstr(list->data.data);
+		ft_putstr((const char*)list->data.data);
+
 		list = list->next;
 		ft_putstr("\n--------\n");
 	}

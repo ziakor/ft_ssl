@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:49:59 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/05 09:36:55 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:40:18 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,15 +137,13 @@ int flag_key(t_parsing *list, char **argv, int *i)
 
 int flag_password(t_parsing *list, char **argv, int *i)
 {
-	t_list_data *new_elem;
-	new_elem = NULL;
 	*i += 1;
 
 	if (!argv[*i])
 	{
     free(list->list_data->data.data);
     free(list->list_data->data.file_name);
-    if (!(list->list_data->data.data = ft_strdup("Option \'-p\' need a value")))
+    if (!(list->list_data->data.data = (unsigned char*)ft_strdup("Option \'-p\' need a value")))
       return(FAILED);
     list->list_data->data.fd = -1;
     list->list_data->data.data_length = 24;

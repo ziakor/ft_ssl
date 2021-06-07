@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 15:59:57 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/05 16:05:16 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:45:58 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void  des_core(t_parsing *list, t_des *des, unsigned char *str, size_t le
     i = 0;
     while (i < list->list_data->hash.nb_bits)
     {
-        data = ecb_get_64bit(&str[i], des->pad_bit, length - i);
+        data = ecb_get_64bit((char*)&str[i], des->pad_bit, length - i);
         data = ecb_algo(data,des->key48);
         des_put_data(&list->list_data->hash.hashed_data[i], data);
         i+= 8;
@@ -66,10 +66,7 @@ static void  des_core(t_parsing *list, t_des *des, unsigned char *str, size_t le
 
 int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t length)
 {
-    size_t i;
-    uint64_t data;
     uint8_t* tmp;
-    i = 0;
     des->pad_bit = (((length / 8) + 1 ) * 8) - length; 
     if (!(list->list_data->hash.hashed_data = (uint8_t*) malloc(sizeof(uint8_t) * (des->pad_bit + length) )))
         return (FAILED);
@@ -88,8 +85,6 @@ int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t l
 
 int     des_ecb_decode(t_parsing *list, t_des *des, unsigned char *str, size_t length)
 {
-    size_t i;
-    i = 0;
     uint8_t*  tmp;
 
     tmp = NULL;

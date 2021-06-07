@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 15:01:05 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/06 10:02:32 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:47:03 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int  des_cbc_encode(t_parsing *list, t_des *des, unsigned char *str, size
 {
     size_t i;
     uint64_t iv;
-    uint64_t next_iv;
     uint64_t data;
     uint8_t* tmp;
     i = 0;
@@ -29,7 +28,7 @@ static int  des_cbc_encode(t_parsing *list, t_des *des, unsigned char *str, size
 
     while (i < list->list_data->hash.nb_bits)
 	{
-		data = ecb_get_64bit(str + i, des->pad_bit, length - i);
+		data = ecb_get_64bit((char*)str + i, des->pad_bit, length - i);
 
 		data ^= iv;
 
@@ -72,7 +71,7 @@ static int  des_cbc_decode(t_parsing *list, t_des *des, unsigned char *str, size
     }
     while (i < length)
     {
-      data = ecb_get_64bit(&str[i], des->pad_bit, length - i);
+      data = ecb_get_64bit((char*)&str[i], des->pad_bit, length - i);
       next_iv = data;
       data = ecb_algo(data, des->key48);
       data ^= iv;
@@ -92,7 +91,7 @@ int     des_cbc(t_parsing *list, unsigned char *str, size_t length)
     if (list->flags.vector[0] == 0)
     {
         free(list->list_data->data.data);
-        if (!(list->list_data->data.data = ft_strdup("iv undefined")))
+        if (!(list->list_data->data.data = (unsigned char*)ft_strdup("iv undefined")))
             return (FAILED);
         list->list_data->data.data_length = 12;
         list->list_data->data.fd = -2;

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:56:43 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/04 14:32:40 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 12:38:19 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ unsigned char		*read_file_data(int fd, int *size)
 	unsigned char	*buffer;
 	int		ret;
 
-	if (!(buffer = (char*)malloc(sizeof(char) * 32000)))
+	if (!(buffer = (unsigned char*)malloc(sizeof( unsigned char) * 32000)))
 		return (NULL);
 	list = NULL;
 
 	while ((ret = read(fd, buffer, 32000)) > 0)
 	{
 		*size = *size + ret;
-		if (!(list = ft_lst_add_data_to_end(list, buffer, ret)))
-			return (free_read_data_list(list));
-	if (!(buffer = (char*)malloc(sizeof(char) * 32000)))
-		return (free_read_data_list(list));
+		if (!(list = ft_lst_add_data_to_end(list, (char*)buffer, ret)))
+			return ((unsigned char*)free_read_data_list(list));
+	if (!(buffer = (unsigned char*)malloc(sizeof(unsigned char) * 32000)))
+		return ((unsigned char*)free_read_data_list(list));
 	}
 	if (buffer)
 		free(buffer);
 	if (ret < 0)
-		return (free_read_data_list(list));
+		return ((unsigned char*)free_read_data_list(list));
 	return(concat_list_to_str(list, *size));
 }
 
@@ -53,7 +53,7 @@ int 		get_file_data(t_parsing *list, char *filename)
 	}
 	else
 	{
-		if (!(data = read_file_data(fd, &list->size)))
+		if (!(data = (char*)read_file_data(fd, &list->size)))
 			return (FAILED);
 	}
 	if (!(new_elem = create_new_elem(data, filename ? filename : "stdin", fd, list->size)))

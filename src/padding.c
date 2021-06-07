@@ -6,13 +6,13 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 13:38:38 by dihauet           #+#    #+#             */
-/*   Updated: 2020/10/07 16:57:36 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 11:01:33 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ssl.h"
 
-int		add_padding(t_padding *padding, char *data, size_t length,
+int		add_padding(t_padding *padding, unsigned char *data, size_t length,
 	size_t endian)
 {
 	int i;
