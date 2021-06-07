@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2021/06/07 09:32:54 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/06/07 15:19:49 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int		main(int argc, char **argv)
 	{
 		if (parsing_args(&list, argv, argc) == 0)//A REVOIR
 		{
-			print_list_hash(list.list_data, list.flags, list.cmd, !list.is_cipher);
-      list.print_func(list.list_data, list.flags, list.cmd, list.is_cipher);
+			print_list_hash(list.list_data, list.flags);
+      list.print_func(list.list_data, list.flags, list.cmd);
 			clean_parsing(&list);
 			return (0);
 		}
 	}
 	hash_data(&list);
-  list.print_func(list.list_data, list.flags, list.cmd, list.is_cipher);
+  list.print_func(list.list_data, list.flags, list.cmd);
 	clean_parsing(&list);
 
 	return (0);
