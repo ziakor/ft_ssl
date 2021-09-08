@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2021/06/07 12:11:02 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/08 11:29:35 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int         generate_key(t_parsing *list);
 ** usage.c
 ** functions about usage error message
 */
-
+void ft_ssl_help(void);
 void		ft_ssl_usage();
 void		ft_list_commands();
 void		ft_list_message_digest();

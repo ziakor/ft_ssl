@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 18:59:35 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/05 10:34:13 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/08 11:34:48 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,17 @@ int		parsing_args(t_parsing *list, char **argv, int argc)
 		{
 			*list = g_all_cmd[i];
 			if (!(process_commands(argv, list)))
-				return (FAILED);
-			return (SUCCESS);
+				return (0);
+			return (1);
 		}
 		i++;
 	}
-	ft_invalid_command(argv[1]);
-	return (FAILED);
+  if (!ft_strcmp(argv[1], "help"))
+  {
+    ft_ssl_help();
+  }
+	else {
+    ft_invalid_command(argv[1]);
+  }
+	return (0);
 }
