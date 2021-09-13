@@ -39,6 +39,8 @@ void	ft_invalid_command(char *command)
   ft_putstr_fd("\' is an invalid command\n\n", 2);
 	ft_list_commands();
 	ft_list_message_digest();
+  ft_putstr_fd("\n",2);
+  ft_list_cipher();
 }
 
 int		ft_invalid_option(char *option, char *command, void list_options(void))

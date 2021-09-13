@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 15:55:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/01/14 12:46:11 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/13 13:06:54 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		hash_data(t_parsing *list)
 	t_list_data *head;
 
 	head = list->list_data;
+ 
 	while (list->list_data)
 	{
 		if (list->list_data->data.fd >= 0)

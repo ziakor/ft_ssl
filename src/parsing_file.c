@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 10:56:43 by dihauet           #+#    #+#             */
-/*   Updated: 2021/06/07 12:38:19 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/13 14:45:46 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,16 @@ int 		get_file_data(t_parsing *list, char *filename)
 	}
 	if (!(new_elem = create_new_elem(data, filename ? filename : "stdin", fd, list->size)))
 		return (FAILED);
-
 	if (fd >= 0)
 		free(data);
 	add_new_elem(&(list->list_data),new_elem);
+
+  // printf("\n");
+  // while (list->list_data){
+  //   ft_putnstr(list->list_data->data.data,list->list_data->data.data_length);
+  //   printf("\n");
+  //   list->list_data = list->list_data->next;
+  // }
 	return (SUCCESS);
 }
 

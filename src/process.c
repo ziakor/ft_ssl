@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2021/04/05 09:53:19 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/13 14:41:27 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			process_one(char **argv, t_parsing *list, int i)
 	}
 	if ((!argv[i] && !list->flags.s) || list->flags.p)
 	{
-		if (!(get_file_data(list, NULL)))// probleme ici
+		if (!(get_file_data(list, NULL)))
 			return (FAILED);
 	}
 	if (list->flags.s)

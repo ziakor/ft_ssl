@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/06/07 12:12:18 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/13 15:00:05 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,73 @@ void	print_list_hash(t_list_data *list, t_flags flags)
 
 void	print_one(t_list_data *list, t_flags flag, char *cmd)
 {
+ int first = 0;
 	while (list)
 	{
-		if (!print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd) && !print_flag_q(list->hash.hashed_data, list->hash.nb_bits, flag.q) &&
-				!print_flag_r(list->hash.hashed_data, list->hash.nb_bits, list->data.file_name, flag.r))
-		{
+    // printf("%d ", list->data.fd);
+    // //    print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
+    // // ft_putnstr(list->data.data,list->data.data_length);
+
+    // // list = list->next;
+    if ( list->data.fd < 0)
+    {
+      print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd);
+      list = list->next;
+      continue;
+    }
+    if (flag.p == 1 && list->data.fd == 0 && flag.q == 1)
+    {
+        ft_putnstr(list->data.data, list->data.data_length);
+    }
+    if (flag.q == 1)
+    {
+      print_flag_q(list->hash.hashed_data, list->hash.nb_bits, flag.q) ;
+    }
+    else if (flag.r == 1) 
+    {
+			if (flag.p == 1 && first == 0)
+			{
+        first = 1;
+				ft_putstr("(");
+				ft_putchar('\"');
+				for (size_t x = 0; x < list->data.data_length; x++)
+        {
+          if (list->data.data[x] == '\n')
+            break;
+          ft_putchar(list->data.data[x]);
+        }
+        
+				ft_putstr("\")= ");
+				print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
+        ft_putchar('\n');
+			}
+			else
+			{
+				print_flag_r(list->hash.hashed_data, list->hash.nb_bits, list->data.file_name, flag.r);
+			}
+    }
+    else 
+    {
 			print_algo_name(cmd, list->data.fd);
 			ft_putstr("(");
-			ft_putstr(list->data.file_name);
+      if (flag.p == 1 && first == 0){
+        first = 1;
+        ft_putchar('\"');
+				for (size_t x = 0; x < list->data.data_length; x++)
+        {
+          if (list->data.data[x] == '\n')
+            break;
+          ft_putchar(list->data.data[x]);
+        }
+      }else {
+
+			ft_putstr(list->data.file_name);		
+      }
 			ft_putstr(")= ");
 			print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
 			ft_putchar('\n');
-		}
-		if (list->data.fd > 0)
-			close(list->data.fd);
+    }
+    // printf("ASD\n");
 		list = list->next;
 	}
 }

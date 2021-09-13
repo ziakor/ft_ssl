@@ -31,7 +31,7 @@ void	ft_list_cipher(void)
 
 void	ft_list_options_1(void)
 {
-	ft_putstr_fd("Standart options commands\n", 2);
+	ft_putstr_fd("Message digest options commands\n", 2);
 	ft_putstr_fd("-p\t\t\techo STDIN to STDOUT and append the checksum to STDOUT\n", 2);
 	ft_putstr_fd("-r\t\t\treverse the format of the output\n", 2);
 	ft_putstr_fd("-q\t\t\tquiet mode\n", 2);
