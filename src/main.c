@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/13 13:25:13 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/14 15:40:27 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,19 @@ int		main(int argc, char **argv)
 	{
 		if (parsing_args(&list, argv, argc) == 0)
 		{
-			print_list_hash(list.list_data, list.flags);
-      if (list.print_func)
-        list.print_func(list.list_data, list.flags, list.cmd);
-			clean_parsing(&list);
+			// print_list_hash(list.list_data, list.flags);
+      // if (list.print_func)
+      //   list.print_func(list.list_data, list.flags, list.cmd);
+			// clean_parsing(&list);
 			return (0);
 		}
-	hash_data(&list);
-  // while (list.list_data){
-  //   print_hash_data(list.list_data->hash.hashed_data, list.list_data->hash.nb_bits);
-  //   ft_putnstr(list.list_data->data.data,list.list_data->data.data_length);
-  //   list.list_data = list.list_data->next;
-  // }
-  // printf("\n");
  
+    
+	hash_data(&list);
+
   list.print_func(list.list_data, list.flags, list.cmd);
-	clean_parsing(&list);
+
+    clean_parsing(&list);
 	}
 
 	return (0);

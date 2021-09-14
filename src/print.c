@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/13 15:00:05 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/14 15:43:26 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,7 @@ void	print_one(t_list_data *list, t_flags flag, char *cmd)
  int first = 0;
 	while (list)
 	{
-    // printf("%d ", list->data.fd);
-    // //    print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
-    // // ft_putnstr(list->data.data,list->data.data_length);
 
-    // // list = list->next;
     if ( list->data.fd < 0)
     {
       print_error(list->data.data, list->data.data_length, list->data.file_name, list->data.fd);
@@ -105,7 +101,6 @@ void	print_one(t_list_data *list, t_flags flag, char *cmd)
 			print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
 			ft_putchar('\n');
     }
-    // printf("ASD\n");
 		list = list->next;
 	}
 }
@@ -142,7 +137,15 @@ void    print_des(t_list_data *list, t_flags flag, char *cmd)
           write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
       }
       else {
-        ft_putnstr((char*)list->hash.hashed_data, list->hash.nb_bits);
+        // for (size_t i = 0; i < list->hash.nb_bits; i++)
+        // {
+        //     int k = 8;
+        //     while (k >= 0){
+        //       printf("%d", ((list->hash.hashed_data[i] )>> k) & 1);
+        //     k--;
+        //   }
+        //   printf(" ");
+        // }
         
       }
     }

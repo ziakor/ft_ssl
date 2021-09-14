@@ -165,7 +165,8 @@ static const int g_des_substitution8[]=
 	2,  1, 14,  7,  4, 10,  8, 13, 15, 12,  9,  0,  3,  5,  6, 11
 };
 
-static const int g_des_cp1[] = 
+
+static const int g_des_pc1[] = 
 {
 	57, 49, 41, 33, 25, 17,  9,
 	1, 58, 50, 42, 34, 26, 18,
@@ -211,8 +212,8 @@ int		des_ecb(t_parsing *list, unsigned char *str, size_t length);
 */
 
 uint64_t shift_left_half_keys(uint64_t key, int bits );
-void make_half_keys(uint64_t half_keys[16], uint64_t starter);
-uint64_t    make_cp1(uint64_t key64);
+void make_half_keys(uint64_t c[16], u_int64_t d[16], uint64_t key56);
+uint64_t    make_pc1(uint64_t key64);
 uint64_t make_cp2(uint64_t c, uint64_t d);
 void create_key_des_ecb(t_parsing *list, t_des *des);
 
