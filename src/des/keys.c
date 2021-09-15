@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 10:10:16 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/14 15:43:48 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/15 20:09:10 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,25 +85,10 @@ void create_key_des_ecb(t_parsing *list, t_des *des)
     int k = 63;
 
     key64 = hex_to_uint64(list->flags.key);
-    printf("key64: ");
-        while (k >= 0){
-      printf("%d", (key64 >> k) & 1);
-      k--;
-    }
+
     
     key56 = make_pc1(key64);
-    k = 63;
-    printf("\nkey56: ");
-      while (k >= 8){
-        printf("%d", (key56 >> k) & 1);
-      k--;
-    }
-
-
-
-  
     make_half_keys(c, d, key56);
-  printf("\n");
     for (size_t n = 0; n < 16; n++)
     {
         key64 = n;

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:35 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/14 15:40:27 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/15 15:08:23 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int		main(int argc, char **argv)
 	{
 		if (parsing_args(&list, argv, argc) == 0)
 		{
-			// print_list_hash(list.list_data, list.flags);
+			print_list_hash(list.list_data, list.flags);
       // if (list.print_func)
       //   list.print_func(list.list_data, list.flags, list.cmd);
-			// clean_parsing(&list);
+			clean_parsing(&list);
 			return (0);
 		}
  
@@ -37,7 +37,7 @@ int		main(int argc, char **argv)
 
   list.print_func(list.list_data, list.flags, list.cmd);
 
-    clean_parsing(&list);
+  clean_parsing(&list);
 	}
 
 	return (0);
