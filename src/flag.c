@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 12:57:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/06/07 12:24:05 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/16 16:50:22 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,17 @@ int flag_a(t_parsing *list)
 int flag_print(uint8_t key[16], uint8_t vector[16], uint8_t salt[16])
 {
 	if (key[0] != 0)
-	{
-		ft_putstr("key: ");
-		ft_putnstr((char*)key, 16);
-		ft_putchar('\n');
-	}
   if (salt[0] != 0)
   {
-    ft_putstr("salt:");
+    ft_putstr("salt=");
     ft_putnstr((char*)salt, 16);
     ft_putchar('\n');
   }
+  {
+		ft_putstr("key=");
+		ft_putnstr((char*)key, 16);
+		ft_putchar('\n');
+	}
 	if (vector[0] != 0)
 	{
 		ft_putstr("iv: ");

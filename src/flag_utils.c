@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/06/07 13:07:39 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/16 16:38:17 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,10 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)
     i = 0;
     tmp = data;
     len = length;
-    while (i < 10000)
+    while (i < 1)
     {
         sha256(list, (unsigned char*)tmp, len);
+        // md5(list, (unsigned char*)tmp, len);
         tmp = (char*)list->list_data->hash.hashed_data;
         len = list->list_data->hash.nb_bits;
         i++;
@@ -126,6 +127,14 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)
     
 }
 
+int ahex2int(char a, char b){
+
+    a = (a <= '9') ? a - '0' : (a & 0x7) + 9;
+    b = (b <= '9') ? b - '0' : (b & 0x7) + 9;
+
+    return (a << 4) + b;
+}
+
 int         generate_key(t_parsing *list)
 {
     char *password_with_salt;
@@ -137,21 +146,22 @@ int         generate_key(t_parsing *list)
     j = 0;
     i = 0;
 
-    len = (ft_strlen(list->flags.password) * 2) + 16;
+    len = (ft_strlen(list->flags.password)) + 8;
     password_with_salt = NULL;
     if (!(password_with_salt = (char*) malloc(sizeof(char) * len)))
         return (FAILED);
-    while (list->flags.password[j])
+    while (list->flags.password[i])
     {
-        password_with_salt[i] = list->flags.password[j] < 16 ? '0' : tab[list->flags.password[j] / 16];
-        password_with_salt[i + 1] = tab[list->flags.password[j] % 16];
-        i = i + 2;
-        j++;
+        password_with_salt[i] = list->flags.password[i];
+        i++;
     }
     j = 0;
     while (j < 16)
-        password_with_salt[i++] = list->flags.salt[j++];
-    i = 0;
+    {
+        password_with_salt[i] = ahex2int(list->flags.salt[j], list->flags.salt[j + 1]);
+        i++;
+        j+= 2;
+    }
     pbfdk2(list, password_with_salt, len);
     free(password_with_salt);
     return (SUCCESS);

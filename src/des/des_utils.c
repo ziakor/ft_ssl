@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:49:59 by dihauet           #+#    #+#             */
-/*   Updated: 2021/06/07 12:40:18 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/16 10:33:42 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int flag_salt(t_parsing *list, char **argv, int *i)
 	
 	j = 0;
 	new_elem = NULL;
-	*i += 1;
+	*i+=1;
 	if (!argv[*i])
 	{
-		if (!(new_elem = create_new_elem("Option \'-s\' need a value", "ft_ssl", -1, 24)))
+		if (!(new_elem = create_new_elem("Option \'-k\' need a value", "ft_ssl", -1, 24)))
 			return (FAILED);
 		add_new_elem(&list->list_data, new_elem);
 	}
@@ -41,14 +41,14 @@ int flag_salt(t_parsing *list, char **argv, int *i)
 					add_new_elem(&list->list_data, new_elem);
 					return (FAILED);
 				}
-				list->flags.salt[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? argv[*i][j] - 32 : argv[*i][j];
+				list->flags.salt[j] = argv[*i][j] >= 'a' && argv[*i][j] <= 'z' ? ft_toupper(argv[*i][j]) : argv[*i][j];
 			}
 			else
 				list->flags.salt[j] = '0';
 			j++;
 		}
-		if (len > 8)
-			write(1, "hex string is too long ignoring excess\n", 39);
+		if (len > 16)
+			write(2, "hex string is too long ignoring excess\n", 39);
 	}
 	return (SUCCESS);
 }
