@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 15:26:42 by dihauet           #+#    #+#             */
-/*   Updated: 2021/06/07 12:12:42 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/17 12:29:17 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ uint64_t    hex_to_uint64(unsigned char *str)
         i++;
     }
     return (key);
+}
+
+int ahex2int(char a, char b){
+
+    a = (a <= '9') ? a - '0' : (a & 0x7) + 9;
+    b = (b <= '9') ? b - '0' : (b & 0x7) + 9;
+
+    return (a << 4) + b;
 }

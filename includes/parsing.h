@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 17:06:58 by dihauet           #+#    #+#             */
-/*   Updated: 2021/06/07 12:11:19 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/17 12:06:34 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ typedef	struct		s_flags
 	int		o;
   int   P;
 	char	*o_file;
+  int   hasKey;
+  int   hasSalt;
+  int   hasIv;
 }					t_flags;
 
 typedef struct		s_data

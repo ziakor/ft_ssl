@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/16 16:38:17 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/17 12:29:07 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,14 +125,6 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)
     free(list->list_data->hash.hashed_data);
     list->list_data->hash.nb_bits = 0;
     
-}
-
-int ahex2int(char a, char b){
-
-    a = (a <= '9') ? a - '0' : (a & 0x7) + 9;
-    b = (b <= '9') ? b - '0' : (b & 0x7) + 9;
-
-    return (a << 4) + b;
 }
 
 int         generate_key(t_parsing *list)

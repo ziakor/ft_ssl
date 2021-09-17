@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 15:59:57 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/15 21:49:16 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/17 18:40:16 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,31 @@ int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t l
 
     des->pad_bit = (((length / 8) + 1 ) * 8) - length; 
     
-      length = des->pad_bit + length;
+    length = des->pad_bit + length;
     if (!(list->list_data->hash.hashed_data = (uint8_t*) malloc(sizeof(uint8_t) * (length) )))
         return (FAILED);
     list->list_data->hash.nb_bits =  length;
     des_core(list, des, str, length);
+
+    uint8_t* res;
+    if (!(res = (uint8_t*)malloc(sizeof(uint8_t) * ( list->list_data->hash.nb_bits + 16)))){
+      return(FAILED);
+    }
+    res = ft_strcpy(res, "Salted__");
+    int v = 0;
+    for (size_t i = 0; i < 16; i+=2)
+    {
+      res[8 + v] = ahex2int(list->flags.salt[i], list->flags.salt[i+1]);
+      v++;
+    }
+    for (size_t j = 0; j < list->list_data->hash.nb_bits; j++)
+    {
+      res[16 + j] = list->list_data->hash.hashed_data[j];
+    }
+    free(list->list_data->hash.hashed_data);
+    list->list_data->hash.hashed_data = res;
+    list->list_data->hash.nb_bits = list->list_data->hash.nb_bits + 16;
+
     if (list->flags.a)
     {
       tmp = list->list_data->hash.hashed_data;
@@ -96,15 +116,19 @@ int     des_ecb_encode(t_parsing *list, t_des *des, unsigned char *str, size_t l
 int     des_ecb_decode(t_parsing *list, t_des *des, unsigned char *str, size_t length)
 {
     uint8_t*  tmp;
-
     tmp = NULL;
     if (list->flags.a)
     {
         if (!(base64(list,str,length)))
             return (FAILED);
         tmp = list->list_data->hash.hashed_data;
-        str = tmp;
-        length = list->list_data->hash.nb_bits;
+        str = &tmp[16];
+        length = list->list_data->hash.nb_bits - 16;
+     
+    }
+    else {
+       str = &str[16];
+      length = length - 16;
     }
     if (!(list->list_data->hash.hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * (length ))))
         return (FAILED);
@@ -115,7 +139,5 @@ int     des_ecb_decode(t_parsing *list, t_des *des, unsigned char *str, size_t l
     list->list_data->hash.nb_bits = length - des->pad_bit;
     if (tmp)
         free(tmp);
- 
-    
     return(SUCCESS);
 }

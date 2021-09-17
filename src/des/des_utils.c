@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:49:59 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/16 10:33:42 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/17 12:08:44 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,16 +199,19 @@ int			parse_flag_des(t_parsing *list, char **argv, int *i)
     }
 	else if (ft_strcmp(argv[*i], "-k") == 0)
 	{
+    list->flags.hasKey = 1;
 		if (!(flag_key(list,argv,i)))
 			return(FAILED);
 	}
 	else if (ft_strcmp(argv[*i], "-s") == 0)
 	{
+    list->flags.hasSalt = 1;
 		if (!(flag_salt(list,argv,i)))
 			return(FAILED);
 	}
     else if (ft_strcmp(argv[*i], "-v") == 0)
     {
+        list->flags.hasIv= 1;
         if (!(flag_vector(list, argv, i)))
             return (FAILED);
     }

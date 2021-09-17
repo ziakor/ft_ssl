@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/16 16:27:46 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/17 12:31:06 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int			add_padding(t_padding *padding, unsigned  char *data,
 int			is_little_endian(void);
 uint32_t	swap_endian(uint32_t x);
 uint64_t    hex_to_uint64(unsigned char *str);
+int ahex2int(char a, char b);
 
 
 

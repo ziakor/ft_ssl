@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/15 15:09:03 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/17 18:25:59 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ void    print_des(t_list_data *list, t_flags flag, char *cmd)
       }
       else if (flag.o)
       {
+         
+          
           write_output(flag.o_file, list->hash.hashed_data, list->hash.nb_bits);
       }
       else {
