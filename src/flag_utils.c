@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:08:54 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/17 12:29:07 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/18 10:36:33 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,28 @@ void        generate_salt(t_parsing *list)
     close(fd);
 }
 
+void          generate_vector(t_parsing *list)
+{
+      int i;
+    const char tab[]= "0123456789ABCDEF";
+    unsigned char data[8];
+    int fd;
+    int j;
+
+    j = 0;
+    i = 0;
+    fd = open("/dev/urandom", O_RDONLY);
+    read(fd, data, 8);
+    while (i < 16)
+    {
+        list->flags.vector[i] = data[j]  < 16 ? '0' : tab[data[j] / 16];
+        list->flags.vector[i + 1] = tab[data[j] % 16];
+        i = i + 2;
+        j++;
+    }
+    close(fd);
+}
+
 static void    put_key(t_parsing *list, int nb, int *count_key)
 {
 	if (nb > 15)
@@ -109,7 +131,6 @@ void         pbfdk2(t_parsing *list, char *data, size_t length)
     while (i < 1)
     {
         sha256(list, (unsigned char*)tmp, len);
-        // md5(list, (unsigned char*)tmp, len);
         tmp = (char*)list->list_data->hash.hashed_data;
         len = list->list_data->hash.nb_bits;
         i++;

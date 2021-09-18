@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:45:24 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/13 14:41:27 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/18 11:33:33 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,19 @@ int         process_des(char **argv, t_parsing *list, int i)
 		if (!(get_file_data(list, NULL)))
 			return (FAILED);
 	}
-		if (list->flags.a)
-				list->flags.a = 1;
-		if (list->flags.salt[0] == 0)
-		{
-				generate_salt(list);
-		}
-		if (list->flags.key[0] == 0)
-		{
-				if (!(generate_key(list)))
-						return (FAILED);
-		}
-		return (SUCCESS);
+	if (list->flags.a)
+			list->flags.a = 1;
+  if(list->flags.hasIv == 0){
+    generate_vector(list);
+  }
+	if (list->flags.salt[0] == 0)
+	{
+			generate_salt(list);
+	}
+	if (list->flags.key[0] == 0)
+	{
+			if (!(generate_key(list)))
+					return (FAILED);
+	}
+	return (SUCCESS);
 }

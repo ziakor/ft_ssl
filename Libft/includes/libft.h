@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:25:39 by dihauet           #+#    #+#             */
-/*   Updated: 2020/12/29 13:23:23 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/18 11:50:09 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,5 @@ char				*ft_strjoin_size(const char *s1, const char *s2,
 uint64_t			ft_rotl64(uint64_t x, uint64_t y);
 void        ft_putnstr(char *data, size_t length);
 int         ft_is_hexa(char c);
+int ft_isspace(char c);
 #endif

@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 15:52:29 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/13 10:43:22 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/18 11:51:31 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int convert_base64_decrypt(t_base64 *b64, t_parsing *list, unsigned char *data, 
 		while (b64->i < length)
 		{
 				b64->c = g_base64_d[(int)data[b64->i++]];
-		    if (b64->c == WHITESPACE)
+		    if (ft_isspace(data[b64->i -1]))
 		    	continue;
 		    else if (b64->c == INVALID)
 		    	return (FAILED);

@@ -6,7 +6,7 @@
 #    By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/24 12:26:36 by dihauet           #+#    #+#              #
-#    Updated: 2021/04/04 16:04:30 by dihauet          ###   ########.fr        #
+#    Updated: 2021/09/18 11:52:06 by dihauet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRCS = 	ft_atoi.c \
 		ft_memdel.c \
 		ft_memmove.c \
 		ft_memset.c \
+		ft_isspace.c \
 		ft_putchar.c \
 		ft_putchar_fd.c \
 		ft_putendl.c \

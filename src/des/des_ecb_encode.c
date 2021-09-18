@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 15:59:57 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/17 18:40:16 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/18 10:47:55 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void  des_core(t_parsing *list, t_des *des, unsigned char *str, size_t le
     {
         data = ecb_get_64bit((char*)&str[i], des->pad_bit, length - i - des->pad_bit);
         data = ecb_algo(data,des->key48);
-            int k = 63;
   
         des_put_data(&list->list_data->hash.hashed_data[i], data);
         i+= 8;
@@ -124,10 +123,9 @@ int     des_ecb_decode(t_parsing *list, t_des *des, unsigned char *str, size_t l
         tmp = list->list_data->hash.hashed_data;
         str = &tmp[16];
         length = list->list_data->hash.nb_bits - 16;
-     
     }
     else {
-       str = &str[16];
+      str = &str[16];
       length = length - 16;
     }
     if (!(list->list_data->hash.hashed_data = (uint8_t*)malloc(sizeof(uint8_t) * (length ))))
