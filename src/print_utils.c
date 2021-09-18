@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/18 16:27:20 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/18 16:46:54 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_reverse_hash(t_hash hash, char *filename)
 	ft_putstr(filename);
 }
 
-//
+
 int	print_flag_p(uint8_t *data, size_t length, int flag_p)
 {
 	if (flag_p)
