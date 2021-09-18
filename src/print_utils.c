@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 14:43:01 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/14 08:58:49 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/18 16:27:20 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,18 @@ int print_flag_q(uint8_t *data, size_t length, int flag_q)
     return(FAILED);
 }
 
-int print_flag_r(uint8_t *data, size_t length, char *filename, int flag_r)
+int print_flag_r(uint8_t *data, size_t length, char *filename, int flag_r, int fd)
 {
     if (flag_r)
     {
         print_hash_data(data, length);
         ft_putstr(" ");
+        if (fd == 1)
+          ft_putstr("\"");
         ft_putstr(filename);
+        if (fd == 1)
+          ft_putstr("\"");
+
         ft_putchar('\n');
         return (SUCCESS);
     }

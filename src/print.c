@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 15:16:37 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/17 18:25:59 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/18 16:44:22 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_one(t_list_data *list, t_flags flag, char *cmd)
     }
     if (flag.q == 1)
     {
-      print_flag_q(list->hash.hashed_data, list->hash.nb_bits, flag.q) ;
+      print_flag_q(list->hash.hashed_data, list->hash.nb_bits, flag.q);
     }
     else if (flag.r == 1) 
     {
@@ -77,7 +77,7 @@ void	print_one(t_list_data *list, t_flags flag, char *cmd)
 			}
 			else
 			{
-				print_flag_r(list->hash.hashed_data, list->hash.nb_bits, list->data.file_name, flag.r);
+				print_flag_r(list->hash.hashed_data, list->hash.nb_bits, list->data.file_name, flag.r, list->data.fd);
 			}
     }
     else 
@@ -94,9 +94,14 @@ void	print_one(t_list_data *list, t_flags flag, char *cmd)
           ft_putchar(list->data.data[x]);
         }
       }else {
-
-			ft_putstr(list->data.file_name);		
+          if (flag.s == 1 && list->data.fd == 1){
+              ft_putchar('"');
+          }
+          ft_putstr(list->data.file_name);		
       }
+      if ((list->data.fd <= 1 &&flag.s == 1) || (list->data.fd <= 1 && flag.p == 1) )
+          ft_putchar('"');
+      
 			ft_putstr(")= ");
 			print_hash_data(list->hash.hashed_data, list->hash.nb_bits);
 			ft_putchar('\n');

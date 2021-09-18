@@ -6,7 +6,7 @@
 /*   By: dihauet <dihauet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 12:38:56 by dihauet           #+#    #+#             */
-/*   Updated: 2021/09/18 10:07:37 by dihauet          ###   ########.fr       */
+/*   Updated: 2021/09/18 16:22:44 by dihauet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void		print_reverse_hash(t_hash hash, char *file_name);
 
 int	print_flag_p(uint8_t *data, size_t length, int flag_p);
 int print_flag_q(uint8_t *data, size_t length, int flag_q);
-int print_flag_r(uint8_t *data, size_t length, char *filename, int flag_r);
+int print_flag_r(uint8_t *data, size_t length, char *filename, int flag_r, int fd);
 int print_error(uint8_t *data, size_t length, char *filename, int fd);
 /*
 ** padding.c
