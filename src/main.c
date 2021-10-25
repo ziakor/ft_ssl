@@ -15,7 +15,7 @@
 int		main(int argc, char **argv)
 {
 	t_parsing	list = {NULL, 0, 1, {0, 0, 0, 0, {0}, {0}, {0}, 0, 0, 0, 0, 0, 0, 0, 0}, NULL, NULL, NULL, NULL};
-  
+
 	if (argc == 1)
 	{
     ft_ssl_usage();

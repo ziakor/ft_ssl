@@ -29,11 +29,12 @@ int			process_one(char **argv, t_parsing *list, int i)
 	}
 	if (list->flags.s)
 	{
-		if (!(get_data_s_flag(&list->list_data, argv[i++])))
+		if (!(get_data_s_flag(&list->list_data, argv[i])))
 			return (FAILED);
 	}
 	while (argv[i])
 	{
+
 		if (!(get_file_data(list, argv[i])))
 			return (FAILED);
 		i++;
